@@ -1,0 +1,123 @@
+2026-03-06 17:37:34,740 | INFO | run_query | ============================================================
+2026-03-06 17:37:34,740 | INFO | run_query | ❓ QUESTION : What are the different types of AI agents?
+2026-03-06 17:37:34,740 | INFO | run_query | ============================================================
+2026-03-06 17:37:34,740 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-06 17:37:34,740 | INFO | retriever | 🔍 Query : 'What are the different types of AI agents?'
+2026-03-06 17:37:34,740 | INFO | retriever | 🎯 Hybrid Search — top 20 chunks
+2026-03-06 17:37:34,740 | INFO | rewriter | ✏️  Réécriture de la query : 'What are the different types of AI agents?'
+2026-03-06 17:37:36,701 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 17:37:36,717 | INFO | rewriter | 📝 4 queries générées :
+2026-03-06 17:37:36,718 | INFO | rewriter |    [1] What are the different types of AI agents?
+2026-03-06 17:37:36,718 | INFO | rewriter |    [2] Types d'agents d'IA
+2026-03-06 17:37:36,718 | INFO | rewriter |    [3] Différents types d'agents intelligents
+2026-03-06 17:37:36,718 | INFO | rewriter |    [4] Catégories d'agents d'intelligence artificielle
+2026-03-06 17:37:36,765 | INFO | chromadb.telemetry.product.posthog | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-03-06 17:37:36,865 | INFO | retriever | ✅ Vector store initialisé (lazy singleton)
+2026-03-06 17:37:47,861 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 17:37:48,504 | INFO | retriever | ✅ BM25 initialisé sur 6034 documents
+2026-03-06 17:37:48,780 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 17:37:49,193 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 17:37:49,599 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 17:37:49,623 | INFO | retriever |    📐 Vector search total : 18 résultats
+2026-03-06 17:37:49,623 | INFO | retriever |    🔤 BM25 search total   : 23 résultats
+2026-03-06 17:37:49,624 | INFO | retriever | 📊 20 chunks retenus après fusion RRF :
+2026-03-06 17:37:49,624 | INFO | retriever |    [1] source=a-practical-guide-to-building-agents.pdf | aperçu=discoverability, simplify version management, and prevent redundant definitions....
+2026-03-06 17:37:49,624 | INFO | retriever |    [2] source=a-practical-guide-to-building-agents.pdf | aperçu=Multi-agent systems
+While multi-agent systems can be designed in numerous ways f...
+2026-03-06 17:37:49,624 | INFO | retriever |    [3] source=a-practical-guide-to-building-agents.pdf | aperçu=More resources
+API Platform
+OpenAI for Business
+OpenAI Stories
+ChatGPT Enterpris...
+2026-03-06 17:37:49,624 | INFO | retriever |    [4] source=a-practical-guide-to-building-agents.pdf | aperçu=Agent design 
+foundations
+In its most fundamental form, an agent consists of thr...
+2026-03-06 17:37:49,624 | INFO | retriever |    [5] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=or amounts, the number of data objects, and more details.
+Grouping an infoset by...
+2026-03-06 17:37:49,624 | INFO | retriever |    [6] source=a-practical-guide-to-building-agents.pdf | aperçu=For example, in the Agents SDK, agents are started using the 
+ method, which loo...
+2026-03-06 17:37:49,624 | INFO | retriever |    [7] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=selected infoset.
+3. To view the selected infoset and the different data sources...
+2026-03-06 17:37:49,624 | INFO | retriever |    [8] source=a-practical-guide-to-building-agents.pdf | aperçu=Introduction
+Large language models are becoming increasingly capable of handling...
+2026-03-06 17:37:49,624 | INFO | retriever |    [9] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=accomplish a task.
+IBM StoredIQ Data Workbench
+With IBM StoredIQ Data Workbench,...
+2026-03-06 17:37:49,624 | INFO | retriever |    [10] source=a-practical-guide-to-building-agents.pdf | aperçu=Conclusion
+Agents mark a new era in workflow automation, where systems can reaso...
+2026-03-06 17:37:49,624 | INFO | retriever |    [11] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=IBM StoredIQ Data Workbench
+IBM StoredIQ Data Workbench enables visualizing the...
+2026-03-06 17:37:49,624 | INFO | retriever |    [12] source=a-practical-guide-to-building-agents.pdf | aperçu=Contents
+What is an agent?
+4
+When should you build an agent?
+5
+Agent design foun...
+2026-03-06 17:37:49,624 | INFO | retriever |    [13] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Note: Case-sensitivity rules apply. Red asterisks within the user interface deno...
+2026-03-06 17:37:49,624 | INFO | retriever |    [14] source=a-practical-guide-to-building-agents.pdf | aperçu=When should you 
+build an agent?
+Building agents requires rethinking how your sy...
+2026-03-06 17:37:49,624 | INFO | retriever |    [15] source=a-practical-guide-to-building-agents.pdf | aperçu=another based on their specializations.
+Multi-agent systems can be modeled as gr...
+2026-03-06 17:37:49,624 | INFO | retriever |    [16] source=a-practical-guide-to-building-agents.pdf | aperçu=For example, here’s how you’d implement the decentralized pattern using the Agen...
+2026-03-06 17:37:49,624 | INFO | retriever |    [17] source=a-practical-guide-to-building-agents.pdf | aperçu=user may have!
+15
+A practical guide to building agents...
+2026-03-06 17:37:49,624 | INFO | retriever |    [18] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Finished adding volumes.
+This table describes the fields that are available in t...
+2026-03-06 17:37:49,624 | INFO | retriever |    [19] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=No agents are placed on data sources. The native API/protocol is used whenever i...
+2026-03-06 17:37:49,624 | INFO | retriever |    [20] source=IBMUnstructuredData_Identification_and_Management751_en.pdf | aperçu=Finished adding volumes.
+This table describes the fields that are available in t...
+2026-03-06 17:37:49,625 | INFO | run_query | 🎯 ÉTAPE 2 : Reranking...
+2026-03-06 17:37:49,625 | INFO | reranker | 🎯 Reranking de 20 chunks...
+2026-03-06 17:37:49,625 | INFO | reranker | 🔄 Chargement du Cross-Encoder...
+2026-03-06 17:37:49,988 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 17:37:50,143 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 17:37:50,181 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/config.json "HTTP/1.1 200 OK"
+2026-03-06 17:37:50,485 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 17:37:50,636 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 17:37:50,674 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/config.json "HTTP/1.1 200 OK"
+2026-03-06 17:37:50,832 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 17:37:50,988 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 17:37:51,028 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-06 17:37:51,222 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 17:37:51,425 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-06 17:37:51,605 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 17:37:51,764 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-06 17:37:51,975 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 17:37:52,133 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 17:37:52,172 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/README.md "HTTP/1.1 200 OK"
+2026-03-06 17:37:52,340 | INFO | sentence_transformers.cross_encoder.CrossEncoder | Use pytorch device: mps
+2026-03-06 17:37:52,794 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2 "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 17:37:52,950 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-06 17:37:52,958 | INFO | reranker | ✅ Cross-Encoder chargé (lazy singleton)
+2026-03-06 17:37:53,304 | INFO | reranker | 📊 Scores après reranking :
+2026-03-06 17:37:53,304 | INFO | reranker |    [1] score=-0.5762 | source=a-practical-guide-to-building-agents.pdf | aperçu=Multi-agent systems
+While multi-agent systems can be designed in numerous ways f...
+2026-03-06 17:37:53,304 | INFO | reranker |    [2] score=-1.5590 | source=a-practical-guide-to-building-agents.pdf | aperçu=discoverability, simplify version management, and prevent redundant definitions....
+2026-03-06 17:37:53,304 | INFO | reranker |    [3] score=-3.2677 | source=a-practical-guide-to-building-agents.pdf | aperçu=Conclusion
+Agents mark a new era in workflow automation, where systems can reaso...
+2026-03-06 17:37:53,304 | INFO | reranker |    [4] score=-3.4353 | source=a-practical-guide-to-building-agents.pdf | aperçu=Introduction
+Large language models are becoming increasingly capable of handling...
+2026-03-06 17:37:53,304 | INFO | reranker |    [5] score=-4.0299 | source=a-practical-guide-to-building-agents.pdf | aperçu=When should you 
+build an agent?
+Building agents requires rethinking how your sy...
+2026-03-06 17:37:53,304 | INFO | run_query | 📝 ÉTAPE 3 : Construction du prompt...
+2026-03-06 17:37:53,304 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2889 chars
+2026-03-06 17:37:53,304 | INFO | run_query | 🤖 ÉTAPE 4 : Génération de la réponse...
+2026-03-06 17:37:53,304 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-06 17:37:53,304 | INFO | generator | 📏 Taille du prompt : 2889 chars
+2026-03-06 17:37:56,684 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 17:37:56,688 | INFO | generator | ✅ Réponse générée — tokens: 618 prompt + 113 completion = 731 total
+2026-03-06 17:37:56,689 | INFO | run_query | ============================================================
+2026-03-06 17:37:56,689 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-06 17:37:56,689 | INFO | run_query | 
+Le contexte fourni mentionne deux catégories largement applicables d'agents dans les systèmes multi-agents : 
+
+1. **Manager (agents as tools)** : Un agent central "manager" coordonne plusieurs agents spécialisés via des appels d'outils, chacun gérant une tâche ou un domaine spécifique.
+
+2. **Decentralized (agents handing off to agents)** : Plusieurs agents fonctionnent comme des pairs, se passant des tâches les uns aux autres en fonction de leurs spécialisations. 
+
+Aucune autre catégorie d'agents n'est mentionnée dans le contexte.
+
+2026-03-06 17:37:56,689 | INFO | run_query | ============================================================

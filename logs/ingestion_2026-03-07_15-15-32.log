@@ -1,0 +1,134 @@
+2026-03-07 15:15:37,108 | INFO | run_query | ============================================================
+2026-03-07 15:15:37,108 | INFO | run_query | ❓ QUESTION : How to integrate external tools or APIs into an AI agent?
+2026-03-07 15:15:37,108 | INFO | run_query | ============================================================
+2026-03-07 15:15:37,108 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-07 15:15:37,108 | INFO | retriever | 🔍 Query : 'How to integrate external tools or APIs into an AI agent?'
+2026-03-07 15:15:37,108 | INFO | retriever | 🎯 Hybrid Search — top 20 chunks
+2026-03-07 15:15:37,108 | INFO | rewriter | ✏️  Réécriture de la query : 'How to integrate external tools or APIs into an AI agent?'
+2026-03-07 15:15:38,993 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-07 15:15:39,008 | INFO | rewriter | 📝 4 queries générées :
+2026-03-07 15:15:39,008 | INFO | rewriter |    [1] How to integrate external tools or APIs into an AI agent?
+2026-03-07 15:15:39,008 | INFO | rewriter |    [2] Intégration d'outils externes ou d'APIs dans un agent IA
+2026-03-07 15:15:39,008 | INFO | rewriter |    [3] Outils externes API agent IA
+2026-03-07 15:15:39,008 | INFO | rewriter |    [4] Comment intégrer des APIs dans un agent d'intelligence artificielle ?
+2026-03-07 15:15:39,089 | INFO | chromadb.telemetry.product.posthog | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-03-07 15:15:39,237 | INFO | retriever | ✅ Vector store initialisé (lazy singleton)
+2026-03-07 15:15:43,263 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-07 15:15:44,122 | INFO | retriever | ✅ BM25 initialisé sur 6034 documents
+2026-03-07 15:15:44,309 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-07 15:15:47,059 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-07 15:15:47,293 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-07 15:15:47,327 | INFO | retriever |    📐 Vector search total : 14 résultats
+2026-03-07 15:15:47,327 | INFO | retriever |    🔤 BM25 search total   : 21 résultats
+2026-03-07 15:15:47,328 | INFO | retriever | 📊 20 chunks retenus après fusion RRF :
+2026-03-07 15:15:47,328 | INFO | retriever |    [1] source=a-practical-guide-to-building-agents.pdf | aperçu=Defining tools
+Tools extend your agent’s capabilities by using APIs from underly...
+2026-03-07 15:15:47,328 | INFO | retriever |    [2] source=a-practical-guide-to-building-agents.pdf | aperçu=Agent design 
+foundations
+In its most fundamental form, an agent consists of thr...
+2026-03-07 15:15:47,328 | INFO | retriever |    [3] source=a-practical-guide-to-building-agents.pdf | aperçu=discoverability, simplify version management, and prevent redundant definitions....
+2026-03-07 15:15:47,328 | INFO | retriever |    [4] source=a-practical-guide-to-building-agents.pdf | aperçu=Orchestration
+With the foundational components in place, you can consider orches...
+2026-03-07 15:15:47,328 | INFO | retriever |    [5] source=a-practical-guide-to-building-agents.pdf | aperçu=grow capabilities over time. With the right foundations and an iterative approac...
+2026-03-07 15:15:47,328 | INFO | retriever |    [6] source=a-practical-guide-to-building-agents.pdf | aperçu=or generating a report.
+Applications that integrate LLMs but don’t use them to c...
+2026-03-07 15:15:47,328 | INFO | retriever |    [7] source=a-practical-guide-to-building-agents.pdf | aperçu=More resources
+API Platform
+OpenAI for Business
+OpenAI Stories
+ChatGPT Enterpris...
+2026-03-07 15:15:47,328 | INFO | retriever |    [8] source=a-practical-guide-to-building-agents.pdf | aperçu=of failure, it can halt execution and transfer control back to the user.
+02
+It h...
+2026-03-07 15:15:47,328 | INFO | retriever |    [9] source=a-practical-guide-to-building-agents.pdf | aperçu=or overlap. Some implementations successfully manage 
+more than 15 well-defined,...
+2026-03-07 15:15:47,328 | INFO | retriever |    [10] source=a-practical-guide-to-building-agents.pdf | aperçu=For example, here’s how you’d implement the decentralized pattern using the Agen...
+2026-03-07 15:15:47,328 | INFO | retriever |    [11] source=a-practical-guide-to-building-agents.pdf | aperçu=Introduction
+Large language models are becoming increasingly capable of handling...
+2026-03-07 15:15:47,328 | INFO | retriever |    [12] source=a-practical-guide-to-building-agents.pdf | aperçu=For example, here’s how you could implement this pattern in the Agents SDK:
+Pyth...
+2026-03-07 15:15:47,328 | INFO | retriever |    [13] source=a-practical-guide-to-building-agents.pdf | aperçu=for example performing vendor security reviews.
+03
+Heavy reliance on 
+unstructur...
+2026-03-07 15:15:47,328 | INFO | retriever |    [14] source=a-practical-guide-to-building-agents.pdf | aperçu=search_agent = Agent(
+name=
+,
+instructions=
+tools=[WebSearchTool(),save_results]...
+2026-03-07 15:15:47,328 | INFO | retriever |    [15] source=a-practical-guide-to-building-agents.pdf | aperçu=For example, here’s how you would equip the agent defined above with a series of...
+2026-03-07 15:15:47,328 | INFO | retriever |    [16] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=it also holds that Dd,d ≥0. We claim that the solution to Equation (23.4) is
+the...
+2026-03-07 15:15:47,328 | INFO | retriever |    [17] source=a-practical-guide-to-building-agents.pdf | aperçu=manager_agent = Agent(
+name=
+,
+instructions=(
+
+"If asked for multiple translatio...
+2026-03-07 15:15:47,328 | INFO | retriever |    [18] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Note: Case-sensitivity rules apply. Red asterisks within the user interface deno...
+2026-03-07 15:15:47,328 | INFO | retriever |    [19] source=a-practical-guide-to-building-agents.pdf | aperçu=Conclusion
+Agents mark a new era in workflow automation, where systems can reaso...
+2026-03-07 15:15:47,328 | INFO | retriever |    [20] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=23.1 Principal Component Analysis (PCA)
+327
+−1.5
+−1
+−0.5
+0
+0.5
+1
+1.5
+−1.5
+−1
+−0....
+2026-03-07 15:15:47,329 | INFO | run_query | 🎯 ÉTAPE 2 : Reranking...
+2026-03-07 15:15:47,329 | INFO | reranker | 🎯 Reranking de 20 chunks...
+2026-03-07 15:15:47,329 | INFO | reranker | 🔄 Chargement du Cross-Encoder...
+2026-03-07 15:15:48,178 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-07 15:15:48,438 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-07 15:15:48,439 | WARNING | huggingface_hub.utils._http | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-07 15:15:48,592 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/config.json "HTTP/1.1 200 OK"
+2026-03-07 15:15:49,021 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-07 15:15:49,313 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-07 15:15:49,491 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/config.json "HTTP/1.1 200 OK"
+2026-03-07 15:15:49,781 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-07 15:15:50,071 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-07 15:15:50,267 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-07 15:15:51,451 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-07 15:15:51,891 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-07 15:15:52,047 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-07 15:15:52,234 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-07 15:15:52,484 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-07 15:15:52,713 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-07 15:15:52,851 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/README.md "HTTP/1.1 200 OK"
+2026-03-07 15:15:53,046 | INFO | sentence_transformers.cross_encoder.CrossEncoder | Use pytorch device: mps
+2026-03-07 15:15:53,643 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2 "HTTP/1.1 307 Temporary Redirect"
+2026-03-07 15:15:54,575 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-07 15:15:54,585 | INFO | reranker | ✅ Cross-Encoder chargé (lazy singleton)
+2026-03-07 15:15:55,016 | INFO | reranker | 📊 Scores après reranking :
+2026-03-07 15:15:55,016 | INFO | reranker |    [1] score=1.9095 | source=a-practical-guide-to-building-agents.pdf | aperçu=Defining tools
+Tools extend your agent’s capabilities by using APIs from underly...
+2026-03-07 15:15:55,016 | INFO | reranker |    [2] score=0.6259 | source=a-practical-guide-to-building-agents.pdf | aperçu=Agent design 
+foundations
+In its most fundamental form, an agent consists of thr...
+2026-03-07 15:15:55,016 | INFO | reranker |    [3] score=-3.1709 | source=a-practical-guide-to-building-agents.pdf | aperçu=More resources
+API Platform
+OpenAI for Business
+OpenAI Stories
+ChatGPT Enterpris...
+2026-03-07 15:15:55,016 | INFO | reranker |    [4] score=-4.7760 | source=a-practical-guide-to-building-agents.pdf | aperçu=of failure, it can halt execution and transfer control back to the user.
+02
+It h...
+2026-03-07 15:15:55,016 | INFO | reranker |    [5] score=-4.8628 | source=a-practical-guide-to-building-agents.pdf | aperçu=discoverability, simplify version management, and prevent redundant definitions....
+2026-03-07 15:15:55,016 | INFO | run_query | 📝 ÉTAPE 3 : Construction du prompt...
+2026-03-07 15:15:55,016 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2697 chars
+2026-03-07 15:15:55,016 | INFO | run_query | 🤖 ÉTAPE 4 : Génération de la réponse...
+2026-03-07 15:15:55,016 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-07 15:15:55,016 | INFO | generator | 📏 Taille du prompt : 2697 chars
+2026-03-07 15:15:58,964 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-07 15:15:59,011 | INFO | generator | ✅ Réponse générée — tokens: 612 prompt + 118 completion = 730 total
+2026-03-07 15:15:59,012 | INFO | run_query | ============================================================
+2026-03-07 15:15:59,012 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-07 15:15:59,012 | INFO | run_query | 
+Pour intégrer des outils externes ou des API dans un agent AI, il est nécessaire de définir ces outils de manière standardisée, ce qui permet des relations flexibles entre les outils et les agents. Les agents peuvent utiliser des fonctions externes ou des API pour prendre des actions. Il est également important que les outils soient bien documentés, testés et réutilisables pour améliorer les capacités de l'agent. Les agents doivent avoir accès à différents types d'outils, notamment des outils de données pour récupérer des informations et des outils d'action pour interagir avec des systèmes.
+
+2026-03-07 15:15:59,012 | INFO | run_query | ============================================================

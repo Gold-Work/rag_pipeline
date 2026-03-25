@@ -1,0 +1,12 @@
+2026-03-21 15:05:53,907 | INFO | api | ✅ Login réussi : admin
+2026-03-21 15:06:37,722 | INFO | api | ✅ Login réussi : admin
+2026-03-21 15:06:37,733 | INFO | api | ✅ Login réussi : admin
+2026-03-21 15:06:37,742 | INFO | api | ✅ Login réussi : admin
+2026-03-21 15:06:37,750 | INFO | api | ✅ Login réussi : admin
+2026-03-21 15:06:37,758 | INFO | api | ✅ Login réussi : admin
+2026-03-21 15:06:37,766 | INFO | api | ✅ Login réussi : admin
+2026-03-21 15:06:37,775 | INFO | api | ✅ Login réussi : admin
+2026-03-21 15:06:37,784 | INFO | api | ✅ Login réussi : admin
+2026-03-21 15:06:37,792 | INFO | api | ✅ Login réussi : admin
+2026-03-21 15:06:37,800 | WARNING | slowapi | ratelimit 10 per 1 minute (127.0.0.1) exceeded at endpoint: /api/auth/token
+2026-03-21 15:06:37,808 | WARNING | slowapi | ratelimit 10 per 1 minute (127.0.0.1) exceeded at endpoint: /api/auth/token

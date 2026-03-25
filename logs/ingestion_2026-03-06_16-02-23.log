@@ -1,0 +1,167 @@
+2026-03-06 16:02:27,675 | INFO | run_ingestion | ============================================================
+2026-03-06 16:02:27,675 | INFO | run_ingestion | 🚀 DÉMARRAGE PIPELINE INGESTION
+2026-03-06 16:02:27,675 | INFO | run_ingestion | ============================================================
+2026-03-06 16:02:27,675 | INFO | run_ingestion | 📂 ÉTAPE 1 : Chargement des documents...
+2026-03-06 16:02:27,675 | INFO | loader | 📂 Dossier scanné (récursif) : ./data/raw
+2026-03-06 16:02:41,132 | INFO | loader | ✅ Chargé : IBMPolicy_Assessment_and_Compliance751_en.pdf (614 pages/sections)
+2026-03-06 16:02:54,916 | INFO | loader | ✅ Chargé : IBMUnstructuredData_Identification_and_Management751_en.pdf (614 pages/sections)
+2026-03-06 16:02:59,368 | INFO | loader | ✅ Chargé : a-practical-guide-to-building-agents.pdf (34 pages/sections)
+2026-03-06 16:03:03,503 | INFO | loader | ✅ Chargé : understanding-machine-learning-theory-algorithms.pdf (449 pages/sections)
+2026-03-06 16:03:03,504 | INFO | loader | 📊 Total documents chargés : 1711
+2026-03-06 16:03:03,504 | INFO | run_ingestion | ✅ 1711 pages/sections chargées
+2026-03-06 16:03:03,504 | INFO | run_ingestion | 🔍 ÉTAPE 2 : Parsing et nettoyage...
+2026-03-06 16:03:03,504 | INFO | parser | 🔍 Parsing de 1711 documents...
+2026-03-06 16:03:03,541 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — a-practical-guide-to-building-agents.pdf
+2026-03-06 16:03:03,541 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — understanding-machine-learning-theory-algorithms.pdf
+2026-03-06 16:03:03,541 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — understanding-machine-learning-theory-algorithms.pdf
+2026-03-06 16:03:03,542 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — understanding-machine-learning-theory-algorithms.pdf
+2026-03-06 16:03:03,542 | WARNING | parser | ⚠️  Page trop courte ignorée (18 chars) — understanding-machine-learning-theory-algorithms.pdf
+2026-03-06 16:03:03,542 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — understanding-machine-learning-theory-algorithms.pdf
+2026-03-06 16:03:03,549 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — understanding-machine-learning-theory-algorithms.pdf
+2026-03-06 16:03:03,551 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — understanding-machine-learning-theory-algorithms.pdf
+2026-03-06 16:03:03,569 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — understanding-machine-learning-theory-algorithms.pdf
+2026-03-06 16:03:03,569 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — understanding-machine-learning-theory-algorithms.pdf
+2026-03-06 16:03:03,576 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — understanding-machine-learning-theory-algorithms.pdf
+2026-03-06 16:03:03,579 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — understanding-machine-learning-theory-algorithms.pdf
+2026-03-06 16:03:03,580 | INFO | parser | ✅ Parsing terminé : 1699 documents conservés, 12 ignorés
+2026-03-06 16:03:03,582 | INFO | run_ingestion | ✅ 1699 documents après nettoyage
+2026-03-06 16:03:03,582 | INFO | run_ingestion | ✂️  ÉTAPE 3 : Chunking...
+2026-03-06 16:03:03,582 | INFO | chunker | ✂️  Chunking — taille: 512, overlap: 50
+2026-03-06 16:03:03,689 | INFO | chunker | ✅ 6042 chunks créés depuis 1699 documents
+2026-03-06 16:03:03,690 | INFO | chunker |    📄 IBMPolicy_Assessment_and_Compliance751_en.pdf → 1922 chunks
+2026-03-06 16:03:03,690 | INFO | chunker |    📄 IBMUnstructuredData_Identification_and_Management751_en.pdf → 1937 chunks
+2026-03-06 16:03:03,690 | INFO | chunker |    📄 a-practical-guide-to-building-agents.pdf → 91 chunks
+2026-03-06 16:03:03,690 | INFO | chunker |    📄 understanding-machine-learning-theory-algorithms.pdf → 2092 chunks
+2026-03-06 16:03:03,690 | INFO | run_ingestion | ✅ 6042 chunks créés
+2026-03-06 16:03:03,690 | INFO | run_ingestion | 🧠 ÉTAPE 4 : Embedding et indexation...
+2026-03-06 16:03:03,690 | INFO | embedder | 🚀 Début embedding de 6042 chunks...
+2026-03-06 16:03:03,815 | INFO | chromadb.telemetry.product.posthog | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-03-06 16:03:03,929 | INFO | embedder | 📦 Chunks déjà dans ChromaDB : 0
+2026-03-06 16:03:03,930 | INFO | embedder | 📤 6042 nouveaux chunks à embedder...
+2026-03-06 16:03:07,103 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:07,432 | INFO | embedder | ✅ Batch 1/61 — 100 chunks indexés
+2026-03-06 16:03:08,123 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:08,483 | INFO | embedder | ✅ Batch 2/61 — 100 chunks indexés
+2026-03-06 16:03:09,399 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:09,837 | INFO | embedder | ✅ Batch 3/61 — 100 chunks indexés
+2026-03-06 16:03:10,407 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:10,644 | INFO | embedder | ✅ Batch 4/61 — 100 chunks indexés
+2026-03-06 16:03:11,409 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:11,598 | INFO | embedder | ✅ Batch 5/61 — 100 chunks indexés
+2026-03-06 16:03:12,323 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:12,687 | INFO | embedder | ✅ Batch 6/61 — 100 chunks indexés
+2026-03-06 16:03:13,641 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:14,087 | INFO | embedder | ✅ Batch 7/61 — 100 chunks indexés
+2026-03-06 16:03:14,883 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:15,130 | INFO | embedder | ✅ Batch 8/61 — 100 chunks indexés
+2026-03-06 16:03:15,793 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:16,199 | INFO | embedder | ✅ Batch 9/61 — 100 chunks indexés
+2026-03-06 16:03:17,075 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:17,392 | INFO | embedder | ✅ Batch 10/61 — 100 chunks indexés
+2026-03-06 16:03:18,262 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:18,649 | INFO | embedder | ✅ Batch 11/61 — 100 chunks indexés
+2026-03-06 16:03:19,490 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:19,722 | INFO | embedder | ✅ Batch 12/61 — 100 chunks indexés
+2026-03-06 16:03:20,535 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:20,981 | INFO | embedder | ✅ Batch 13/61 — 100 chunks indexés
+2026-03-06 16:03:21,922 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:22,217 | INFO | embedder | ✅ Batch 14/61 — 100 chunks indexés
+2026-03-06 16:03:23,227 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:24,378 | INFO | embedder | ✅ Batch 15/61 — 100 chunks indexés
+2026-03-06 16:03:25,200 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:25,671 | INFO | embedder | ✅ Batch 16/61 — 100 chunks indexés
+2026-03-06 16:03:26,653 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:27,013 | INFO | embedder | ✅ Batch 17/61 — 100 chunks indexés
+2026-03-06 16:03:27,673 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:28,089 | INFO | embedder | ✅ Batch 18/61 — 100 chunks indexés
+2026-03-06 16:03:29,016 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:29,223 | INFO | embedder | ✅ Batch 19/61 — 100 chunks indexés
+2026-03-06 16:03:30,187 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:30,674 | INFO | embedder | ✅ Batch 20/61 — 100 chunks indexés
+2026-03-06 16:03:32,086 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:32,374 | INFO | embedder | ✅ Batch 21/61 — 100 chunks indexés
+2026-03-06 16:03:33,071 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:35,727 | INFO | embedder | ✅ Batch 22/61 — 100 chunks indexés
+2026-03-06 16:03:36,549 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:38,393 | INFO | embedder | ✅ Batch 23/61 — 100 chunks indexés
+2026-03-06 16:03:39,208 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:41,013 | INFO | embedder | ✅ Batch 24/61 — 100 chunks indexés
+2026-03-06 16:03:41,812 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:44,876 | INFO | embedder | ✅ Batch 25/61 — 100 chunks indexés
+2026-03-06 16:03:45,880 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:50,925 | INFO | embedder | ✅ Batch 26/61 — 100 chunks indexés
+2026-03-06 16:03:51,950 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:56,255 | INFO | embedder | ✅ Batch 27/61 — 100 chunks indexés
+2026-03-06 16:03:57,082 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:03:59,815 | INFO | embedder | ✅ Batch 28/61 — 100 chunks indexés
+2026-03-06 16:04:00,662 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:02,096 | INFO | embedder | ✅ Batch 29/61 — 100 chunks indexés
+2026-03-06 16:04:03,012 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:04,391 | INFO | embedder | ✅ Batch 30/61 — 100 chunks indexés
+2026-03-06 16:04:05,352 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:05,832 | INFO | embedder | ✅ Batch 31/61 — 100 chunks indexés
+2026-03-06 16:04:06,490 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:06,743 | INFO | embedder | ✅ Batch 32/61 — 100 chunks indexés
+2026-03-06 16:04:07,418 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:07,730 | INFO | embedder | ✅ Batch 33/61 — 100 chunks indexés
+2026-03-06 16:04:09,171 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:09,585 | INFO | embedder | ✅ Batch 34/61 — 100 chunks indexés
+2026-03-06 16:04:10,382 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:10,679 | INFO | embedder | ✅ Batch 35/61 — 100 chunks indexés
+2026-03-06 16:04:11,366 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:11,830 | INFO | embedder | ✅ Batch 36/61 — 100 chunks indexés
+2026-03-06 16:04:12,823 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:13,254 | INFO | embedder | ✅ Batch 37/61 — 100 chunks indexés
+2026-03-06 16:04:14,147 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:14,443 | INFO | embedder | ✅ Batch 38/61 — 100 chunks indexés
+2026-03-06 16:04:15,127 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:15,572 | INFO | embedder | ✅ Batch 39/61 — 100 chunks indexés
+2026-03-06 16:04:16,135 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:16,453 | INFO | embedder | ✅ Batch 40/61 — 100 chunks indexés
+2026-03-06 16:04:17,244 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:17,533 | INFO | embedder | ✅ Batch 41/61 — 100 chunks indexés
+2026-03-06 16:04:18,890 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:19,239 | INFO | embedder | ✅ Batch 42/61 — 100 chunks indexés
+2026-03-06 16:04:20,209 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:20,593 | INFO | embedder | ✅ Batch 43/61 — 100 chunks indexés
+2026-03-06 16:04:21,390 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:21,735 | INFO | embedder | ✅ Batch 44/61 — 100 chunks indexés
+2026-03-06 16:04:23,931 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:24,387 | INFO | embedder | ✅ Batch 45/61 — 100 chunks indexés
+2026-03-06 16:04:25,230 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:25,633 | INFO | embedder | ✅ Batch 46/61 — 100 chunks indexés
+2026-03-06 16:04:26,716 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:27,167 | INFO | embedder | ✅ Batch 47/61 — 100 chunks indexés
+2026-03-06 16:04:28,073 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:28,399 | INFO | embedder | ✅ Batch 48/61 — 100 chunks indexés
+2026-03-06 16:04:29,434 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:29,838 | INFO | embedder | ✅ Batch 49/61 — 100 chunks indexés
+2026-03-06 16:04:30,963 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:31,335 | INFO | embedder | ✅ Batch 50/61 — 100 chunks indexés
+2026-03-06 16:04:32,083 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:32,507 | INFO | embedder | ✅ Batch 51/61 — 100 chunks indexés
+2026-03-06 16:04:33,032 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:33,494 | INFO | embedder | ✅ Batch 52/61 — 100 chunks indexés
+2026-03-06 16:04:34,330 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:34,739 | INFO | embedder | ✅ Batch 53/61 — 100 chunks indexés
+2026-03-06 16:04:35,562 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:36,016 | INFO | embedder | ✅ Batch 54/61 — 100 chunks indexés
+2026-03-06 16:04:37,921 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:38,323 | INFO | embedder | ✅ Batch 55/61 — 100 chunks indexés
+2026-03-06 16:04:39,156 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:39,626 | INFO | embedder | ✅ Batch 56/61 — 100 chunks indexés
+2026-03-06 16:04:40,679 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:41,099 | INFO | embedder | ✅ Batch 57/61 — 100 chunks indexés
+2026-03-06 16:04:41,835 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:42,188 | INFO | embedder | ✅ Batch 58/61 — 100 chunks indexés
+2026-03-06 16:04:43,096 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:43,516 | INFO | embedder | ✅ Batch 59/61 — 100 chunks indexés
+2026-03-06 16:04:44,479 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:44,997 | INFO | embedder | ✅ Batch 60/61 — 100 chunks indexés
+2026-03-06 16:04:45,800 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:04:46,093 | INFO | embedder | ✅ Batch 61/61 — 42 chunks indexés
+2026-03-06 16:04:46,093 | INFO | embedder | 🎉 Embedding terminé — 6042/6042 chunks ajoutés au vector store
+2026-03-06 16:04:46,095 | INFO | run_ingestion | ============================================================
+2026-03-06 16:04:46,095 | INFO | run_ingestion | ✅ PIPELINE INGESTION TERMINÉE
+2026-03-06 16:04:46,375 | INFO | run_ingestion | 📊 Total chunks dans ChromaDB : 6042
+2026-03-06 16:04:46,376 | INFO | run_ingestion | ============================================================

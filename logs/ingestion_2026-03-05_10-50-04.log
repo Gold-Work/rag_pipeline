@@ -1,0 +1,21 @@
+2026-03-05 10:50:05,622 | INFO | run_query | 💬 MODE INTERACTIF — tape 'exit' pour quitter\n
+2026-03-05 10:50:23,365 | INFO | run_query | ============================================================
+2026-03-05 10:50:23,367 | INFO | run_query | ❓ QUESTION : Quel est le numéro de SIRET de KDYEM ?
+2026-03-05 10:50:23,367 | INFO | run_query | ============================================================
+2026-03-05 10:50:23,367 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:50:23,368 | INFO | retriever | 🔍 Query : 'Quel est le numéro de SIRET de KDYEM ?'
+2026-03-05 10:50:23,369 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:50:23,511 | INFO | chromadb.telemetry.product.posthog | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-03-05 10:50:23,616 | INFO | retriever | ✅ Vector store initialisé (lazy singleton)
+2026-03-05 10:50:24,179 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:50:24,226 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:50:24,226 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:50:39,297 | INFO | run_query | ============================================================
+2026-03-05 10:50:39,299 | INFO | run_query | ❓ QUESTION : formation ?
+2026-03-05 10:50:39,299 | INFO | run_query | ============================================================
+2026-03-05 10:50:39,299 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:50:39,299 | INFO | retriever | 🔍 Query : 'formation ?'
+2026-03-05 10:50:39,300 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:50:39,859 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:50:39,871 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:50:39,871 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible

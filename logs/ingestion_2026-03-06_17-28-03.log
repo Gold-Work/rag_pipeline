@@ -1,0 +1,11 @@
+2026-03-06 17:28:08,530 | INFO | run_ingestion | ============================================================
+2026-03-06 17:28:08,530 | INFO | run_ingestion | 🚀 DÉMARRAGE PIPELINE INGESTION
+2026-03-06 17:28:08,530 | INFO | run_ingestion | ============================================================
+2026-03-06 17:28:08,530 | INFO | run_ingestion | 📂 ÉTAPE 1 : Chargement des documents...
+2026-03-06 17:28:08,530 | INFO | loader | 📂 Dossier scanné (récursif) : ./data/raw
+2026-03-06 17:28:08,539 | ERROR | loader | ❌ Erreur sur IBMPolicy_Assessment_and_Compliance751_en.pdf : pymupdf package not found, please install it with `pip install pymupdf`
+2026-03-06 17:28:08,548 | ERROR | loader | ❌ Erreur sur IBMUnstructuredData_Identification_and_Management751_en.pdf : pymupdf package not found, please install it with `pip install pymupdf`
+2026-03-06 17:28:08,556 | ERROR | loader | ❌ Erreur sur a-practical-guide-to-building-agents.pdf : pymupdf package not found, please install it with `pip install pymupdf`
+2026-03-06 17:28:08,562 | ERROR | loader | ❌ Erreur sur understanding-machine-learning-theory-algorithms.pdf : pymupdf package not found, please install it with `pip install pymupdf`
+2026-03-06 17:28:08,564 | INFO | loader | 📊 Total documents chargés : 0
+2026-03-06 17:28:08,564 | ERROR | run_ingestion | ❌ Aucun document chargé. Vérifiez le dossier data/raw/

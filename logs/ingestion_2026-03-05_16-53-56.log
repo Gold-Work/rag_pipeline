@@ -1,0 +1,283 @@
+2026-03-05 16:53:56,916 | INFO | run_query | 💬 MODE INTERACTIF — tape 'exit' pour quitter\n
+2026-03-05 16:54:12,884 | INFO | run_query | ============================================================
+2026-03-05 16:54:12,886 | INFO | run_query | ❓ QUESTION : Quelle est la date de naissance de KDYEM GAYA ?
+2026-03-05 16:54:12,886 | INFO | run_query | ============================================================
+2026-03-05 16:54:12,886 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 16:54:12,887 | INFO | retriever | 🔍 Query : 'Quelle est la date de naissance de KDYEM GAYA ?'
+2026-03-05 16:54:12,887 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 1.5
+2026-03-05 16:54:13,024 | INFO | chromadb.telemetry.product.posthog | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-03-05 16:54:13,116 | INFO | retriever | ✅ Vector store initialisé (lazy singleton)
+2026-03-05 16:54:16,271 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 16:54:16,312 | INFO | retriever | 📊 5/5 chunks retenus après filtre :
+2026-03-05 16:54:16,313 | INFO | retriever |    [1] score=0.9840 | source=Kbis KDYEM.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (Al...
+2026-03-05 16:54:16,313 | INFO | retriever |    [2] score=0.9859 | source=Kbis KDYEM.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 16:54:16,313 | INFO | retriever |    [3] score=0.9873 | source=KBIS.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 16:54:16,313 | INFO | retriever |    [4] score=0.9944 | source=KBIS.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (AL...
+2026-03-05 16:54:16,313 | INFO | retriever |    [5] score=1.2161 | source=KDYEM GAYA (1).pdf | aperçu=d'une part, 
+ 
+ 
+ET : 
+ 
+ 
+ 
+Madame KDYEM GAYA, 
+Né(e) le_______________________...
+2026-03-05 16:54:16,313 | INFO | run_query | 📝 ÉTAPE 2 : Construction du prompt...
+2026-03-05 16:54:16,313 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2676 chars
+2026-03-05 16:54:16,313 | INFO | run_query | 🤖 ÉTAPE 3 : Génération de la réponse...
+2026-03-05 16:54:16,313 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-05 16:54:16,313 | INFO | generator | 📏 Taille du prompt : 2676 chars
+2026-03-05 16:54:19,847 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-05 16:54:19,859 | INFO | generator | ✅ Réponse générée — tokens: 921 prompt + 20 completion = 941 total
+2026-03-05 16:54:19,860 | INFO | run_query | ============================================================
+2026-03-05 16:54:19,860 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-05 16:54:19,860 | INFO | run_query | \nLa date de naissance de KDYEM GAYA est le 08/04/1991.\n
+2026-03-05 16:54:19,860 | INFO | run_query | ============================================================
+2026-03-05 16:54:48,793 | INFO | run_query | ============================================================
+2026-03-05 16:54:48,795 | INFO | run_query | ❓ QUESTION : Quel tribunal a délivré le KBIS ?
+2026-03-05 16:54:48,795 | INFO | run_query | ============================================================
+2026-03-05 16:54:48,795 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 16:54:48,795 | INFO | retriever | 🔍 Query : 'Quel tribunal a délivré le KBIS ?'
+2026-03-05 16:54:48,795 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 1.5
+2026-03-05 16:54:51,541 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 16:54:51,556 | INFO | retriever | 📊 5/5 chunks retenus après filtre :
+2026-03-05 16:54:51,556 | INFO | retriever |    [1] score=1.1274 | source=KDYEM GAYA (1).pdf | aperçu=protection sociale chargé du recouvrement des cotisations et des contributions d...
+2026-03-05 16:54:51,557 | INFO | retriever |    [2] score=1.1490 | source=KDYEM GAYA - NEOSPACE - Campus.pdf | aperçu=indiqué. 
+ 
+ARTICLE 21 – LOI APPLICABLE - ATTRIBUTION DE COMPETENCE 
+ 
+La validi...
+2026-03-05 16:54:51,557 | INFO | retriever |    [3] score=1.2148 | source=KBIS.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 16:54:51,557 | INFO | retriever |    [4] score=1.2221 | source=Kbis KDYEM.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 16:54:51,557 | INFO | retriever |    [5] score=1.2307 | source=KDYEM GAYA - NEOSPACE - Campus.pdf | aperçu=dont elle s'assure de l'authenticité auprès de l'or ganisme de recouvrement des...
+2026-03-05 16:54:51,557 | INFO | run_query | 📝 ÉTAPE 2 : Construction du prompt...
+2026-03-05 16:54:51,557 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2818 chars
+2026-03-05 16:54:51,557 | INFO | run_query | 🤖 ÉTAPE 3 : Génération de la réponse...
+2026-03-05 16:54:51,558 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-05 16:54:51,558 | INFO | generator | 📏 Taille du prompt : 2818 chars
+2026-03-05 16:54:53,843 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-05 16:54:53,846 | INFO | generator | ✅ Réponse générée — tokens: 901 prompt + 18 completion = 919 total
+2026-03-05 16:54:53,846 | INFO | run_query | ============================================================
+2026-03-05 16:54:53,846 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-05 16:54:53,847 | INFO | run_query | \nLe KBIS a été délivré par le Greffe du Tribunal de Commerce de Paris.\n
+2026-03-05 16:54:53,847 | INFO | run_query | ============================================================
+2026-03-05 16:55:13,317 | INFO | run_query | ============================================================
+2026-03-05 16:55:13,318 | INFO | run_query | ❓ QUESTION : Quelle est l'adresse mentionnée dans le KBIS ?
+2026-03-05 16:55:13,319 | INFO | run_query | ============================================================
+2026-03-05 16:55:13,319 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 16:55:13,319 | INFO | retriever | 🔍 Query : 'Quelle est l'adresse mentionnée dans le KBIS ?'
+2026-03-05 16:55:13,319 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 1.5
+2026-03-05 16:55:13,718 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 16:55:13,731 | INFO | retriever | 📊 5/5 chunks retenus après filtre :
+2026-03-05 16:55:13,732 | INFO | retriever |    [1] score=1.1268 | source=KDYEM GAYA (1).pdf | aperçu=protection sociale chargé du recouvrement des cotisations et des contributions d...
+2026-03-05 16:55:13,732 | INFO | retriever |    [2] score=1.1709 | source=Attestation d’assurance pour la nouvelle période de garantie.pdf | aperçu=communication ('Chat room') ou forum intéractif / Conseil en systèmes d'informat...
+2026-03-05 16:55:13,732 | INFO | retriever |    [3] score=1.1763 | source=KDYEM GAYA - NEOSPACE - Campus.pdf | aperçu=dont elle s'assure de l'authenticité auprès de l'or ganisme de recouvrement des...
+2026-03-05 16:55:13,732 | INFO | retriever |    [4] score=1.2141 | source=KDYEM GAYA (1).pdf | aperçu=d'une part, 
+ 
+ 
+ET : 
+ 
+ 
+ 
+Madame KDYEM GAYA, 
+Né(e) le_______________________...
+2026-03-05 16:55:13,732 | INFO | retriever |    [5] score=1.2224 | source=KBIS.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 16:55:13,733 | INFO | run_query | 📝 ÉTAPE 2 : Construction du prompt...
+2026-03-05 16:55:13,733 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2734 chars
+2026-03-05 16:55:13,733 | INFO | run_query | 🤖 ÉTAPE 3 : Génération de la réponse...
+2026-03-05 16:55:13,733 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-05 16:55:13,733 | INFO | generator | 📏 Taille du prompt : 2734 chars
+2026-03-05 16:55:15,720 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-05 16:55:15,726 | INFO | generator | ✅ Réponse générée — tokens: 847 prompt + 26 completion = 873 total
+2026-03-05 16:55:15,726 | INFO | run_query | ============================================================
+2026-03-05 16:55:15,726 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-05 16:55:15,726 | INFO | run_query | \nL'adresse mentionnée dans le KBIS est : 1 Quai de la Corse, 75198 Paris Cedex 04.\n
+2026-03-05 16:55:15,727 | INFO | run_query | ============================================================
+2026-03-05 16:58:31,149 | INFO | run_query | ============================================================
+2026-03-05 16:58:31,151 | INFO | run_query | ❓ QUESTION : Quelle est la nationalité de KDYEM GAYA ?
+2026-03-05 16:58:31,151 | INFO | run_query | ============================================================
+2026-03-05 16:58:31,151 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 16:58:31,151 | INFO | retriever | 🔍 Query : 'Quelle est la nationalité de KDYEM GAYA ?'
+2026-03-05 16:58:31,152 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 1.5
+2026-03-05 16:58:31,667 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 16:58:31,676 | INFO | retriever | 📊 5/5 chunks retenus après filtre :
+2026-03-05 16:58:31,677 | INFO | retriever |    [1] score=0.9598 | source=Kbis KDYEM.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (Al...
+2026-03-05 16:58:31,677 | INFO | retriever |    [2] score=0.9782 | source=KBIS.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (AL...
+2026-03-05 16:58:31,677 | INFO | retriever |    [3] score=0.9874 | source=KBIS.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 16:58:31,677 | INFO | retriever |    [4] score=0.9928 | source=Kbis KDYEM.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 16:58:31,677 | INFO | retriever |    [5] score=1.2176 | source=KDYEM GAYA (1).pdf | aperçu=d'une part, 
+ 
+ 
+ET : 
+ 
+ 
+ 
+Madame KDYEM GAYA, 
+Né(e) le_______________________...
+2026-03-05 16:58:31,677 | INFO | run_query | 📝 ÉTAPE 2 : Construction du prompt...
+2026-03-05 16:58:31,677 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2670 chars
+2026-03-05 16:58:31,677 | INFO | run_query | 🤖 ÉTAPE 3 : Génération de la réponse...
+2026-03-05 16:58:31,678 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-05 16:58:31,678 | INFO | generator | 📏 Taille du prompt : 2670 chars
+2026-03-05 16:58:32,744 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-05 16:58:32,746 | INFO | generator | ✅ Réponse générée — tokens: 920 prompt + 14 completion = 934 total
+2026-03-05 16:58:32,746 | INFO | run_query | ============================================================
+2026-03-05 16:58:32,747 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-05 16:58:32,747 | INFO | run_query | \nLa nationalité de KDYEM GAYA est Algérienne.\n
+2026-03-05 16:58:32,747 | INFO | run_query | ============================================================
+2026-03-05 16:58:45,981 | INFO | run_query | ============================================================
+2026-03-05 16:58:45,983 | INFO | run_query | ❓ QUESTION : Quelle est l'adresse de l'établissement ?
+2026-03-05 16:58:45,984 | INFO | run_query | ============================================================
+2026-03-05 16:58:45,984 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 16:58:45,984 | INFO | retriever | 🔍 Query : 'Quelle est l'adresse de l'établissement ?'
+2026-03-05 16:58:45,984 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 1.5
+2026-03-05 16:58:46,282 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 16:58:46,302 | INFO | retriever | 📊 5/5 chunks retenus après filtre :
+2026-03-05 16:58:46,302 | INFO | retriever |    [1] score=1.0341 | source=Kbis KDYEM.pdf | aperçu=Mode d'exploitation Exploitation directe
+OBSERVATIONS ET RENSEIGNEMENTS COMPLEME...
+2026-03-05 16:58:46,303 | INFO | retriever |    [2] score=1.0405 | source=KBIS.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (AL...
+2026-03-05 16:58:46,303 | INFO | retriever |    [3] score=1.0479 | source=Kbis KDYEM.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (Al...
+2026-03-05 16:58:46,303 | INFO | retriever |    [4] score=1.1136 | source=CVPROV-AUTO-A568855-02-20230313-150337.PDF | aperçu=dont les sièges sociaux sont sis 313 Terrasses de l’Arche, 92727 Nanterre Cedex....
+2026-03-05 16:58:46,303 | INFO | retriever |    [5] score=1.1300 | source=Attestation d’assurance pour la nouvelle période de garantie.pdf | aperçu=Famille d'activité :
+COOVER
+66 RUE DES ARCHIVES
+75003 PARIS
+13010052
+0187662824...
+2026-03-05 16:58:46,303 | INFO | run_query | 📝 ÉTAPE 2 : Construction du prompt...
+2026-03-05 16:58:46,303 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2674 chars
+2026-03-05 16:58:46,303 | INFO | run_query | 🤖 ÉTAPE 3 : Génération de la réponse...
+2026-03-05 16:58:46,303 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-05 16:58:46,303 | INFO | generator | 📏 Taille du prompt : 2674 chars
+2026-03-05 16:58:50,860 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-05 16:58:50,864 | INFO | generator | ✅ Réponse générée — tokens: 820 prompt + 18 completion = 838 total
+2026-03-05 16:58:50,865 | INFO | run_query | ============================================================
+2026-03-05 16:58:50,865 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-05 16:58:50,865 | INFO | run_query | \nL'adresse de l'établissement est 26 rue des Rigoles, 75020 Paris.\n
+2026-03-05 16:58:50,865 | INFO | run_query | ============================================================
+2026-03-05 16:59:07,975 | INFO | run_query | ============================================================
+2026-03-05 16:59:07,976 | INFO | run_query | ❓ QUESTION : Quel est le numéro RCS ?
+2026-03-05 16:59:07,976 | INFO | run_query | ============================================================
+2026-03-05 16:59:07,976 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 16:59:07,977 | INFO | retriever | 🔍 Query : 'Quel est le numéro RCS ?'
+2026-03-05 16:59:07,977 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 1.5
+2026-03-05 16:59:08,250 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 16:59:08,272 | INFO | retriever | 📊 5/5 chunks retenus après filtre :
+2026-03-05 16:59:08,272 | INFO | retriever |    [1] score=1.0539 | source=Attestation d’assurance pour la nouvelle période de garantie.pdf | aperçu=communication ('Chat room') ou forum intéractif / Conseil en systèmes d'informat...
+2026-03-05 16:59:08,272 | INFO | retriever |    [2] score=1.0675 | source=Kbis KDYEM.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (Al...
+2026-03-05 16:59:08,272 | INFO | retriever |    [3] score=1.0697 | source=KBIS.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 16:59:08,272 | INFO | retriever |    [4] score=1.0706 | source=KBIS.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (AL...
+2026-03-05 16:59:08,272 | INFO | retriever |    [5] score=1.0879 | source=Kbis KDYEM.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 16:59:08,272 | INFO | run_query | 📝 ÉTAPE 2 : Construction du prompt...
+2026-03-05 16:59:08,272 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2714 chars
+2026-03-05 16:59:08,272 | INFO | run_query | 🤖 ÉTAPE 3 : Génération de la réponse...
+2026-03-05 16:59:08,272 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-05 16:59:08,272 | INFO | generator | 📏 Taille du prompt : 2714 chars
+2026-03-05 16:59:10,655 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-05 16:59:10,658 | INFO | generator | ✅ Réponse générée — tokens: 944 prompt + 17 completion = 961 total
+2026-03-05 16:59:10,658 | INFO | run_query | ============================================================
+2026-03-05 16:59:10,659 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-05 16:59:10,659 | INFO | run_query | \nLe numéro RCS est 887 555 076 R.C.S. Paris.\n
+2026-03-05 16:59:10,659 | INFO | run_query | ============================================================
+2026-03-05 16:59:26,967 | INFO | run_query | ============================================================
+2026-03-05 16:59:26,969 | INFO | run_query | ❓ QUESTION : Dans quelle ville est né KDYEM GAYA ?
+2026-03-05 16:59:26,969 | INFO | run_query | ============================================================
+2026-03-05 16:59:26,969 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 16:59:26,969 | INFO | retriever | 🔍 Query : 'Dans quelle ville est né KDYEM GAYA ?'
+2026-03-05 16:59:26,969 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 1.5
+2026-03-05 16:59:27,241 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 16:59:27,252 | INFO | retriever | 📊 5/5 chunks retenus après filtre :
+2026-03-05 16:59:27,253 | INFO | retriever |    [1] score=1.0346 | source=Kbis KDYEM.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (Al...
+2026-03-05 16:59:27,253 | INFO | retriever |    [2] score=1.0435 | source=KBIS.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (AL...
+2026-03-05 16:59:27,253 | INFO | retriever |    [3] score=1.0710 | source=Kbis KDYEM.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 16:59:27,253 | INFO | retriever |    [4] score=1.0716 | source=KBIS.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 16:59:27,254 | INFO | retriever |    [5] score=1.2783 | source=KDYEM GAYA (1).pdf | aperçu=d'une part, 
+ 
+ 
+ET : 
+ 
+ 
+ 
+Madame KDYEM GAYA, 
+Né(e) le_______________________...
+2026-03-05 16:59:27,254 | INFO | run_query | 📝 ÉTAPE 2 : Construction du prompt...
+2026-03-05 16:59:27,254 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2666 chars
+2026-03-05 16:59:27,254 | INFO | run_query | 🤖 ÉTAPE 3 : Génération de la réponse...
+2026-03-05 16:59:27,255 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-05 16:59:27,255 | INFO | generator | 📏 Taille du prompt : 2666 chars
+2026-03-05 16:59:29,237 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-05 16:59:29,243 | INFO | generator | ✅ Réponse générée — tokens: 919 prompt + 19 completion = 938 total
+2026-03-05 16:59:29,244 | INFO | run_query | ============================================================
+2026-03-05 16:59:29,244 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-05 16:59:29,244 | INFO | run_query | \nKDYEM GAYA est né à TIZI OUZOU, en Algérie.\n
+2026-03-05 16:59:29,244 | INFO | run_query | ============================================================
+2026-03-05 17:00:58,829 | INFO | run_query | ============================================================
+2026-03-05 17:00:58,830 | INFO | run_query | ❓ QUESTION : comment s'appele la maman de KDYEM Gaya?
+2026-03-05 17:00:58,830 | INFO | run_query | ============================================================
+2026-03-05 17:00:58,830 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 17:00:58,830 | INFO | retriever | 🔍 Query : 'comment s'appele la maman de KDYEM Gaya?'
+2026-03-05 17:00:58,830 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 1.5
+2026-03-05 17:00:59,299 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 17:00:59,310 | INFO | retriever | 📊 5/5 chunks retenus après filtre :
+2026-03-05 17:00:59,310 | INFO | retriever |    [1] score=0.9869 | source=KBIS.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 17:00:59,310 | INFO | retriever |    [2] score=0.9890 | source=Kbis KDYEM.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-05 17:00:59,311 | INFO | retriever |    [3] score=1.0704 | source=Kbis KDYEM.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (Al...
+2026-03-05 17:00:59,311 | INFO | retriever |    [4] score=1.0830 | source=KBIS.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (AL...
+2026-03-05 17:00:59,311 | INFO | retriever |    [5] score=1.2292 | source=KDYEM GAYA (1).pdf | aperçu=d'une part, 
+ 
+ 
+ET : 
+ 
+ 
+ 
+Madame KDYEM GAYA, 
+Né(e) le_______________________...
+2026-03-05 17:00:59,311 | INFO | run_query | 📝 ÉTAPE 2 : Construction du prompt...
+2026-03-05 17:00:59,311 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2669 chars
+2026-03-05 17:00:59,311 | INFO | run_query | 🤖 ÉTAPE 3 : Génération de la réponse...
+2026-03-05 17:00:59,311 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-05 17:00:59,312 | INFO | generator | 📏 Taille du prompt : 2669 chars
+2026-03-05 17:01:01,654 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-05 17:01:01,656 | INFO | generator | ✅ Réponse générée — tokens: 922 prompt + 13 completion = 935 total
+2026-03-05 17:01:01,656 | INFO | run_query | ============================================================
+2026-03-05 17:01:01,656 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-05 17:01:01,657 | INFO | run_query | \nLa réponse à cette question n'est pas dans le contexte fourni.\n
+2026-03-05 17:01:01,657 | INFO | run_query | ============================================================

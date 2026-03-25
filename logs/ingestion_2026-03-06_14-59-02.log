@@ -1,0 +1,121 @@
+2026-03-06 14:59:06,806 | INFO | run_query | ============================================================
+2026-03-06 14:59:06,806 | INFO | run_query | ❓ QUESTION : c'est quoi l'article de non concurrence du contrat avec TELIMA NORD ?
+2026-03-06 14:59:06,807 | INFO | run_query | ============================================================
+2026-03-06 14:59:06,807 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-06 14:59:06,807 | INFO | retriever | 🔍 Query : 'c'est quoi l'article de non concurrence du contrat avec TELIMA NORD ?'
+2026-03-06 14:59:06,807 | INFO | retriever | 🎯 Hybrid Search — top 20 chunks
+2026-03-06 14:59:06,807 | INFO | rewriter | ✏️  Réécriture de la query : 'c'est quoi l'article de non concurrence du contrat avec TELIMA NORD ?'
+2026-03-06 14:59:09,745 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 14:59:09,752 | INFO | rewriter | 📝 4 queries générées :
+2026-03-06 14:59:09,753 | INFO | rewriter |    [1] c'est quoi l'article de non concurrence du contrat avec TELIMA NORD ?
+2026-03-06 14:59:09,753 | INFO | rewriter |    [2] Quel est l'article relatif à la non-concurrence dans le contrat avec TELIMA NORD ?
+2026-03-06 14:59:09,753 | INFO | rewriter |    [3] Article non-concurrence contrat TELIMA NORD
+2026-03-06 14:59:09,753 | INFO | rewriter |    [4] Dispositions sur la non-concurrence dans le contrat TELIMA NORD
+2026-03-06 14:59:09,826 | INFO | chromadb.telemetry.product.posthog | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-03-06 14:59:09,927 | INFO | retriever | ✅ Vector store initialisé (lazy singleton)
+2026-03-06 14:59:10,460 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 14:59:10,531 | INFO | retriever | ✅ BM25 initialisé sur 247 documents
+2026-03-06 14:59:10,790 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 14:59:11,214 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 14:59:11,429 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 14:59:11,440 | INFO | retriever |    📐 Vector search total : 12 résultats
+2026-03-06 14:59:11,440 | INFO | retriever |    🔤 BM25 search total   : 19 résultats
+2026-03-06 14:59:11,450 | INFO | retriever | 📊 20 chunks retenus après fusion RRF :
+2026-03-06 14:59:11,450 | INFO | retriever |    [1] source=KDYEM GAYA (1).pdf | aperçu=Paraphes : 1/22 
+CONTRAT DE PRESTATIONS 
+DE SERVICES 
+ 
+ 
+ 
+ 
+ENTRE LES SOUSSIGN...
+2026-03-06 14:59:11,450 | INFO | retriever |    [2] source=KDYEM GAYA (1).pdf | aperçu=fusion avec d’autres personnes morales, absorption, cession du fonds de commerce...
+2026-03-06 14:59:11,450 | INFO | retriever |    [3] source=KDYEM GAYA (1).pdf | aperçu=clients / clients finaux ou tiers relatives à l’exécution des Prestations qui lu...
+2026-03-06 14:59:11,450 | INFO | retriever |    [4] source=KDYEM GAYA (1).pdf | aperçu=Nations Unies etc.) ainsi que les lois anticorruption en vigueur dans les pays o...
+2026-03-06 14:59:11,450 | INFO | retriever |    [5] source=KDYEM GAYA (1).pdf | aperçu=à titre de clause pénale, une indemnité forfaitaire d’un montant égal à douze (1...
+2026-03-06 14:59:11,450 | INFO | retriever |    [6] source=KDYEM GAYA (1).pdf | aperçu=commerce, 
+ 
+le Client pourra résilier le Contrat sans indemnité ni préavis, et...
+2026-03-06 14:59:11,451 | INFO | retriever |    [7] source=KDYEM GAYA (1).pdf | aperçu=l’environnement. 
+ 
+TELIMA souhaite partager ces principes avec ses partenaires...
+2026-03-06 14:59:11,451 | INFO | retriever |    [8] source=KDYEM GAYA - NEOSPACE - Campus.pdf | aperçu=entraînant, de manière accidentelle ou illicite, la destruction, la perte, l’alt...
+2026-03-06 14:59:11,451 | INFO | retriever |    [9] source=KDYEM GAYA (1).pdf | aperçu=préalable et écrit de l’autre Partie. 
+ 
+Chaque Partie s'engage à respecter et à...
+2026-03-06 14:59:11,451 | INFO | retriever |    [10] source=KDYEM GAYA (1).pdf | aperçu=Paraphes : 7/22 
+4.9. Loyauté 
+ 
+Le Prestataire s’engage à agir de bonne foi et...
+2026-03-06 14:59:11,451 | INFO | retriever |    [11] source=KDYEM GAYA - NEOSPACE - Campus.pdf | aperçu=Il est notamment souligné le nécessaire devoir de r éserve du prestataire vis-à-...
+2026-03-06 14:59:11,451 | INFO | retriever |    [12] source=Attestation d’assurance pour la nouvelle période de garantie.pdf | aperçu=Dommages aux biens confiés 
+(selon extension à l'article 6.2 de la notice d'info...
+2026-03-06 14:59:11,451 | INFO | retriever |    [13] source=KDYEM GAYA - NEOSPACE - Campus.pdf | aperçu=Deuxième du Code de Commerce, ni n’est susceptible de l’être en raison de sa pro...
+2026-03-06 14:59:11,451 | INFO | retriever |    [14] source=KDYEM GAYA (1).pdf | aperçu=Paraphes : 22/22
+Charte déontologique de l'intervenant 
+ 
+Tout Technicien interv...
+2026-03-06 14:59:11,451 | INFO | retriever |    [15] source=KDYEM GAYA (1).pdf | aperçu=Paraphes : 5/22 
+Dans le cadre de la réalisation de certaines Prestations, il se...
+2026-03-06 14:59:11,451 | INFO | retriever |    [16] source=KDYEM GAYA - NEOSPACE - Campus.pdf | aperçu=des objectifs attendus. 
+ 
+ Signaler dans les plus brefs délais tout dysfon cti...
+2026-03-06 14:59:11,451 | INFO | retriever |    [17] source=KDYEM GAYA - NEOSPACE - Campus.pdf | aperçu=SOLUTIONS 30 IT FRANCE à un tiers, ne pourra mettre fin au Contrat, lequel se po...
+2026-03-06 14:59:11,451 | INFO | retriever |    [18] source=KDYEM GAYA (1).pdf | aperçu=soit salarié ou non, ou à le prendre à son service, sous quelque statut que ce s...
+2026-03-06 14:59:11,451 | INFO | retriever |    [19] source=KDYEM GAYA - NEOSPACE - Campus.pdf | aperçu=Le présent Contrat remplace et annule tout accord a ntérieur conclu entre le Pre...
+2026-03-06 14:59:11,451 | INFO | retriever |    [20] source=KDYEM GAYA (1).pdf | aperçu=auprès de TELIMA qui décidera de la suite à donner. 
+ 
+ Respecter la confidenti...
+2026-03-06 14:59:11,451 | INFO | run_query | 🎯 ÉTAPE 2 : Reranking...
+2026-03-06 14:59:11,451 | INFO | reranker | 🎯 Reranking de 20 chunks...
+2026-03-06 14:59:11,451 | INFO | reranker | 🔄 Chargement du Cross-Encoder...
+2026-03-06 14:59:11,773 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 14:59:11,909 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 14:59:11,941 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/config.json "HTTP/1.1 200 OK"
+2026-03-06 14:59:12,196 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 14:59:12,333 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 14:59:12,365 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/config.json "HTTP/1.1 200 OK"
+2026-03-06 14:59:12,511 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 14:59:12,648 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 14:59:12,680 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-06 14:59:12,831 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 14:59:12,971 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-06 14:59:13,108 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 14:59:13,246 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-06 14:59:13,444 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 14:59:13,578 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 14:59:13,609 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/README.md "HTTP/1.1 200 OK"
+2026-03-06 14:59:13,771 | INFO | sentence_transformers.cross_encoder.CrossEncoder | Use pytorch device: mps
+2026-03-06 14:59:14,154 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2 "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 14:59:14,310 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-06 14:59:14,320 | INFO | reranker | ✅ Cross-Encoder chargé (lazy singleton)
+2026-03-06 14:59:15,082 | INFO | reranker | 📊 Scores après reranking :
+2026-03-06 14:59:15,083 | INFO | reranker |    [1] score=1.8075 | source=KDYEM GAYA (1).pdf | aperçu=fusion avec d’autres personnes morales, absorption, cession du fonds de commerce...
+2026-03-06 14:59:15,083 | INFO | reranker |    [2] score=1.0915 | source=KDYEM GAYA (1).pdf | aperçu=Paraphes : 1/22 
+CONTRAT DE PRESTATIONS 
+DE SERVICES 
+ 
+ 
+ 
+ 
+ENTRE LES SOUSSIGN...
+2026-03-06 14:59:15,083 | INFO | reranker |    [3] score=0.0324 | source=KDYEM GAYA (1).pdf | aperçu=à titre de clause pénale, une indemnité forfaitaire d’un montant égal à douze (1...
+2026-03-06 14:59:15,083 | INFO | reranker |    [4] score=-0.4390 | source=KDYEM GAYA (1).pdf | aperçu=commerce, 
+ 
+le Client pourra résilier le Contrat sans indemnité ni préavis, et...
+2026-03-06 14:59:15,083 | INFO | reranker |    [5] score=-0.9270 | source=KDYEM GAYA (1).pdf | aperçu=l’environnement. 
+ 
+TELIMA souhaite partager ces principes avec ses partenaires...
+2026-03-06 14:59:15,083 | INFO | run_query | 📝 ÉTAPE 3 : Construction du prompt...
+2026-03-06 14:59:15,083 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2802 chars
+2026-03-06 14:59:15,083 | INFO | run_query | 🤖 ÉTAPE 4 : Génération de la réponse...
+2026-03-06 14:59:15,083 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-06 14:59:15,083 | INFO | generator | 📏 Taille du prompt : 2802 chars
+2026-03-06 14:59:17,782 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 14:59:17,785 | INFO | generator | ✅ Réponse générée — tokens: 764 prompt + 68 completion = 832 total
+2026-03-06 14:59:17,785 | INFO | run_query | ============================================================
+2026-03-06 14:59:17,785 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-06 14:59:17,786 | INFO | run_query | 
+L'article de non concurrence du contrat avec TELIMA NORD stipule que le Prestataire s'engage à ne pas travailler directement ou indirectement pour le client final chez qui la Prestation a été réalisée, sauf accord du Client, pour des prestations, et dans un périmètre géographique, similaires aux prestations objet du Contrat.
+
+2026-03-06 14:59:17,786 | INFO | run_query | ============================================================

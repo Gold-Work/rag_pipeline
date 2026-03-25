@@ -1,0 +1,26 @@
+2026-03-03 09:34:18,873 | INFO | loader | 📂 Dossier scanné (récursif) : data
+2026-03-03 09:34:18,937 | INFO | loader | ✅ Chargé : (20221121) - 887555076 - ATTESTATION DE REMUNERATION 2022.pdf (1 pages/sections)
+2026-03-03 09:34:18,938 | INFO | loader | ✅ Chargé : acte de naissance 2.pdf (1 pages/sections)
+2026-03-03 09:34:18,963 | INFO | loader | ✅ Chargé : Détails des Notes Gaya KDYEM.pdf (7 pages/sections)
+2026-03-03 09:34:20,461 | INFO | loader | ✅ Chargé : index.html (1 pages/sections)
+2026-03-03 09:34:20,547 | INFO | loader | ✅ Chargé : (20221121) - 887555076 - GRAND LIVRE MICRO 2022.pdf (12 pages/sections)
+2026-03-03 09:34:20,553 | INFO | loader | ✅ Chargé : Attestation_d'hebergement.pdf (1 pages/sections)
+2026-03-03 09:34:20,612 | INFO | loader | ✅ Chargé : AVIS_APRÈS_FORMATION_B1_V__B2_V__BC_BR_-_KDYEM_Gaya.pdf (1 pages/sections)
+2026-03-03 09:34:20,903 | INFO | loader | ✅ Chargé : KDYEM GAYA - NEOSPACE - Campus.pdf (18 pages/sections)
+2026-03-03 09:34:20,933 | INFO | loader | ✅ Chargé : Echéancier.pdf (1 pages/sections)
+2026-03-03 09:34:20,948 | INFO | loader | ✅ Chargé : CVPROV-AUTO-A568855-02-20230313-150337.PDF (1 pages/sections)
+2026-03-03 09:34:20,950 | INFO | loader | ✅ Chargé : LP OCI Diploma.pdf (1 pages/sections)
+2026-03-03 09:34:20,951 | INFO | loader | ✅ Chargé : TCF Gaya KDYEM.pdf (1 pages/sections)
+2026-03-03 09:34:20,953 | INFO | loader | ✅ Chargé : BAC.pdf (1 pages/sections)
+2026-03-03 09:34:20,974 | INFO | loader | ✅ Chargé : Attestation d’assurance pour la nouvelle période de garantie.pdf (2 pages/sections)
+2026-03-03 09:34:20,975 | WARNING | pypdf._reader | incorrect startxref pointer(1)
+2026-03-03 09:34:20,975 | WARNING | pypdf._reader | parsing for Object Streams
+2026-03-03 09:34:20,984 | INFO | loader | ✅ Chargé : KBIS.pdf (1 pages/sections)
+2026-03-03 09:34:20,985 | WARNING | pypdf._reader | incorrect startxref pointer(1)
+2026-03-03 09:34:20,986 | WARNING | pypdf._reader | parsing for Object Streams
+2026-03-03 09:34:20,993 | INFO | loader | ✅ Chargé : Kbis KDYEM.pdf (1 pages/sections)
+2026-03-03 09:34:20,994 | INFO | loader | ✅ Chargé : RNBac.pdf (1 pages/sections)
+2026-03-03 09:34:20,996 | INFO | loader | ✅ Chargé : BTS.pdf (1 pages/sections)
+2026-03-03 09:34:21,485 | INFO | loader | ✅ Chargé : KDYEM GAYA (1).pdf (22 pages/sections)
+2026-03-03 09:34:21,500 | INFO | loader | ✅ Chargé : CVFACS-AUTO-A568855-02-20230313-150255.PDF (1 pages/sections)
+2026-03-03 09:34:21,501 | INFO | loader | 📊 Total documents chargés : 76

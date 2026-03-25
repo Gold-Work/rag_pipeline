@@ -1,0 +1,52 @@
+2026-03-06 10:55:42,726 | INFO | run_query | ============================================================
+2026-03-06 10:55:42,726 | INFO | run_query | ❓ QUESTION : Quel est le numéro de SIRET de KDYEM ?
+2026-03-06 10:55:42,726 | INFO | run_query | ============================================================
+2026-03-06 10:55:42,726 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-06 10:55:42,726 | INFO | retriever | 🔍 Query : 'Quel est le numéro de SIRET de KDYEM ?'
+2026-03-06 10:55:42,726 | INFO | retriever | 🎯 Hybrid Search — top 5 chunks
+2026-03-06 10:55:42,726 | INFO | rewriter | ✏️  Réécriture de la query : 'Quel est le numéro de SIRET de KDYEM ?'
+2026-03-06 10:55:45,104 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 10:55:45,121 | INFO | rewriter | 📝 4 queries générées :
+2026-03-06 10:55:45,121 | INFO | rewriter |    [1] Quel est le numéro de SIRET de KDYEM ?
+2026-03-06 10:55:45,121 | INFO | rewriter |    [2] Quel est le code SIRET associé à l'entreprise KDYEM ?
+2026-03-06 10:55:45,121 | INFO | rewriter |    [3] Pouvez-vous me fournir le numéro SIRET de la société KDYEM ?
+2026-03-06 10:55:45,121 | INFO | rewriter |    [4] Quel est l'identifiant SIRET de la société KDYEM dans les registres administratifs ?
+2026-03-06 10:55:45,164 | INFO | chromadb.telemetry.product.posthog | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-03-06 10:55:45,263 | INFO | retriever | ✅ Vector store initialisé (lazy singleton)
+2026-03-06 10:55:46,416 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 10:55:46,459 | INFO | retriever | ✅ BM25 initialisé sur 247 documents
+2026-03-06 10:55:46,852 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 10:55:47,725 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 10:55:48,032 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 10:55:48,040 | INFO | retriever |    📐 Vector search total : 12 résultats
+2026-03-06 10:55:48,041 | INFO | retriever |    🔤 BM25 search total   : 25 résultats
+2026-03-06 10:55:48,041 | INFO | retriever | 📊 5 chunks retenus après fusion RRF :
+2026-03-06 10:55:48,041 | INFO | retriever |    [1] source=KBIS.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-06 10:55:48,042 | INFO | retriever |    [2] source=KBIS.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (AL...
+2026-03-06 10:55:48,042 | INFO | retriever |    [3] source=Kbis KDYEM.pdf | aperçu=Nom, prénoms Kdyem Gaya
+Date et lieu de naissance Le 08/04/1991 à TIZI OUZOU (Al...
+2026-03-06 10:55:48,042 | INFO | retriever |    [4] source=KDYEM GAYA (1).pdf | aperçu=Paraphes : 1/22 
+CONTRAT DE PRESTATIONS 
+DE SERVICES 
+ 
+ 
+ 
+ 
+ENTRE LES SOUSSIGN...
+2026-03-06 10:55:48,042 | INFO | retriever |    [5] source=Kbis KDYEM.pdf | aperçu=Greffe du Tribunal de Commerce de Paris
+1 QUAI DE LA CORSE
+75198 PARIS CEDEX 04...
+2026-03-06 10:55:48,042 | INFO | run_query | 📝 ÉTAPE 2 : Construction du prompt...
+2026-03-06 10:55:48,043 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2712 chars
+2026-03-06 10:55:48,049 | INFO | run_query | 🤖 ÉTAPE 3 : Génération de la réponse...
+2026-03-06 10:55:48,049 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-06 10:55:48,049 | INFO | generator | 📏 Taille du prompt : 2712 chars
+2026-03-06 10:55:49,385 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 10:55:49,390 | INFO | generator | ✅ Réponse générée — tokens: 956 prompt + 10 completion = 966 total
+2026-03-06 10:55:49,391 | INFO | run_query | ============================================================
+2026-03-06 10:55:49,391 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-06 10:55:49,392 | INFO | run_query | \nLa réponse n'est pas dans le contexte fourni.\n
+2026-03-06 10:55:49,392 | INFO | run_query | ============================================================

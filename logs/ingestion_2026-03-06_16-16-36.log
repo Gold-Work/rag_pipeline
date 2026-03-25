@@ -1,0 +1,147 @@
+2026-03-06 16:16:40,972 | INFO | run_query | ============================================================
+2026-03-06 16:16:40,973 | INFO | run_query | ❓ QUESTION : What are the key components of building an AI agent?
+2026-03-06 16:16:40,973 | INFO | run_query | ============================================================
+2026-03-06 16:16:40,974 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-06 16:16:40,974 | INFO | retriever | 🔍 Query : 'What are the key components of building an AI agent?'
+2026-03-06 16:16:40,974 | INFO | retriever | 🎯 Hybrid Search — top 20 chunks
+2026-03-06 16:16:40,974 | INFO | rewriter | ✏️  Réécriture de la query : 'What are the key components of building an AI agent?'
+2026-03-06 16:16:44,003 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 16:16:44,030 | INFO | rewriter | 📝 4 queries générées :
+2026-03-06 16:16:44,030 | INFO | rewriter |    [1] What are the key components of building an AI agent?
+2026-03-06 16:16:44,030 | INFO | rewriter |    [2] Composants clés pour créer un agent IA
+2026-03-06 16:16:44,030 | INFO | rewriter |    [3] Élément essentiel dans la construction d'un agent d'intelligence artificielle
+2026-03-06 16:16:44,030 | INFO | rewriter |    [4] Construction agent IA : éléments fondamentaux
+2026-03-06 16:16:44,098 | INFO | chromadb.telemetry.product.posthog | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-03-06 16:16:44,200 | INFO | retriever | ✅ Vector store initialisé (lazy singleton)
+2026-03-06 16:16:44,542 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:16:45,068 | INFO | retriever | ✅ BM25 initialisé sur 6042 documents
+2026-03-06 16:16:45,279 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:16:45,595 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:16:45,855 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-06 16:16:45,878 | INFO | retriever |    📐 Vector search total : 19 résultats
+2026-03-06 16:16:45,878 | INFO | retriever |    🔤 BM25 search total   : 21 résultats
+2026-03-06 16:16:45,878 | INFO | retriever | 📊 20 chunks retenus après fusion RRF :
+2026-03-06 16:16:45,878 | INFO | retriever |    [1] source=a-practical-guide-to-building-agents.pdf | aperçu=A g e n t d e s i g n 
+f o u n d a t i o n sI n its most fundamen tal f orm, an...
+2026-03-06 16:16:45,878 | INFO | retriever |    [2] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Overview	of	the	
+IBM	StoredIQ
+	components
+The	following	sections	describe	three...
+2026-03-06 16:16:45,878 | INFO | retriever |    [3] source=a-practical-guide-to-building-agents.pdf | aperçu=T o build r eliable agen ts, start with str ong f ounda tions: pair capable mode...
+2026-03-06 16:16:45,878 | INFO | retriever |    [4] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=IBM	StoredIQ
+	components
+The	following	sections	describe	three	components	of	the...
+2026-03-06 16:16:45,878 | INFO | retriever |    [5] source=a-practical-guide-to-building-agents.pdf | aperçu=A practical 
+guide to 
+building agents...
+2026-03-06 16:16:45,878 | INFO | retriever |    [6] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=8.2 Implementing the ERM Rule 105
+8.2.2 Axis Aligned Rectangles
+Let Hn be the cl...
+2026-03-06 16:16:45,878 | INFO | retriever |    [7] source=a-practical-guide-to-building-agents.pdf | aperçu=I n t r o d u c t i o n
+L ar ge language models ar e becoming incr easingly capa...
+2026-03-06 16:16:45,878 | INFO | retriever |    [8] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Setting
+Notes
+Common	Name	*
+The	host	name	of	the	appstack.	It	must	match	the	dom...
+2026-03-06 16:16:45,878 | INFO | retriever |    [9] source=a-practical-guide-to-building-agents.pdf | aperçu=W h e n s h o u l d y o u 
+b u i l d a n a g e n t ?
+Building agen ts r equir es...
+2026-03-06 16:16:45,879 | INFO | retriever |    [10] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Overview	of	the	IBM	StoredIQ	components
+The	following	sections	describe	three	co...
+2026-03-06 16:16:45,879 | INFO | retriever |    [11] source=a-practical-guide-to-building-agents.pdf | aperçu=pr ac tices. It includes fr ame w ork s f or iden tifying pr omising use cases,...
+2026-03-06 16:16:45,879 | INFO | retriever |    [12] source=a-practical-guide-to-building-agents.pdf | aperçu=F or e x ample , in the A gen ts SDK, agen ts ar e start ed using the me thod, w...
+2026-03-06 16:16:45,879 | INFO | retriever |    [13] source=a-practical-guide-to-building-agents.pdf | aperçu=C o n t e n t s
+Wha t is an agen t? 4
+When should y ou build an agen t? 5
+A gen...
+2026-03-06 16:16:45,879 | INFO | retriever |    [14] source=IBMUnstructuredData_Identification_and_Management751_en.pdf | aperçu=Upgrading	the	IBM	Desktop	Data	Collector	agent
+The	
+IBM	Desktop	Data	Collector...
+2026-03-06 16:16:45,879 | INFO | retriever |    [15] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=a branch of AI (Artiﬁcial Intelligence), since, after all, the ability to turn e...
+2026-03-06 16:16:45,879 | INFO | retriever |    [16] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=:	Port	number	for	the	Agent	on	the	Action	node.
+Defaults	to	21000,	and	can	be	on...
+2026-03-06 16:16:45,879 | INFO | retriever |    [17] source=a-practical-guide-to-building-agents.pdf | aperçu=When t o consider cr ea ting multiple agen ts
+Our gener al r ecommenda tion is t...
+2026-03-06 16:16:45,879 | INFO | retriever |    [18] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Upgrading	the	IBM	Desktop	Data	Collector	agent
+The	
+IBM	Desktop	Data	Collector...
+2026-03-06 16:16:45,879 | INFO | retriever |    [19] source=a-practical-guide-to-building-agents.pdf | aperçu=manager_agent = Agent(
+name= ,
+instructions=(
+
+"If asked for multiple translatio...
+2026-03-06 16:16:45,879 | INFO | retriever |    [20] source=a-practical-guide-to-building-agents.pdf | aperçu=26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+ ctx: Ru...
+2026-03-06 16:16:45,879 | INFO | run_query | 🎯 ÉTAPE 2 : Reranking...
+2026-03-06 16:16:45,879 | INFO | reranker | 🎯 Reranking de 20 chunks...
+2026-03-06 16:16:45,879 | INFO | reranker | 🔄 Chargement du Cross-Encoder...
+2026-03-06 16:16:46,138 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 16:16:46,276 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 16:16:46,309 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/config.json "HTTP/1.1 200 OK"
+2026-03-06 16:16:46,620 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 16:16:46,812 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 16:16:46,851 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/config.json "HTTP/1.1 200 OK"
+2026-03-06 16:16:47,019 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 16:16:47,196 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 16:16:47,256 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-06 16:16:47,421 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 16:16:47,557 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-06 16:16:47,746 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 16:16:47,897 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-06 16:16:48,082 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 16:16:48,229 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 16:16:48,261 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/README.md "HTTP/1.1 200 OK"
+2026-03-06 16:16:48,413 | INFO | sentence_transformers.cross_encoder.CrossEncoder | Use pytorch device: mps
+2026-03-06 16:16:48,879 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2 "HTTP/1.1 307 Temporary Redirect"
+2026-03-06 16:16:49,016 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-06 16:16:49,021 | INFO | reranker | ✅ Cross-Encoder chargé (lazy singleton)
+2026-03-06 16:16:49,669 | INFO | reranker | 📊 Scores après reranking :
+2026-03-06 16:16:49,670 | INFO | reranker |    [1] score=-5.2090 | source=a-practical-guide-to-building-agents.pdf | aperçu=A practical 
+guide to 
+building agents...
+2026-03-06 16:16:49,670 | INFO | reranker |    [2] score=-7.1367 | source=understanding-machine-learning-theory-algorithms.pdf | aperçu=a branch of AI (Artiﬁcial Intelligence), since, after all, the ability to turn e...
+2026-03-06 16:16:49,670 | INFO | reranker |    [3] score=-9.2622 | source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Overview	of	the	
+IBM	StoredIQ
+	components
+The	following	sections	describe	three...
+2026-03-06 16:16:49,670 | INFO | reranker |    [4] score=-9.7096 | source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=IBM	StoredIQ
+	components
+The	following	sections	describe	three	components	of	the...
+2026-03-06 16:16:49,670 | INFO | reranker |    [5] score=-10.1648 | source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Overview	of	the	IBM	StoredIQ	components
+The	following	sections	describe	three	co...
+2026-03-06 16:16:49,670 | INFO | run_query | 📝 ÉTAPE 3 : Construction du prompt...
+2026-03-06 16:16:49,670 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2244 chars
+2026-03-06 16:16:49,670 | INFO | run_query | 🤖 ÉTAPE 4 : Génération de la réponse...
+2026-03-06 16:16:49,670 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-06 16:16:49,670 | INFO | generator | 📏 Taille du prompt : 2244 chars
+2026-03-06 16:16:50,541 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-06 16:16:50,544 | INFO | generator | ✅ Réponse générée — tokens: 626 prompt + 13 completion = 639 total
+2026-03-06 16:16:50,544 | INFO | run_query | ============================================================
+2026-03-06 16:16:50,545 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-06 16:16:50,545 | INFO | run_query | 
+La réponse à cette question n'est pas dans le contexte fourni.
+
+2026-03-06 16:16:50,545 | INFO | run_query | ============================================================

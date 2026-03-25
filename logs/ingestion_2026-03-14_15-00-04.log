@@ -1,0 +1,219 @@
+2026-03-14 15:05:10,764 | INFO | api | ❓ /api/query — 'What is an AI agent?'
+2026-03-14 15:05:10,765 | INFO | retriever | 🔍 Query : 'What is an AI agent?'
+2026-03-14 15:05:10,765 | INFO | retriever | 🎯 Hybrid Search — top 20 chunks
+2026-03-14 15:05:10,765 | INFO | rewriter | ✏️  Réécriture de la query : 'What is an AI agent?'
+2026-03-14 15:05:13,265 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-14 15:05:13,279 | INFO | rewriter | 📝 4 queries générées :
+2026-03-14 15:05:13,279 | INFO | rewriter |    [1] What is an AI agent?
+2026-03-14 15:05:13,280 | INFO | rewriter |    [2] Qu'est-ce qu'un agent d'intelligence artificielle ?
+2026-03-14 15:05:13,280 | INFO | rewriter |    [3] Définition agent IA
+2026-03-14 15:05:13,280 | INFO | rewriter |    [4] Agent IA : caractéristiques et fonctions
+2026-03-14 15:05:13,332 | INFO | chromadb.telemetry.product.posthog | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-03-14 15:05:13,438 | INFO | retriever | ✅ Vector store initialisé (lazy singleton)
+2026-03-14 15:05:14,525 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-14 15:05:15,315 | INFO | retriever | ✅ BM25 initialisé sur 6034 documents
+2026-03-14 15:05:16,234 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-14 15:05:16,447 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-14 15:05:16,845 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-14 15:05:16,860 | INFO | retriever |    📐 Vector search total : 16 résultats
+2026-03-14 15:05:16,860 | INFO | retriever |    🔤 BM25 search total   : 19 résultats
+2026-03-14 15:05:16,860 | INFO | retriever | 📊 20 chunks retenus après fusion RRF :
+2026-03-14 15:05:16,860 | INFO | retriever |    [1] source=a-practical-guide-to-building-agents.pdf | aperçu=Agent design 
+foundations
+In its most fundamental form, an agent consists of thr...
+2026-03-14 15:05:16,860 | INFO | retriever |    [2] source=a-practical-guide-to-building-agents.pdf | aperçu=Contents
+What is an agent?
+4
+When should you build an agent?
+5
+Agent design foun...
+2026-03-14 15:05:16,860 | INFO | retriever |    [3] source=a-practical-guide-to-building-agents.pdf | aperçu=What is an 
+agent?
+While conventional software enables users to streamline and a...
+2026-03-14 15:05:16,860 | INFO | retriever |    [4] source=a-practical-guide-to-building-agents.pdf | aperçu=More resources
+API Platform
+OpenAI for Business
+OpenAI Stories
+ChatGPT Enterpris...
+2026-03-14 15:05:16,860 | INFO | retriever |    [5] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=a branch of AI (Artiﬁcial Intelligence), since, after all, the ability to turn e...
+2026-03-14 15:05:16,861 | INFO | retriever |    [6] source=a-practical-guide-to-building-agents.pdf | aperçu=For example, in the Agents SDK, agents are started using the 
+ method, which loo...
+2026-03-14 15:05:16,861 | INFO | retriever |    [7] source=a-practical-guide-to-building-agents.pdf | aperçu=Introduction
+Large language models are becoming increasingly capable of handling...
+2026-03-14 15:05:16,861 | INFO | retriever |    [8] source=a-practical-guide-to-building-agents.pdf | aperçu=Decentralized pattern
+In a decentralized pattern, agents can ‘handoff’ workflow...
+2026-03-14 15:05:16,861 | INFO | retriever |    [9] source=a-practical-guide-to-building-agents.pdf | aperçu=Conclusion
+Agents mark a new era in workflow automation, where systems can reaso...
+2026-03-14 15:05:16,861 | INFO | retriever |    [10] source=a-practical-guide-to-building-agents.pdf | aperçu=When should you 
+build an agent?
+Building agents requires rethinking how your sy...
+2026-03-14 15:05:16,861 | INFO | retriever |    [11] source=a-practical-guide-to-building-agents.pdf | aperçu=or generating a report.
+Applications that integrate LLMs but don’t use them to c...
+2026-03-14 15:05:16,861 | INFO | retriever |    [12] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=8.2 Implementing the ERM Rule
+105
+8.2.2
+Axis Aligned Rectangles
+Let Hn be the cl...
+2026-03-14 15:05:16,861 | INFO | retriever |    [13] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=feature (i, j) of type 1. Intuitively, such features can capture pixels in the i...
+2026-03-14 15:05:16,861 | INFO | retriever |    [14] source=a-practical-guide-to-building-agents.pdf | aperçu=discoverability, simplify version management, and prevent redundant definitions....
+2026-03-14 15:05:16,861 | INFO | retriever |    [15] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=it also holds that Dd,d ≥0. We claim that the solution to Equation (23.4) is
+the...
+2026-03-14 15:05:16,861 | INFO | retriever |    [16] source=a-practical-guide-to-building-agents.pdf | aperçu="Technical Support Agent",
+"You provide expert assistance with resolving technic...
+2026-03-14 15:05:16,861 | INFO | retriever |    [17] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=StoredIQ is supported.
+NewsGat
+or
+R
+ 
+ 
+No API support for Poll responses.
+NFS
+R...
+2026-03-14 15:05:16,861 | INFO | retriever |    [18] source=a-practical-guide-to-building-agents.pdf | aperçu=user may have!
+15
+A practical guide to building agents...
+2026-03-14 15:05:16,861 | INFO | retriever |    [19] source=a-practical-guide-to-building-agents.pdf | aperçu=For example, here’s how you’d implement the decentralized pattern using the Agen...
+2026-03-14 15:05:16,861 | INFO | retriever |    [20] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=No agents are placed on data sources. The native API/protocol is used whenever i...
+2026-03-14 15:05:16,861 | INFO | reranker | 🎯 Reranking de 20 chunks...
+2026-03-14 15:05:16,861 | INFO | reranker | 🔄 Chargement du Cross-Encoder...
+2026-03-14 15:05:17,561 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 15:05:17,734 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 15:05:17,735 | WARNING | huggingface_hub.utils._http | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-14 15:05:17,801 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/config.json "HTTP/1.1 200 OK"
+2026-03-14 15:05:18,071 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 15:05:18,243 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 15:05:18,301 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/config.json "HTTP/1.1 200 OK"
+2026-03-14 15:05:18,587 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 15:05:18,844 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 15:05:18,899 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-14 15:05:19,046 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 15:05:19,200 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-14 15:05:19,353 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 15:05:19,691 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-14 15:05:19,965 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 15:05:20,122 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 15:05:20,167 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/README.md "HTTP/1.1 200 OK"
+2026-03-14 15:05:20,169 | INFO | sentence_transformers.cross_encoder.CrossEncoder | Use pytorch device: mps
+2026-03-14 15:05:20,673 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2 "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 15:05:20,825 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-14 15:05:20,835 | INFO | reranker | ✅ Cross-Encoder chargé (lazy singleton)
+2026-03-14 15:05:21,323 | INFO | reranker | 📊 Scores après reranking :
+2026-03-14 15:05:21,323 | INFO | reranker |    [1] score=2.0483 | source=a-practical-guide-to-building-agents.pdf | aperçu=What is an 
+agent?
+While conventional software enables users to streamline and a...
+2026-03-14 15:05:21,323 | INFO | reranker |    [2] score=0.2129 | source=a-practical-guide-to-building-agents.pdf | aperçu=More resources
+API Platform
+OpenAI for Business
+OpenAI Stories
+ChatGPT Enterpris...
+2026-03-14 15:05:21,323 | INFO | reranker |    [3] score=-1.7568 | source=a-practical-guide-to-building-agents.pdf | aperçu="Technical Support Agent",
+"You provide expert assistance with resolving technic...
+2026-03-14 15:05:21,323 | INFO | reranker |    [4] score=-2.1070 | source=understanding-machine-learning-theory-algorithms.pdf | aperçu=a branch of AI (Artiﬁcial Intelligence), since, after all, the ability to turn e...
+2026-03-14 15:05:21,324 | INFO | reranker |    [5] score=-3.3072 | source=a-practical-guide-to-building-agents.pdf | aperçu=Conclusion
+Agents mark a new era in workflow automation, where systems can reaso...
+2026-03-14 15:05:21,324 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2664 chars
+2026-03-14 15:05:21,324 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-14 15:05:21,324 | INFO | generator | 📏 Taille du prompt : 2664 chars
+2026-03-14 15:05:24,324 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-14 15:05:24,326 | INFO | generator | ✅ Réponse générée — tokens: 586 prompt + 53 completion = 639 total
+2026-03-14 15:05:24,326 | INFO | api | ✅ Réponse générée en 13.562s
+2026-03-14 15:07:41,432 | INFO | api | ❓ /api/query — 'What is the main purpose of IBM policy assessment?'
+2026-03-14 15:07:41,434 | INFO | retriever | 🔍 Query : 'What is the main purpose of IBM policy assessment?'
+2026-03-14 15:07:41,434 | INFO | retriever | 🎯 Hybrid Search — top 20 chunks
+2026-03-14 15:07:41,434 | INFO | rewriter | ✏️  Réécriture de la query : 'What is the main purpose of IBM policy assessment?'
+2026-03-14 15:07:43,485 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-14 15:07:43,490 | INFO | rewriter | 📝 4 queries générées :
+2026-03-14 15:07:43,490 | INFO | rewriter |    [1] What is the main purpose of IBM policy assessment?
+2026-03-14 15:07:43,490 | INFO | rewriter |    [2] Quel est l'objectif principal de l'évaluation des politiques d'IBM ?
+2026-03-14 15:07:43,490 | INFO | rewriter |    [3] Évaluation des politiques IBM : objectif principal
+2026-03-14 15:07:43,490 | INFO | rewriter |    [4] But de l'évaluation des politiques chez IBM
+2026-03-14 15:07:43,794 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-14 15:07:44,129 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-14 15:07:44,341 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-14 15:07:44,553 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-14 15:07:44,607 | INFO | retriever |    📐 Vector search total : 15 résultats
+2026-03-14 15:07:44,607 | INFO | retriever |    🔤 BM25 search total   : 24 résultats
+2026-03-14 15:07:44,612 | INFO | retriever | 📊 20 chunks retenus après fusion RRF :
+2026-03-14 15:07:44,612 | INFO | retriever |    [1] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Getting started
+Overview of the IBM
+StoredIQ components
+Deployment of IBM
+Stored...
+2026-03-14 15:07:44,612 | INFO | retriever |    [2] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=IBM Policy Assessment and Compliance
+1
+IBM StoredIQ Platform overview
+2
+Overview...
+2026-03-14 15:07:44,612 | INFO | retriever |    [3] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Key concepts of IBM StoredIQ Data Workbench
+IBMPolicy751, p. 390...
+2026-03-14 15:07:44,612 | INFO | retriever |    [4] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Key concepts of IBM StoredIQ Data Workbench
+IBMPolicy751, p. 396...
+2026-03-14 15:07:44,612 | INFO | retriever |    [5] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=governance
+Enterprise content
+management
+IBM Policy Assessment and Compliance v7...
+2026-03-14 15:07:44,612 | INFO | retriever |    [6] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Parent topic: IBM StoredIQ interface components
+IBMPolicy751, p. 9...
+2026-03-14 15:07:44,615 | INFO | retriever |    [7] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Overview of IBM Stored IQ Policy Manager
+IBM® Stored IQ Policy Manager enables p...
+2026-03-14 15:07:44,615 | INFO | retriever |    [8] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=work.
+Managing IBM Stored IQ Policy Manager
+IBM Stored IQ Policy Manager provide...
+2026-03-14 15:07:44,615 | INFO | retriever |    [9] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Action
+The action that the policy takes.
+Automated Deletion
+Deletes files on an...
+2026-03-14 15:07:44,615 | INFO | retriever |    [10] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=IBM Stored IQ Policy Manager
+IBM Stored IQ Policy Manager enables policy executi...
+2026-03-14 15:07:44,629 | INFO | retriever |    [11] source=IBMUnstructuredData_Identification_and_Management751_en.pdf | aperçu=Action
+The action that the policy takes.
+Automated Deletion
+Deletes files on an...
+2026-03-14 15:07:44,629 | INFO | retriever |    [12] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=you to identify potential red-flag issues, to know how much data you have on dif...
+2026-03-14 15:07:44,629 | INFO | retriever |    [13] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Its assigned action
+When the policy is scheduled to run, and what it runs on nex...
+2026-03-14 15:07:44,634 | INFO | retriever |    [14] source=IBMUnstructuredData_Identification_and_Management751_en.pdf | aperçu=manage enterprise information according to business value to reduce risk and cos...
+2026-03-14 15:07:44,635 | INFO | retriever |    [15] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science...
+2026-03-14 15:07:44,635 | INFO | retriever |    [16] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=reduced legal risks and costs.
+Simplified analysis of large amounts of corporate...
+2026-03-14 15:07:44,638 | INFO | retriever |    [17] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=opti
+ons
+c ude syste
+etadata o data objects
+t
+co ta
+e s.
+Include content tagging...
+2026-03-14 15:07:44,638 | INFO | retriever |    [18] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=the system's performance metrics.
+IBMPolicy751, p. 70...
+2026-03-14 15:07:44,639 | INFO | retriever |    [19] source=IBMUnstructuredData_Identification_and_Management751_en.pdf | aperçu=opti
+ons
+c ude syste
+etadata o data objects
+t
+co ta
+e s.
+Include content tagging...
+2026-03-14 15:07:44,641 | INFO | retriever |    [20] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=to the predictions of the binary classiﬁers. The hypothesis class corresponding...
+2026-03-14 15:07:44,646 | INFO | reranker | 🎯 Reranking de 20 chunks...
+2026-03-14 15:07:45,327 | INFO | reranker | 📊 Scores après reranking :
+2026-03-14 15:07:45,329 | INFO | reranker |    [1] score=4.1554 | source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=reduced legal risks and costs.
+Simplified analysis of large amounts of corporate...
+2026-03-14 15:07:45,329 | INFO | reranker |    [2] score=3.0908 | source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=governance
+Enterprise content
+management
+IBM Policy Assessment and Compliance v7...
+2026-03-14 15:07:45,329 | INFO | reranker |    [3] score=1.4275 | source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Overview of IBM Stored IQ Policy Manager
+IBM® Stored IQ Policy Manager enables p...
+2026-03-14 15:07:45,329 | INFO | reranker |    [4] score=1.2318 | source=IBMUnstructuredData_Identification_and_Management751_en.pdf | aperçu=manage enterprise information according to business value to reduce risk and cos...
+2026-03-14 15:07:45,330 | INFO | reranker |    [5] score=1.0479 | source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Getting started
+Overview of the IBM
+StoredIQ components
+Deployment of IBM
+Stored...
+2026-03-14 15:07:45,330 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2819 chars
+2026-03-14 15:07:45,330 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-14 15:07:45,330 | INFO | generator | 📏 Taille du prompt : 2819 chars
+2026-03-14 15:07:47,484 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-14 15:07:47,488 | INFO | generator | ✅ Réponse générée — tokens: 613 prompt + 44 completion = 657 total
+2026-03-14 15:07:47,488 | INFO | api | ✅ Réponse générée en 6.054s

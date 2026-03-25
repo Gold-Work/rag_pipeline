@@ -1,0 +1,129 @@
+2026-03-05 10:43:10,359 | INFO | run_query | 💬 MODE INTERACTIF — tape 'exit' pour quitter\n
+2026-03-05 10:43:28,708 | INFO | run_query | ============================================================
+2026-03-05 10:43:28,709 | INFO | run_query | ❓ QUESTION : Quel est le numéro de SIRET de KDYEM ?
+2026-03-05 10:43:28,709 | INFO | run_query | ============================================================
+2026-03-05 10:43:28,709 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:43:28,710 | INFO | retriever | 🔍 Query : 'Quel est le numéro de SIRET de KDYEM ?'
+2026-03-05 10:43:28,710 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:43:28,899 | INFO | chromadb.telemetry.product.posthog | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-03-05 10:43:29,355 | INFO | retriever | ✅ Vector store initialisé (lazy singleton)
+2026-03-05 10:43:32,357 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:43:32,394 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:43:32,394 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:44:08,310 | INFO | run_query | ============================================================
+2026-03-05 10:44:08,311 | INFO | run_query | ❓ QUESTION : c'est quoi le poste de Gaya KDYEM?
+2026-03-05 10:44:08,311 | INFO | run_query | ============================================================
+2026-03-05 10:44:08,312 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:44:08,312 | INFO | retriever | 🔍 Query : 'c'est quoi le poste de Gaya KDYEM?'
+2026-03-05 10:44:08,312 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:44:11,982 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:44:11,995 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:44:11,995 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:44:55,681 | INFO | run_query | ============================================================
+2026-03-05 10:44:55,685 | INFO | run_query | ❓ QUESTION : quel diplome a Gaya?
+2026-03-05 10:44:55,686 | INFO | run_query | ============================================================
+2026-03-05 10:44:55,686 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:44:55,686 | INFO | retriever | 🔍 Query : 'quel diplome a Gaya?'
+2026-03-05 10:44:55,686 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:44:56,128 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:44:56,139 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:44:56,139 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:45:14,698 | INFO | run_query | ============================================================
+2026-03-05 10:45:14,699 | INFO | run_query | ❓ QUESTION : c'est quoi l'adresse mail de Gaya ?
+2026-03-05 10:45:14,699 | INFO | run_query | ============================================================
+2026-03-05 10:45:14,699 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:45:14,700 | INFO | retriever | 🔍 Query : 'c'est quoi l'adresse mail de Gaya ?'
+2026-03-05 10:45:14,700 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:45:14,929 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:45:14,938 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:45:14,938 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:46:12,808 | INFO | run_query | ============================================================
+2026-03-05 10:46:12,810 | INFO | run_query | ❓ QUESTION : python -c "
+2026-03-05 10:46:12,810 | INFO | run_query | ============================================================
+2026-03-05 10:46:12,810 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:46:12,811 | INFO | retriever | 🔍 Query : 'python -c "'
+2026-03-05 10:46:12,811 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:46:13,260 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:46:13,302 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:46:13,302 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:46:13,303 | INFO | run_query | ============================================================
+2026-03-05 10:46:13,303 | INFO | run_query | ❓ QUESTION : import sys, os
+2026-03-05 10:46:13,303 | INFO | run_query | ============================================================
+2026-03-05 10:46:13,303 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:46:13,303 | INFO | retriever | 🔍 Query : 'import sys, os'
+2026-03-05 10:46:13,303 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:46:13,533 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:46:13,542 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:46:13,542 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:46:13,542 | INFO | run_query | ============================================================
+2026-03-05 10:46:13,542 | INFO | run_query | ❓ QUESTION : sys.path.append('.')
+2026-03-05 10:46:13,542 | INFO | run_query | ============================================================
+2026-03-05 10:46:13,542 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:46:13,542 | INFO | retriever | 🔍 Query : 'sys.path.append('.')'
+2026-03-05 10:46:13,542 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:46:13,721 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:46:13,734 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:46:13,734 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:46:13,734 | INFO | run_query | ============================================================
+2026-03-05 10:46:13,734 | INFO | run_query | ❓ QUESTION : from dotenv import load_dotenv
+2026-03-05 10:46:13,734 | INFO | run_query | ============================================================
+2026-03-05 10:46:13,734 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:46:13,734 | INFO | retriever | 🔍 Query : 'from dotenv import load_dotenv'
+2026-03-05 10:46:13,735 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:46:13,912 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:46:13,914 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:46:13,914 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:46:13,915 | INFO | run_query | ============================================================
+2026-03-05 10:46:13,915 | INFO | run_query | ❓ QUESTION : load_dotenv()
+2026-03-05 10:46:13,915 | INFO | run_query | ============================================================
+2026-03-05 10:46:13,915 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:46:13,915 | INFO | retriever | 🔍 Query : 'load_dotenv()'
+2026-03-05 10:46:13,915 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:46:14,191 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:46:14,197 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:46:14,197 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:46:14,197 | INFO | run_query | ============================================================
+2026-03-05 10:46:14,197 | INFO | run_query | ❓ QUESTION : from src.query.retriever import get_vector_store
+2026-03-05 10:46:14,197 | INFO | run_query | ============================================================
+2026-03-05 10:46:14,197 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:46:14,197 | INFO | retriever | 🔍 Query : 'from src.query.retriever import get_vector_store'
+2026-03-05 10:46:14,197 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:46:14,370 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:46:14,377 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:46:14,377 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:46:14,377 | INFO | run_query | ============================================================
+2026-03-05 10:46:14,377 | INFO | run_query | ❓ QUESTION : vs = get_vector_store()
+2026-03-05 10:46:14,377 | INFO | run_query | ============================================================
+2026-03-05 10:46:14,377 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:46:14,377 | INFO | retriever | 🔍 Query : 'vs = get_vector_store()'
+2026-03-05 10:46:14,377 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:46:14,599 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:46:14,603 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:46:14,603 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:46:14,604 | INFO | run_query | ============================================================
+2026-03-05 10:46:14,604 | INFO | run_query | ❓ QUESTION : results = vs.similarity_search_with_score('quel diplome a Gaya', k=5)
+2026-03-05 10:46:14,604 | INFO | run_query | ============================================================
+2026-03-05 10:46:14,604 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:46:14,604 | INFO | retriever | 🔍 Query : 'results = vs.similarity_search_with_score('quel diplome a Gaya', k=5)'
+2026-03-05 10:46:14,604 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:46:14,889 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:46:14,903 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:46:14,903 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:46:14,903 | INFO | run_query | ============================================================
+2026-03-05 10:46:14,903 | INFO | run_query | ❓ QUESTION : for doc, score in results:
+2026-03-05 10:46:14,903 | INFO | run_query | ============================================================
+2026-03-05 10:46:14,903 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:46:14,903 | INFO | retriever | 🔍 Query : 'for doc, score in results:'
+2026-03-05 10:46:14,904 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:46:15,092 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:46:15,095 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:46:15,095 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible
+2026-03-05 10:46:15,095 | INFO | run_query | ============================================================
+2026-03-05 10:46:15,095 | INFO | run_query | ❓ QUESTION : print(f'score={score:.4f} | source={doc.metadata.get(\\"source_file\\", \\"?\\")}')
+2026-03-05 10:46:15,095 | INFO | run_query | ============================================================
+2026-03-05 10:46:15,095 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-05 10:46:15,095 | INFO | retriever | 🔍 Query : 'print(f'score={score:.4f} | source={doc.metadata.get(\\"source_file\\", \\"?\\")}')'
+2026-03-05 10:46:15,095 | INFO | retriever | 🎯 Recherche des 5 chunks — seuil score : 0.7
+2026-03-05 10:46:15,337 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-05 10:46:15,343 | WARNING | retriever | ⚠️  Aucun chunk pertinent trouvé sous le seuil de score (0.7)
+2026-03-05 10:46:15,343 | WARNING | run_query | ⚠️  Aucun document pertinent trouvé — réponse impossible

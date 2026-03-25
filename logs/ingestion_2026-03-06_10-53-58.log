@@ -1,0 +1,4 @@
+2026-03-06 10:53:59,270 | INFO | run_query | ============================================================
+2026-03-06 10:53:59,270 | INFO | run_query | ❓ QUESTION : Quel est le numéro de SIRET de KDYEM ?
+2026-03-06 10:53:59,270 | INFO | run_query | ============================================================
+2026-03-06 10:53:59,270 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...

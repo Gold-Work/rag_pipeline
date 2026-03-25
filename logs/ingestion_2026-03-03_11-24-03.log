@@ -1,0 +1,88 @@
+2026-03-03 11:24:04,555 | INFO | run_ingestion | ============================================================
+2026-03-03 11:24:04,555 | INFO | run_ingestion | 🚀 DÉMARRAGE PIPELINE INGESTION
+2026-03-03 11:24:04,555 | INFO | run_ingestion | ============================================================
+2026-03-03 11:24:04,555 | INFO | run_ingestion | 📂 ÉTAPE 1 : Chargement des documents...
+2026-03-03 11:24:04,555 | INFO | loader | 📂 Dossier scanné (récursif) : ./data/raw
+2026-03-03 11:24:04,740 | INFO | loader | ✅ Chargé : (20221121) - 887555076 - ATTESTATION DE REMUNERATION 2022.pdf (1 pages/sections)
+2026-03-03 11:24:04,742 | INFO | loader | ✅ Chargé : acte de naissance 2.pdf (1 pages/sections)
+2026-03-03 11:24:04,767 | INFO | loader | ✅ Chargé : Détails des Notes Gaya KDYEM.pdf (7 pages/sections)
+2026-03-03 11:24:06,626 | INFO | loader | ✅ Chargé : index.html (1 pages/sections)
+2026-03-03 11:24:06,714 | INFO | loader | ✅ Chargé : (20221121) - 887555076 - GRAND LIVRE MICRO 2022.pdf (12 pages/sections)
+2026-03-03 11:24:06,783 | INFO | loader | ✅ Chargé : Attestation_d'hebergement.pdf (1 pages/sections)
+2026-03-03 11:24:06,794 | INFO | loader | ✅ Chargé : AVIS_APRÈS_FORMATION_B1_V__B2_V__BC_BR_-_KDYEM_Gaya.pdf (1 pages/sections)
+2026-03-03 11:24:07,094 | INFO | loader | ✅ Chargé : KDYEM GAYA - NEOSPACE - Campus.pdf (18 pages/sections)
+2026-03-03 11:24:07,124 | INFO | loader | ✅ Chargé : Echéancier.pdf (1 pages/sections)
+2026-03-03 11:24:07,138 | INFO | loader | ✅ Chargé : CVPROV-AUTO-A568855-02-20230313-150337.PDF (1 pages/sections)
+2026-03-03 11:24:07,141 | INFO | loader | ✅ Chargé : LP OCI Diploma.pdf (1 pages/sections)
+2026-03-03 11:24:07,143 | INFO | loader | ✅ Chargé : TCF Gaya KDYEM.pdf (1 pages/sections)
+2026-03-03 11:24:07,146 | INFO | loader | ✅ Chargé : BAC.pdf (1 pages/sections)
+2026-03-03 11:24:07,167 | INFO | loader | ✅ Chargé : Attestation d’assurance pour la nouvelle période de garantie.pdf (2 pages/sections)
+2026-03-03 11:24:07,168 | WARNING | pypdf._reader | incorrect startxref pointer(1)
+2026-03-03 11:24:07,168 | WARNING | pypdf._reader | parsing for Object Streams
+2026-03-03 11:24:07,181 | INFO | loader | ✅ Chargé : KBIS.pdf (1 pages/sections)
+2026-03-03 11:24:07,183 | WARNING | pypdf._reader | incorrect startxref pointer(1)
+2026-03-03 11:24:07,184 | WARNING | pypdf._reader | parsing for Object Streams
+2026-03-03 11:24:07,191 | INFO | loader | ✅ Chargé : Kbis KDYEM.pdf (1 pages/sections)
+2026-03-03 11:24:07,194 | INFO | loader | ✅ Chargé : RNBac.pdf (1 pages/sections)
+2026-03-03 11:24:07,196 | INFO | loader | ✅ Chargé : BTS.pdf (1 pages/sections)
+2026-03-03 11:24:07,778 | INFO | loader | ✅ Chargé : KDYEM GAYA (1).pdf (22 pages/sections)
+2026-03-03 11:24:07,795 | INFO | loader | ✅ Chargé : CVFACS-AUTO-A568855-02-20230313-150255.PDF (1 pages/sections)
+2026-03-03 11:24:07,796 | INFO | loader | 📊 Total documents chargés : 76
+2026-03-03 11:24:07,796 | INFO | run_ingestion | ✅ 76 pages/sections chargées
+2026-03-03 11:24:07,796 | INFO | run_ingestion | 🔍 ÉTAPE 2 : Parsing et nettoyage...
+2026-03-03 11:24:07,796 | INFO | parser | 🔍 Parsing de 76 documents...
+2026-03-03 11:24:07,796 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — acte de naissance 2.pdf
+2026-03-03 11:24:07,796 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — Détails des Notes Gaya KDYEM.pdf
+2026-03-03 11:24:07,796 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — Détails des Notes Gaya KDYEM.pdf
+2026-03-03 11:24:07,796 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — Détails des Notes Gaya KDYEM.pdf
+2026-03-03 11:24:07,796 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — Détails des Notes Gaya KDYEM.pdf
+2026-03-03 11:24:07,796 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — Détails des Notes Gaya KDYEM.pdf
+2026-03-03 11:24:07,796 | WARNING | parser | ⚠️  Page trop courte ignorée (4 chars) — (20221121) - 887555076 - GRAND LIVRE MICRO 2022.pdf
+2026-03-03 11:24:07,798 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — LP OCI Diploma.pdf
+2026-03-03 11:24:07,798 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — TCF Gaya KDYEM.pdf
+2026-03-03 11:24:07,798 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — BAC.pdf
+2026-03-03 11:24:07,799 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — RNBac.pdf
+2026-03-03 11:24:07,799 | WARNING | parser | ⚠️  Page trop courte ignorée (0 chars) — BTS.pdf
+2026-03-03 11:24:07,801 | INFO | parser | ✅ Parsing terminé : 64 documents conservés, 12 ignorés
+2026-03-03 11:24:07,801 | INFO | run_ingestion | ✅ 64 documents après nettoyage
+2026-03-03 11:24:07,801 | INFO | run_ingestion | ✂️  ÉTAPE 3 : Chunking...
+2026-03-03 11:24:07,801 | INFO | chunker | ✂️  Chunking — taille: 512, overlap: 50
+2026-03-03 11:24:07,805 | INFO | chunker | ✅ 347 chunks créés depuis 64 documents
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 (20221121) - 887555076 - ATTESTATION DE REMUNERATION 2022.pdf → 4 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 Détails des Notes Gaya KDYEM.pdf → 4 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 index.html → 20 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 (20221121) - 887555076 - GRAND LIVRE MICRO 2022.pdf → 25 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 Attestation_d'hebergement.pdf → 2 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 AVIS_APRÈS_FORMATION_B1_V__B2_V__BC_BR_-_KDYEM_Gaya.pdf → 4 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 KDYEM GAYA - NEOSPACE - Campus.pdf → 122 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 Echéancier.pdf → 8 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 CVPROV-AUTO-A568855-02-20230313-150337.PDF → 5 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 Attestation d’assurance pour la nouvelle période de garantie.pdf → 11 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 KBIS.pdf → 3 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 Kbis KDYEM.pdf → 4 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 KDYEM GAYA (1).pdf → 130 chunks
+2026-03-03 11:24:07,805 | INFO | chunker |    📄 CVFACS-AUTO-A568855-02-20230313-150255.PDF → 5 chunks
+2026-03-03 11:24:07,805 | INFO | run_ingestion | ✅ 347 chunks créés
+2026-03-03 11:24:07,805 | INFO | run_ingestion | 🧠 ÉTAPE 4 : Embedding et indexation...
+2026-03-03 11:24:07,805 | INFO | embedder | 🚀 Début embedding de 347 chunks...
+2026-03-03 11:24:08,592 | INFO | chromadb.telemetry.product.posthog | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-03-03 11:24:08,667 | INFO | embedder | 📦 Chunks déjà dans ChromaDB : 0
+2026-03-03 11:24:08,667 | INFO | embedder | 📤 347 nouveaux chunks à embedder...
+2026-03-03 11:24:15,918 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-03 11:24:16,261 | WARNING | embedder | ⚠️  Tentative 1/3 échouée : Expected IDs to be unique, found duplicates of: (20221121) - 887555076 - GRAND LIVRE MICRO 2022.pdf_5ccb712a509f in upsert. — retry dans 2s
+2026-03-03 11:24:21,353 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-03 11:24:21,676 | WARNING | embedder | ⚠️  Tentative 2/3 échouée : Expected IDs to be unique, found duplicates of: (20221121) - 887555076 - GRAND LIVRE MICRO 2022.pdf_5ccb712a509f in upsert. — retry dans 4s
+2026-03-03 11:24:26,570 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-03 11:24:26,838 | ERROR | embedder | ❌ Échec définitif après 3 tentatives : Expected IDs to be unique, found duplicates of: (20221121) - 887555076 - GRAND LIVRE MICRO 2022.pdf_5ccb712a509f in upsert.
+2026-03-03 11:24:26,839 | ERROR | embedder | ❌ Batch 1/4 abandonné
+2026-03-03 11:24:27,607 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-03 11:24:28,023 | INFO | embedder | ✅ Batch 2/4 — 100 chunks indexés
+2026-03-03 11:24:29,026 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-03 11:24:29,414 | INFO | embedder | ✅ Batch 3/4 — 100 chunks indexés
+2026-03-03 11:24:30,092 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-03 11:24:30,234 | INFO | embedder | ✅ Batch 4/4 — 47 chunks indexés
+2026-03-03 11:24:30,234 | INFO | embedder | 🎉 Embedding terminé — 247/347 chunks ajoutés au vector store
+2026-03-03 11:24:30,234 | INFO | run_ingestion | ============================================================
+2026-03-03 11:24:30,234 | INFO | run_ingestion | ✅ PIPELINE INGESTION TERMINÉE
+2026-03-03 11:24:30,245 | INFO | run_ingestion | 📊 Total chunks dans ChromaDB : 247
+2026-03-03 11:24:30,245 | INFO | run_ingestion | ============================================================

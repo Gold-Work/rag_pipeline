@@ -1,0 +1,132 @@
+2026-03-14 14:36:42,128 | INFO | run_query | ============================================================
+2026-03-14 14:36:42,129 | INFO | run_query | ❓ QUESTION : What are the trade-offs of using different LLMs in an agent pipeline?
+2026-03-14 14:36:42,129 | INFO | run_query | ============================================================
+2026-03-14 14:36:42,129 | INFO | run_query | 🔍 ÉTAPE 1 : Recherche des chunks pertinents...
+2026-03-14 14:36:42,129 | INFO | retriever | 🔍 Query : 'What are the trade-offs of using different LLMs in an agent pipeline?'
+2026-03-14 14:36:42,129 | INFO | retriever | 🎯 Hybrid Search — top 20 chunks
+2026-03-14 14:36:42,129 | INFO | rewriter | ✏️  Réécriture de la query : 'What are the trade-offs of using different LLMs in an agent pipeline?'
+2026-03-14 14:36:44,741 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-14 14:36:44,754 | INFO | rewriter | 📝 4 queries générées :
+2026-03-14 14:36:44,754 | INFO | rewriter |    [1] What are the trade-offs of using different LLMs in an agent pipeline?
+2026-03-14 14:36:44,755 | INFO | rewriter |    [2] Quels sont les compromis liés à l'utilisation de différents modèles de langage dans un pipeline d'agents ?
+2026-03-14 14:36:44,755 | INFO | rewriter |    [3] Compromis modèles de langage agent pipeline
+2026-03-14 14:36:44,755 | INFO | rewriter |    [4] Équilibre entre modèles de langage dans un système d'agents
+2026-03-14 14:36:44,801 | INFO | chromadb.telemetry.product.posthog | Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-03-14 14:36:45,250 | INFO | retriever | ✅ Vector store initialisé (lazy singleton)
+2026-03-14 14:36:49,884 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-14 14:36:50,485 | INFO | retriever | ✅ BM25 initialisé sur 6034 documents
+2026-03-14 14:36:52,794 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-14 14:36:52,999 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-14 14:36:53,203 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-03-14 14:36:53,217 | INFO | retriever |    📐 Vector search total : 17 résultats
+2026-03-14 14:36:53,217 | INFO | retriever |    🔤 BM25 search total   : 22 résultats
+2026-03-14 14:36:53,218 | INFO | retriever | 📊 20 chunks retenus après fusion RRF :
+2026-03-14 14:36:53,218 | INFO | retriever |    [1] source=a-practical-guide-to-building-agents.pdf | aperçu=or generating a report.
+Applications that integrate LLMs but don’t use them to c...
+2026-03-14 14:36:53,218 | INFO | retriever |    [2] source=a-practical-guide-to-building-agents.pdf | aperçu=When to consider creating multiple agents
+Our general recommendation is to maxim...
+2026-03-14 14:36:53,218 | INFO | retriever |    [3] source=a-practical-guide-to-building-agents.pdf | aperçu=capabilities always available on-demand.
+This pattern is ideal for workflows whe...
+2026-03-14 14:36:53,218 | INFO | retriever |    [4] source=a-practical-guide-to-building-agents.pdf | aperçu=For example, in the Agents SDK, agents are started using the 
+ method, which loo...
+2026-03-14 14:36:53,218 | INFO | retriever |    [5] source=a-practical-guide-to-building-agents.pdf | aperçu=Introduction
+Large language models are becoming increasingly capable of handling...
+2026-03-14 14:36:53,218 | INFO | retriever |    [6] source=a-practical-guide-to-building-agents.pdf | aperçu=Agent design 
+foundations
+In its most fundamental form, an agent consists of thr...
+2026-03-14 14:36:53,218 | INFO | retriever |    [7] source=a-practical-guide-to-building-agents.pdf | aperçu=When should you 
+build an agent?
+Building agents requires rethinking how your sy...
+2026-03-14 14:36:53,218 | INFO | retriever |    [8] source=a-practical-guide-to-building-agents.pdf | aperçu=Conclusion
+Agents mark a new era in workflow automation, where systems can reaso...
+2026-03-14 14:36:53,218 | INFO | retriever |    [9] source=a-practical-guide-to-building-agents.pdf | aperçu=Decentralized pattern
+In a decentralized pattern, agents can ‘handoff’ workflow...
+2026-03-14 14:36:53,218 | INFO | retriever |    [10] source=a-practical-guide-to-building-agents.pdf | aperçu=Configuring instructions
+High-quality instructions are essential for any LLM-pow...
+2026-03-14 14:36:53,218 | INFO | retriever |    [11] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Normalized
+Indicates whether the pipeline has a normalization liability when you...
+2026-03-14 14:36:53,218 | INFO | retriever |    [12] source=a-practical-guide-to-building-agents.pdf | aperçu=or overlap. Some implementations successfully manage 
+more than 15 well-defined,...
+2026-03-14 14:36:53,218 | INFO | retriever |    [13] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=algorithm. We discussed how the regularization parameter, λ, controls the trade-...
+2026-03-14 14:36:53,218 | INFO | retriever |    [14] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Viewing data servers and volumes: Using IBM StoredIQ Administrator, the Administ...
+2026-03-14 14:36:53,218 | INFO | retriever |    [15] source=a-practical-guide-to-building-agents.pdf | aperçu=This pattern is especially effective for scenarios like conversation triage, or...
+2026-03-14 14:36:53,218 | INFO | retriever |    [16] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science...
+2026-03-14 14:36:53,218 | INFO | retriever |    [17] source=a-practical-guide-to-building-agents.pdf | aperçu=manager_agent = Agent(
+name=
+,
+instructions=(
+
+"If asked for multiple translatio...
+2026-03-14 14:36:53,218 | INFO | retriever |    [18] source=IBMPolicy_Assessment_and_Compliance751_en.pdf | aperçu=Inclu
+de
+direc
+torie
+s or
+Inclu
+de
+rese
+arch
+folde
+rs
+In Include directories, sp...
+2026-03-14 14:36:53,218 | INFO | retriever |    [19] source=a-practical-guide-to-building-agents.pdf | aperçu=can quickly become cumbersome and challenging as workflows grow more dynamic and...
+2026-03-14 14:36:53,218 | INFO | retriever |    [20] source=understanding-machine-learning-theory-algorithms.pdf | aperçu=E
+S∼Dm[L∆
+D(h ¯w)] ≤
+E
+S∼Dm[Lg−hinge
+D
+( ¯w)] ≤
+min
+u:∥u∥≤B Lg−hinge
+D
+(u) + ϵ....
+2026-03-14 14:36:53,218 | INFO | run_query | 🎯 ÉTAPE 2 : Reranking...
+2026-03-14 14:36:53,218 | INFO | reranker | 🎯 Reranking de 20 chunks...
+2026-03-14 14:36:53,218 | INFO | reranker | 🔄 Chargement du Cross-Encoder...
+2026-03-14 14:36:53,519 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 14:36:53,679 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 14:36:53,680 | WARNING | huggingface_hub.utils._http | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-14 14:36:53,744 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/config.json "HTTP/1.1 200 OK"
+2026-03-14 14:36:54,029 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 14:36:54,195 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 14:36:54,251 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/config.json "HTTP/1.1 200 OK"
+2026-03-14 14:36:54,401 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 14:36:54,569 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 14:36:54,632 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-14 14:36:54,790 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 14:36:54,922 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-14 14:36:55,068 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 14:36:55,211 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-14 14:36:55,413 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 14:36:55,538 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 14:36:55,588 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/ms-marco-MiniLM-L6-v2/c5ee24cb16019beea0893ab7796b1df96625c6b8/README.md "HTTP/1.1 200 OK"
+2026-03-14 14:36:55,770 | INFO | sentence_transformers.cross_encoder.CrossEncoder | Use pytorch device: mps
+2026-03-14 14:36:56,226 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2 "HTTP/1.1 307 Temporary Redirect"
+2026-03-14 14:36:56,370 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-14 14:36:56,382 | INFO | reranker | ✅ Cross-Encoder chargé (lazy singleton)
+2026-03-14 14:36:57,316 | INFO | reranker | 📊 Scores après reranking :
+2026-03-14 14:36:57,317 | INFO | reranker |    [1] score=-2.2600 | source=a-practical-guide-to-building-agents.pdf | aperçu=or generating a report.
+Applications that integrate LLMs but don’t use them to c...
+2026-03-14 14:36:57,317 | INFO | reranker |    [2] score=-2.8139 | source=a-practical-guide-to-building-agents.pdf | aperçu=Introduction
+Large language models are becoming increasingly capable of handling...
+2026-03-14 14:36:57,317 | INFO | reranker |    [3] score=-3.1819 | source=a-practical-guide-to-building-agents.pdf | aperçu=Conclusion
+Agents mark a new era in workflow automation, where systems can reaso...
+2026-03-14 14:36:57,317 | INFO | reranker |    [4] score=-4.6054 | source=a-practical-guide-to-building-agents.pdf | aperçu=Decentralized pattern
+In a decentralized pattern, agents can ‘handoff’ workflow...
+2026-03-14 14:36:57,317 | INFO | reranker |    [5] score=-4.6761 | source=a-practical-guide-to-building-agents.pdf | aperçu=Agent design 
+foundations
+In its most fundamental form, an agent consists of thr...
+2026-03-14 14:36:57,317 | INFO | run_query | 📝 ÉTAPE 3 : Construction du prompt...
+2026-03-14 14:36:57,317 | INFO | augmenter | 📝 Prompt construit — 5 chunks | 2975 chars
+2026-03-14 14:36:57,317 | INFO | run_query | 🤖 ÉTAPE 4 : Génération de la réponse...
+2026-03-14 14:36:57,317 | INFO | generator | 🤖 Génération — modèle: gpt-4o-mini | temp: 0.0
+2026-03-14 14:36:57,317 | INFO | generator | 📏 Taille du prompt : 2975 chars
+2026-03-14 14:36:59,370 | INFO | httpx | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-14 14:36:59,374 | INFO | generator | ✅ Réponse générée — tokens: 676 prompt + 32 completion = 708 total
+2026-03-14 14:36:59,375 | INFO | run_query | ============================================================
+2026-03-14 14:36:59,375 | INFO | run_query | ✅ RÉPONSE FINALE :
+2026-03-14 14:36:59,375 | INFO | run_query | 
+La réponse à la question sur les compromis liés à l'utilisation de différents LLMs dans un pipeline d'agent n'est pas fournie dans le contexte.
+
+2026-03-14 14:36:59,375 | INFO | run_query | ============================================================
