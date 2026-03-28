@@ -28,7 +28,7 @@ def chunk_documents(documents: List[Document]) -> List[Document]:
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap,
-        separators=["\n\n", "\n", ".", " "],  # pas besoin du séparateur vide ""
+        separators=["\n\n", "\n", ". ", " "],  # ". " évite les coupures sur abréviations (Dr., Fig.)
         length_function=len,
     )
 
@@ -37,9 +37,10 @@ def chunk_documents(documents: List[Document]) -> List[Document]:
 
     # Enrichir les métadonnées avec un ID unique
     for i, chunk in enumerate(chunks):
-        content_hash = hashlib.md5(chunk.page_content.encode(), usedforsecurity=False).hexdigest()[:12]
         source = chunk.metadata.get("source_file", "unknown")
-        chunk.metadata["chunk_id"] = f"{source}_{i}_{content_hash}"
+        content_sig = f"{source}|{chunk.page_content}"
+        content_hash = hashlib.md5(content_sig.encode(), usedforsecurity=False).hexdigest()[:16]
+        chunk.metadata["chunk_id"] = f"{source}_{content_hash}"
         chunk.metadata["chunk_size"] = len(chunk.page_content)
 
     logger.info(f"✅ {len(chunks)} chunks créés depuis {len(documents)} documents")

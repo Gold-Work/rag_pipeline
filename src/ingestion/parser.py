@@ -7,7 +7,8 @@ logger = get_logger("parser")
 
 # Regex compilées pour performance
 CTRL_CHARS = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
-UNICODE_INVISIBLES = re.compile(r"[\u00A0\u200B-\u200F\u2028\u2029\u2060-\u206F\uFEFF]")
+NBSP = re.compile(r"\u00A0")
+UNICODE_INVISIBLES = re.compile(r"[\u200B-\u200F\u2028\u2029\u2060-\u206F\uFEFF]")
 MULTI_SPACES = re.compile(r" +")
 MULTI_LINES = re.compile(r"\n{3,}")
 
@@ -15,7 +16,8 @@ MULTI_LINES = re.compile(r"\n{3,}")
 def clean_text(text: str) -> str:
     """Nettoyage avancé du texte, incluant caractères invisibles Unicode."""
     text = CTRL_CHARS.sub("", text)  # Caractères de contrôle ASCII
-    text = UNICODE_INVISIBLES.sub("", text)  # Caractères invisibles Unicode
+    text = NBSP.sub(" ", text)  # Non-breaking space → espace normal (évite fusion de mots)
+    text = UNICODE_INVISIBLES.sub("", text)  # Autres invisibles Unicode
     text = MULTI_SPACES.sub(" ", text)  # Espaces multiples
     text = MULTI_LINES.sub("\n\n", text)  # Sauts de ligne multiples
     return text.strip()

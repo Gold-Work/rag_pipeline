@@ -1,6 +1,6 @@
 from pathlib import Path
 from typing import List
-from langchain_community.document_loaders import PyMuPDFLoader, UnstructuredHTMLLoader
+from langchain_community.document_loaders import PyMuPDFLoader, TextLoader, UnstructuredHTMLLoader
 from langchain_core.documents import Document
 from src.utils.logger import get_logger
 from src.utils.config import get_config
@@ -14,6 +14,7 @@ SUPPORTED_EXTENSIONS = {
     ".pdf": PyMuPDFLoader,  # PyMuPDFLoader plus fiable que PyPDFLoader
     ".html": UnstructuredHTMLLoader,
     ".htm": UnstructuredHTMLLoader,
+    ".txt": TextLoader,
 }
 
 
