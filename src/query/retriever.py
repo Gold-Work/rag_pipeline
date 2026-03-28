@@ -1,10 +1,12 @@
 import os
 import re
+import threading
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
 from src.utils.logger import get_logger
 from src.utils.config import get_config
+from src.utils.observability import langfuse_span
 from src.query.rewriter import rewrite_query
 from rank_bm25 import BM25Okapi
 import chromadb
@@ -18,37 +20,42 @@ top_k_rerank = config["retrieval"]["top_k_rerank"]
 embedding_model = config["embedding"]["model"]
 
 _vector_store = None
+_vector_store_lock = threading.Lock()
+
 _bm25 = None
 _bm25_docs = None
+_bm25_lock = threading.Lock()
 
 def tokenize(text: str) -> list[str]:
     return re.findall(r"\w+", text.lower())
 
 def get_vector_store() -> Chroma:
     global _vector_store
-    if _vector_store is None:
-        embeddings = OpenAIEmbeddings(model=embedding_model, openai_api_key=os.getenv("OPENAI_API_KEY"))
-        client = chromadb.PersistentClient(path=config["paths"]["chroma_db"])
-        _vector_store = Chroma(
-            client=client,
-            collection_name=os.getenv("CHROMA_COLLECTION_NAME", "rag_documents"),
-            embedding_function=embeddings,
-        )
-        logger.info("✅ Vector store initialisé (lazy singleton)")
+    with _vector_store_lock:
+        if _vector_store is None:
+            embeddings = OpenAIEmbeddings(model=embedding_model, openai_api_key=os.getenv("OPENAI_API_KEY"))
+            client = chromadb.PersistentClient(path=config["paths"]["chroma_db"])
+            _vector_store = Chroma(
+                client=client,
+                collection_name=config["embedding"]["collection_name"],
+                embedding_function=embeddings,
+            )
+            logger.info("✅ Vector store initialisé (lazy singleton)")
     return _vector_store
 
 def get_bm25():
     global _bm25, _bm25_docs
-    if _bm25 is None:
-        vector_store = get_vector_store()
-        data = vector_store.get(include=["documents", "metadatas"])
-        if not data["documents"]:
-            logger.warning("⚠️ BM25 : aucun document trouvé")
-            return None, []
-        _bm25_docs = [Document(page_content=doc, metadata=meta) for doc, meta in zip(data["documents"], data["metadatas"])]
-        tokenized = [tokenize(d.page_content) for d in _bm25_docs]
-        _bm25 = BM25Okapi(tokenized)
-        logger.info(f"✅ BM25 initialisé sur {len(_bm25_docs)} documents")
+    with _bm25_lock:
+        if _bm25 is None:
+            vector_store = get_vector_store()
+            data = vector_store.get(include=["documents", "metadatas"])
+            if not data["documents"]:
+                logger.warning("⚠️ BM25 : aucun document trouvé")
+                return None, []
+            _bm25_docs = [Document(page_content=doc, metadata=meta) for doc, meta in zip(data["documents"], data["metadatas"])]
+            tokenized = [tokenize(d.page_content) for d in _bm25_docs]
+            _bm25 = BM25Okapi(tokenized)
+            logger.info(f"✅ BM25 initialisé sur {len(_bm25_docs)} documents")
     return _bm25, _bm25_docs
 
 def vector_search(query: str, k: int) -> list[tuple[Document, float]]:
@@ -74,27 +81,40 @@ def reciprocal_rank_fusion(vector_results, bm25_results, k=60) -> list[Document]
         doc_map[key] = doc
     return [doc_map[key] for key, _ in sorted(scores.items(), key=lambda x: x[1], reverse=True)]
 
-def retrieve(query: str, k: int = 5) -> list[Document]:
+def retrieve(query: str, k: int = 5) -> tuple[list[Document], list[str]]:
     logger.info(f"🔍 Query : '{query}'")
-    queries = rewrite_query(query)
-    all_vector_results, all_bm25_results = [], []
 
-    for q in queries:
-        all_vector_results.extend(vector_search(q, k=top_k_retrieval))
-        all_bm25_results.extend(bm25_search(q, k=top_k_retrieval))
+    with langfuse_span("query-rewriting", {"query": query}) as out:
+        queries = rewrite_query(query)
+        out["queries"] = queries
+        out["n_variants"] = len(queries)
+
+    all_vector_results: list = []
+    all_bm25_results: list = []
+
+    with langfuse_span("vector-search", {"queries": queries, "k": top_k_retrieval}) as out:
+        for q in queries:
+            all_vector_results.extend(vector_search(q, k=top_k_retrieval))
+        out["results_count"] = len(all_vector_results)
+
+    with langfuse_span("bm25-search", {"queries": queries, "k": top_k_retrieval}) as out:
+        for q in queries:
+            all_bm25_results.extend(bm25_search(q, k=top_k_retrieval))
+        out["results_count"] = len(all_bm25_results)
 
     # Déduplication
-    seen = set()
+    seen: set = set()
     all_vector_results = [r for r in all_vector_results if not (r[0].page_content in seen or seen.add(r[0].page_content))]
     seen = set()
     all_bm25_results = [r for r in all_bm25_results if not (r[0].page_content in seen or seen.add(r[0].page_content))]
 
     if not all_vector_results and not all_bm25_results:
         logger.warning("⚠️ Aucun résultat trouvé")
-        return []
+        return [], []
 
     fused = reciprocal_rank_fusion(all_vector_results, all_bm25_results)
     final = fused[:k]
+    chunk_ids = [doc.metadata.get("chunk_id", "") for doc in final]
 
     logger.info(f"📊 {len(final)} chunks retenus après fusion RRF")
-    return final
+    return final, chunk_ids

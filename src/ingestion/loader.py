@@ -4,10 +4,12 @@ from typing import List
 from langchain_community.document_loaders import PyMuPDFLoader, UnstructuredHTMLLoader
 from langchain_core.documents import Document
 from src.utils.logger import get_logger
+from src.utils.config import get_config
 import hashlib
 import json
 
 logger = get_logger("loader")
+config = get_config()
 
 SUPPORTED_EXTENSIONS = {
     ".pdf": PyMuPDFLoader,            # PyMuPDFLoader plus fiable que PyPDFLoader
@@ -23,7 +25,7 @@ def compute_file_hash(file_path: Path) -> str:
             sha256.update(chunk)
     return sha256.hexdigest()
 
-HASH_STORE = Path("data/ingested_files.json")
+HASH_STORE = Path(config["paths"]["ingested_files"])
 HASH_STORE.parent.mkdir(parents=True, exist_ok=True)
 
 def load_documents(data_path: str) -> List[Document]:
@@ -63,8 +65,10 @@ def load_documents(data_path: str) -> List[Document]:
             ingested_hashes.add(file_hash)
             logger.info(f"✅ Chargé : {file.name} ({len(docs)} pages/sections)")
 
-        except Exception as e:
-            logger.error(f"❌ Erreur sur {file.name} : {e}")
+        except OSError as e:
+            logger.error(f"❌ Erreur d'accès fichier {file.name} : {e}")
+        except (RuntimeError, ValueError, UnicodeDecodeError) as e:
+            logger.error(f"❌ Erreur de parsing {file.name} : {e}", exc_info=True)
 
     with open(HASH_STORE, "w") as f:
         json.dump(list(ingested_hashes), f)

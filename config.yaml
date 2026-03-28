@@ -1,3 +1,7 @@
+cache:
+  max_size: 100
+  ttl_seconds: 3600
+
 retrieval:
   chunk_size: 512
   chunk_overlap: 50
@@ -6,11 +10,16 @@ retrieval:
 
 embedding:
   model: text-embedding-3-small
+  collection_name: rag_documents
+  batch_size: 100
 
 rewriter:
   enabled: true       # activer/désactiver la réécriture
   n_variants: 3
   temperature: 0.3
+
+reranker:
+  model: cross-encoder/ms-marco-MiniLM-L-6-v2
 
 llm:
   model: gpt-4o-mini
@@ -20,5 +29,6 @@ llm:
 paths:
   raw_data: ./data/raw
   chroma_db: ./data/chroma_db
+  ingested_files: ./data/ingested_files.json
   logs: ./logs
   

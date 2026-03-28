@@ -10,6 +10,7 @@ from src.ingestion.loader import load_documents
 from src.ingestion.parser import parse_documents
 from src.ingestion.chunker import chunk_documents
 from src.ingestion.embedder import embed_documents
+from src.query.cache import invalidate_cache
 
 logger = get_logger("run_ingestion")
 
@@ -40,13 +41,15 @@ def run_ingestion():
 
     # ÉTAPE 4 — Embedding & Vector Store
     logger.info("🧠 ÉTAPE 4 : Embedding et indexation...")
-    vector_store = embed_documents(chunks)
+    added = embed_documents(chunks)
+
+    # Invalider le cache query pour que les nouvelles requêtes voient les nouveaux chunks
+    invalidate_cache()
 
     # RÉSUMÉ FINAL
     logger.info("=" * 60)
     logger.info("✅ PIPELINE INGESTION TERMINÉE")
-    final_count = vector_store.get()
-    logger.info(f"📊 Total chunks dans ChromaDB : {len(final_count['ids'])}")
+    logger.info(f"📊 Chunks ajoutés à ChromaDB : {added}")
     logger.info("=" * 60)
 
 if __name__ == "__main__":
