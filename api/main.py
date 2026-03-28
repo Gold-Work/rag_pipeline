@@ -30,7 +30,7 @@ from src.query.retriever import retrieve
 from src.query.reranker import rerank
 from src.query.augmenter import build_prompt
 from src.query.generator import generate
-from src.ingestion.loader import load_documents
+from src.ingestion.loader import load_documents, save_ingested_hashes
 from src.ingestion.parser import parse_documents
 from src.ingestion.chunker import chunk_documents
 from src.ingestion.embedder import embed_documents
@@ -252,11 +252,12 @@ async def upload(request: Request, file: UploadFile = File(...), username: str =
         with dest.open("wb") as f:
             shutil.copyfileobj(file.file, f)
 
-        docs = load_documents("data/raw")
+        docs, ingested_hashes = load_documents("data/raw")
         docs = [d for d in docs if d.metadata.get("source_file") == safe_name]
         docs = parse_documents(docs)
         chunks = chunk_documents(docs)
         added = embed_documents(chunks)
+        save_ingested_hashes(ingested_hashes)
 
         return {"filename": safe_name, "chunks_indexed": added, "status": "success"}
 

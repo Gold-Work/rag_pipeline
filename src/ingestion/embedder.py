@@ -37,7 +37,7 @@ def _ensure_chunk_id(chunk: Document) -> None:
 def get_embeddings():
     return OpenAIEmbeddings(
         model=config["embedding"]["model"],
-        openai_api_key=os.getenv("OPENAI_API_KEY"),
+        api_key=os.getenv("OPENAI_API_KEY"),  # type: ignore[arg-type]
     )
 
 
@@ -75,8 +75,8 @@ def embed_documents(chunks: List[Document]) -> int:
     embeddings = get_embeddings()
     vector_store = get_vector_store(embeddings)
 
-    # Récupérer les IDs déjà présents dans ChromaDB
-    existing = vector_store.get()
+    # Récupérer les IDs déjà présents dans ChromaDB (include=[] : IDs uniquement, pas les vecteurs)
+    existing = vector_store.get(include=[])
     existing_ids = set(existing["ids"]) if existing["ids"] else set()
     logger.info(f"📦 Chunks déjà dans ChromaDB : {len(existing_ids)}")
 

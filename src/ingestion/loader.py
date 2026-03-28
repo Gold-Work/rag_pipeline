@@ -14,7 +14,6 @@ SUPPORTED_EXTENSIONS = {
     ".pdf": PyMuPDFLoader,  # PyMuPDFLoader plus fiable que PyPDFLoader
     ".html": UnstructuredHTMLLoader,
     ".htm": UnstructuredHTMLLoader,
-    ".txt": TextLoader,
 }
 
 
@@ -31,7 +30,14 @@ HASH_STORE = Path(config["paths"]["ingested_files"])
 HASH_STORE.parent.mkdir(parents=True, exist_ok=True)
 
 
-def load_documents(data_path: str) -> List[Document]:
+def load_documents(data_path: str) -> tuple[List[Document], set[str]]:
+    """Charge les documents non encore ingérés.
+
+    Returns:
+        (documents, ingested_hashes) — le hash store n'est PAS écrit ici.
+        Appeler save_ingested_hashes(ingested_hashes) après l'embedding réussi
+        pour éviter de marquer des fichiers comme traités en cas d'échec.
+    """
     if HASH_STORE.exists():
         with open(HASH_STORE, "r") as f:
             ingested_hashes = set(json.load(f))
@@ -39,14 +45,15 @@ def load_documents(data_path: str) -> List[Document]:
         ingested_hashes = set()
 
     documents = []
-    files = list(Path(data_path).rglob("*"))
+    base = Path(data_path)
+    files = list(base.rglob("*"))
     logger.info(f"📂 Dossier scanné (récursif) : {data_path}")
 
     for file in files:
         if not file.is_file():
             continue
         ext = file.suffix.lower()
-        if ext not in SUPPORTED_EXTENSIONS:
+        if ext not in SUPPORTED_EXTENSIONS and ext != ".txt":
             continue
 
         file_hash = compute_file_hash(file)
@@ -54,27 +61,36 @@ def load_documents(data_path: str) -> List[Document]:
             logger.info(f"⏭️ Déjà traité (hash) : {file.name}")
             continue
 
+        # Chemin relatif au dossier source pour éviter les collisions de noms
+        relative_path = str(file.relative_to(base))
+
         try:
-            loader_class = SUPPORTED_EXTENSIONS[ext]
-            loader = loader_class(str(file))
+            if ext == ".txt":
+                loader = TextLoader(str(file), encoding="utf-8", autodetect_encoding=True)
+            else:
+                loader = SUPPORTED_EXTENSIONS[ext](str(file))
             docs = loader.load()
 
             for doc in docs:
-                doc.metadata["source_file"] = file.name
+                doc.metadata["source_file"] = relative_path
                 doc.metadata["file_type"] = ext
                 doc.metadata["file_hash"] = file_hash
 
             documents.extend(docs)
             ingested_hashes.add(file_hash)
-            logger.info(f"✅ Chargé : {file.name} ({len(docs)} pages/sections)")
+            logger.info(f"✅ Chargé : {relative_path} ({len(docs)} pages/sections)")
 
         except OSError as e:
-            logger.error(f"❌ Erreur d'accès fichier {file.name} : {e}")
+            logger.error(f"❌ Erreur d'accès fichier {relative_path} : {e}")
         except (RuntimeError, ValueError, UnicodeDecodeError) as e:
-            logger.error(f"❌ Erreur de parsing {file.name} : {e}", exc_info=True)
-
-    with open(HASH_STORE, "w") as f:
-        json.dump(list(ingested_hashes), f)
+            logger.error(f"❌ Erreur de parsing {relative_path} : {e}", exc_info=True)
 
     logger.info(f"📊 Total documents chargés : {len(documents)}")
-    return documents
+    return documents, ingested_hashes
+
+
+def save_ingested_hashes(hashes: set[str]) -> None:
+    """Persiste le hash store. À appeler après embedding réussi."""
+    with open(HASH_STORE, "w") as f:
+        json.dump(list(hashes), f)
+    logger.info(f"💾 Hash store sauvegardé — {len(hashes)} fichiers enregistrés")
