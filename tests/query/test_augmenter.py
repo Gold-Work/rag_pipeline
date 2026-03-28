@@ -1,15 +1,18 @@
 from langchain_core.documents import Document
 from src.query.augmenter import build_prompt
 
+
 def test_augmenter_builds_prompt():
     docs = [Document(page_content="contenu test", metadata={})]
     prompt = build_prompt("ma question", docs)
     assert "ma question" in prompt
     assert "contenu test" in prompt
 
+
 def test_augmenter_empty_docs():
     prompt = build_prompt("ma question", [])
     assert "ma question" in prompt
+
 
 def test_augmenter_multiple_docs():
     docs = [

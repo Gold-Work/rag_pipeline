@@ -1,8 +1,10 @@
 import sys
 import os
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 import chromadb
@@ -10,6 +12,7 @@ from collections import defaultdict
 from src.utils.logger import get_logger
 
 logger = get_logger("verify_ingestion")
+
 
 def verify():
     persist_path = os.getenv("CHROMA_PERSIST_PATH", "./data/chroma_db")
@@ -43,13 +46,13 @@ def verify():
 
     # Taille des chunks
     sizes = [len(doc) for doc in docs]
-    logger.info(f"\n📏 TAILLE DES CHUNKS :")
+    logger.info("\n📏 TAILLE DES CHUNKS :")
     logger.info(f"   Min  : {min(sizes)} chars")
     logger.info(f"   Max  : {max(sizes)} chars")
     logger.info(f"   Moy  : {int(sum(sizes)/len(sizes))} chars")
 
     # Vérification IDs dupliqués
-    logger.info(f"\n🔑 VÉRIFICATION IDs :")
+    logger.info("\n🔑 VÉRIFICATION IDs :")
     unique_ids = set(ids)
     if len(unique_ids) == len(ids):
         logger.info(f"   ✅ Tous les IDs sont uniques ({len(ids)})")
@@ -61,11 +64,12 @@ def verify():
     if empty:
         logger.warning(f"   ⚠️  {len(empty)} chunks vides ou trop courts détectés")
     else:
-        logger.info(f"   ✅ Aucun chunk vide")
+        logger.info("   ✅ Aucun chunk vide")
 
     # Aperçu de 3 chunks aléatoires
-    logger.info(f"\n👀 APERÇU DE 3 CHUNKS :")
+    logger.info("\n👀 APERÇU DE 3 CHUNKS :")
     import random
+
     samples = random.sample(range(len(ids)), min(3, len(ids)))
     for i in samples:
         logger.info(f"\n   --- Chunk {i} ---")
@@ -77,6 +81,7 @@ def verify():
     logger.info("\n" + "=" * 60)
     logger.info("✅ VÉRIFICATION TERMINÉE")
     logger.info("=" * 60)
+
 
 if __name__ == "__main__":
     verify()

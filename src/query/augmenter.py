@@ -14,16 +14,16 @@ QUESTION :
 
 RÉPONSE :"""
 
+
 def build_prompt(query: str, documents: list[Document]) -> str:
 
     if not documents:
         logger.warning("⚠️  Aucun document pertinent trouvé — contexte vide")
         context = "Aucun document pertinent trouvé."
     else:
-        context = "\n\n---\n\n".join([
-            f"[Source: {doc.metadata.get('source_file', '?')}]\n{doc.page_content}"
-            for doc in documents
-        ])
+        context = "\n\n---\n\n".join(
+            [f"[Source: {doc.metadata.get('source_file', '?')}]\n{doc.page_content}" for doc in documents]
+        )
 
     prompt = PROMPT_TEMPLATE.format(context=context, question=query)
     logger.info(f"📝 Prompt construit — {len(documents)} chunks | {len(prompt)} chars")

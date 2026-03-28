@@ -1,8 +1,10 @@
 import sys
 import os
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 from src.utils.logger import get_logger
@@ -13,6 +15,7 @@ from src.ingestion.embedder import embed_documents
 from src.query.cache import invalidate_cache
 
 logger = get_logger("run_ingestion")
+
 
 def run_ingestion():
     logger.info("=" * 60)
@@ -51,6 +54,7 @@ def run_ingestion():
     logger.info("✅ PIPELINE INGESTION TERMINÉE")
     logger.info(f"📊 Chunks ajoutés à ChromaDB : {added}")
     logger.info("=" * 60)
+
 
 if __name__ == "__main__":
     run_ingestion()

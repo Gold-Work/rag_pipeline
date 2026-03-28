@@ -30,7 +30,7 @@ def _compute_version() -> str:
         client = chromadb.PersistentClient(path=config["paths"]["chroma_db"])
         collection = client.get_or_create_collection(config["embedding"]["collection_name"])
         ids = sorted(collection.get(include=[])["ids"])
-        digest = hashlib.md5("|".join(ids).encode()).hexdigest()[:16]
+        digest = hashlib.md5("|".join(ids).encode(), usedforsecurity=False).hexdigest()[:16]
         logger.info(f"🔑 Version index : {digest} ({len(ids)} chunks)")
         return digest
     except Exception as e:
@@ -78,7 +78,7 @@ def make_key(question: str, top_k: int, chunk_ids: list[str]) -> str:
                            same question but different retrieval → different key)
     """
     version = get_index_version()
-    ids_digest = hashlib.md5("|".join(sorted(chunk_ids)).encode()).hexdigest()[:16]
+    ids_digest = hashlib.md5("|".join(sorted(chunk_ids)).encode(), usedforsecurity=False).hexdigest()[:16]
     return f"{question.strip().lower()}|{top_k}|{version}|{ids_digest}"
 
 

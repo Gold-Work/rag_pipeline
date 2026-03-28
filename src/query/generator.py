@@ -27,7 +27,7 @@ def generate(prompt: str) -> str:
                 temperature=temperature,
                 max_tokens=max_tokens,
             )
-            answer = response.choices[0].message.content.strip()
+            answer = (response.choices[0].message.content or "").strip()
             out["output"] = answer
             return answer
         except Exception as e:

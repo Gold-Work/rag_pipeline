@@ -26,14 +26,18 @@ _bm25 = None
 _bm25_docs = None
 _bm25_lock = threading.Lock()
 
+
 def tokenize(text: str) -> list[str]:
     return re.findall(r"\w+", text.lower())
+
 
 def get_vector_store() -> Chroma:
     global _vector_store
     with _vector_store_lock:
         if _vector_store is None:
-            embeddings = OpenAIEmbeddings(model=embedding_model, openai_api_key=os.getenv("OPENAI_API_KEY"))
+            embeddings = OpenAIEmbeddings(
+                model=embedding_model, api_key=os.getenv("OPENAI_API_KEY")  # type: ignore[arg-type]
+            )
             client = chromadb.PersistentClient(path=config["paths"]["chroma_db"])
             _vector_store = Chroma(
                 client=client,
@@ -42,6 +46,7 @@ def get_vector_store() -> Chroma:
             )
             logger.info("✅ Vector store initialisé (lazy singleton)")
     return _vector_store
+
 
 def get_bm25():
     global _bm25, _bm25_docs
@@ -52,24 +57,30 @@ def get_bm25():
             if not data["documents"]:
                 logger.warning("⚠️ BM25 : aucun document trouvé")
                 return None, []
-            _bm25_docs = [Document(page_content=doc, metadata=meta) for doc, meta in zip(data["documents"], data["metadatas"])]
+            _bm25_docs = [
+                Document(page_content=doc, metadata=meta) for doc, meta in zip(data["documents"], data["metadatas"])
+            ]
             tokenized = [tokenize(d.page_content) for d in _bm25_docs]
             _bm25 = BM25Okapi(tokenized)
             logger.info(f"✅ BM25 initialisé sur {len(_bm25_docs)} documents")
     return _bm25, _bm25_docs
 
+
 def vector_search(query: str, k: int) -> list[tuple[Document, float]]:
     return get_vector_store().similarity_search_with_score(query, k=k) or []
 
+
 def bm25_search(query: str, k: int) -> list[tuple[Document, float]]:
     bm25, docs = get_bm25()
-    if not bm25: return []
+    if not bm25:
+        return []
     scores = bm25.get_scores(tokenize(query))
     top_idx = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:k]
     return [(docs[i], scores[i]) for i in top_idx if scores[i] > 0]
 
+
 def reciprocal_rank_fusion(vector_results, bm25_results, k=60) -> list[Document]:
-    scores = {}
+    scores: dict[str | int, float] = {}
     doc_map = {}
     for rank, (doc, _) in enumerate(vector_results):
         key = doc.metadata.get("chunk_id", hash(doc.page_content))
@@ -80,6 +91,7 @@ def reciprocal_rank_fusion(vector_results, bm25_results, k=60) -> list[Document]
         scores[key] = scores.get(key, 0) + 1 / (k + rank + 1)
         doc_map[key] = doc
     return [doc_map[key] for key, _ in sorted(scores.items(), key=lambda x: x[1], reverse=True)]
+
 
 def retrieve(query: str, k: int = 5) -> tuple[list[Document], list[str]]:
     logger.info(f"🔍 Query : '{query}'")
@@ -103,10 +115,21 @@ def retrieve(query: str, k: int = 5) -> tuple[list[Document], list[str]]:
         out["results_count"] = len(all_bm25_results)
 
     # Déduplication
-    seen: set = set()
-    all_vector_results = [r for r in all_vector_results if not (r[0].page_content in seen or seen.add(r[0].page_content))]
+    seen: set[str] = set()
+    deduped_vector: list = []
+    for r in all_vector_results:
+        if r[0].page_content not in seen:
+            seen.add(r[0].page_content)
+            deduped_vector.append(r)
+    all_vector_results = deduped_vector
+
     seen = set()
-    all_bm25_results = [r for r in all_bm25_results if not (r[0].page_content in seen or seen.add(r[0].page_content))]
+    deduped_bm25: list = []
+    for r in all_bm25_results:
+        if r[0].page_content not in seen:
+            seen.add(r[0].page_content)
+            deduped_bm25.append(r)
+    all_bm25_results = deduped_bm25
 
     if not all_vector_results and not all_bm25_results:
         logger.warning("⚠️ Aucun résultat trouvé")

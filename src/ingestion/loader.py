@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 from typing import List
 from langchain_community.document_loaders import PyMuPDFLoader, UnstructuredHTMLLoader
@@ -12,10 +11,11 @@ logger = get_logger("loader")
 config = get_config()
 
 SUPPORTED_EXTENSIONS = {
-    ".pdf": PyMuPDFLoader,            # PyMuPDFLoader plus fiable que PyPDFLoader
+    ".pdf": PyMuPDFLoader,  # PyMuPDFLoader plus fiable que PyPDFLoader
     ".html": UnstructuredHTMLLoader,
     ".htm": UnstructuredHTMLLoader,
 }
+
 
 # Calcul hash pour éviter ré-ingestion
 def compute_file_hash(file_path: Path) -> str:
@@ -25,8 +25,10 @@ def compute_file_hash(file_path: Path) -> str:
             sha256.update(chunk)
     return sha256.hexdigest()
 
+
 HASH_STORE = Path(config["paths"]["ingested_files"])
 HASH_STORE.parent.mkdir(parents=True, exist_ok=True)
+
 
 def load_documents(data_path: str) -> List[Document]:
     if HASH_STORE.exists():

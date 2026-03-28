@@ -10,9 +10,7 @@ load_dotenv()
 LOGS_PATH = os.getenv("LOGS_PATH", "./logs")
 os.makedirs(LOGS_PATH, exist_ok=True)
 
-_log_filename = os.path.join(
-    LOGS_PATH, f"rag_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log"
-)
+_log_filename = os.path.join(LOGS_PATH, f"rag_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log")
 
 
 class JsonFormatter(logging.Formatter):

@@ -1,8 +1,10 @@
 import sys
 import os
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 from src.utils.logger import get_logger
@@ -12,6 +14,7 @@ from src.query.generator import generate
 from src.query.reranker import rerank
 
 logger = get_logger("run_query")
+
 
 def run_query(question: str, k: int = 5) -> str:
     logger.info("=" * 60)

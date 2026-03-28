@@ -27,6 +27,7 @@ Question originale : {question}
 
 Reformulations :"""
 
+
 def rewrite_query(question: str) -> list[str]:
     if not enabled:
         return [question]
@@ -37,10 +38,10 @@ def rewrite_query(question: str) -> list[str]:
             model=model,
             temperature=temperature,
             max_tokens=200,
-            messages=[{"role": "user", "content": REWRITE_PROMPT.format(n=n_variants, question=question)}]
+            messages=[{"role": "user", "content": REWRITE_PROMPT.format(n=n_variants, question=question)}],
         )
 
-        raw = response.choices[0].message.content.strip()
+        raw = (response.choices[0].message.content or "").strip()
         variants = [line.strip("-•1234567890. ").strip() for line in raw.split("\n") if line.strip()]
         variants = variants[:n_variants]
 

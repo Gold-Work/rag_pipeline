@@ -7,6 +7,7 @@ from src.utils.config import get_config
 
 logger = get_logger("chunker")
 
+
 def chunk_documents(documents: List[Document]) -> List[Document]:
     """
     Découpe les documents en chunks avec un ID unique pour chaque chunk.
@@ -36,7 +37,7 @@ def chunk_documents(documents: List[Document]) -> List[Document]:
 
     # Enrichir les métadonnées avec un ID unique
     for i, chunk in enumerate(chunks):
-        content_hash = hashlib.md5(chunk.page_content.encode()).hexdigest()[:12]
+        content_hash = hashlib.md5(chunk.page_content.encode(), usedforsecurity=False).hexdigest()[:12]
         source = chunk.metadata.get("source_file", "unknown")
         chunk.metadata["chunk_id"] = f"{source}_{i}_{content_hash}"
         chunk.metadata["chunk_size"] = len(chunk.page_content)
@@ -44,7 +45,7 @@ def chunk_documents(documents: List[Document]) -> List[Document]:
     logger.info(f"✅ {len(chunks)} chunks créés depuis {len(documents)} documents")
 
     # Statistiques par fichier
-    stats = {}
+    stats: dict[str, int] = {}
     for chunk in chunks:
         source = chunk.metadata.get("source_file", "inconnu")
         stats[source] = stats.get(source, 0) + 1

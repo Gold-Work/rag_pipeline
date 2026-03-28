@@ -7,6 +7,7 @@ from pathlib import Path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 import chromadb
@@ -41,7 +42,7 @@ limiter = Limiter(key_func=get_remote_address)
 
 app = FastAPI(title="RAG API", description="Production-ready RAG service", version="1.0.0")
 app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)  # type: ignore[arg-type]
 
 _raw_origins = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000")
 CORS_ORIGINS: list[str] = [o.strip() for o in _raw_origins.split(",") if o.strip()]
@@ -62,6 +63,7 @@ def shutdown():
 # ---------------------------------------------------------------------------
 # Models
 # ---------------------------------------------------------------------------
+
 
 class QueryRequest(BaseModel):
     question: str = Field(..., min_length=1, max_length=2000)
@@ -91,6 +93,7 @@ class TokenResponse(BaseModel):
 # Auth
 # ---------------------------------------------------------------------------
 
+
 @app.post("/api/auth/token", response_model=TokenResponse)
 @limiter.limit("10/minute")
 def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
@@ -108,6 +111,7 @@ def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
 # ---------------------------------------------------------------------------
 # Health
 # ---------------------------------------------------------------------------
+
 
 @app.get("/api/health", response_model=HealthResponse)
 def health():
@@ -143,6 +147,7 @@ def health():
 # Query
 # ---------------------------------------------------------------------------
 
+
 @app.post("/api/query", response_model=QueryResponse)
 @limiter.limit("30/minute")
 def query(request: Request, body: QueryRequest, username: str = Depends(verify_token)):
@@ -175,9 +180,7 @@ def query(request: Request, body: QueryRequest, username: str = Depends(verify_t
             documents = rerank(body.question, documents, top_k=body.top_k)
             latencies["rerank"] = round(time.time() - t0, 3)
 
-            sources = list(dict.fromkeys(
-                doc.metadata.get("source_file", "?") for doc in documents
-            ))
+            sources = list(dict.fromkeys(doc.metadata.get("source_file", "?") for doc in documents))
 
             # --- Generation (generation node: llm-generation) ---
             t0 = time.time()
@@ -212,9 +215,9 @@ def query(request: Request, body: QueryRequest, username: str = Depends(verify_t
 
 ALLOWED_EXTENSIONS = {".pdf", ".html", ".txt"}
 ALLOWED_MIME_TYPES = {
-    ".pdf":  {"application/pdf"},
+    ".pdf": {"application/pdf"},
     ".html": {"text/html"},
-    ".txt":  {"text/plain"},
+    ".txt": {"text/plain"},
 }
 
 
@@ -224,7 +227,7 @@ async def upload(request: Request, file: UploadFile = File(...), username: str =
     logger.info(f"📤 /api/upload — '{file.filename}' — user: {username}")
 
     # 1. Vérification de l'extension
-    ext = Path(file.filename).suffix.lower()
+    ext = Path(file.filename or "").suffix.lower()
     if ext not in ALLOWED_EXTENSIONS:
         raise HTTPException(status_code=400, detail=f"Format non supporté : {ext}")
 
@@ -234,12 +237,11 @@ async def upload(request: Request, file: UploadFile = File(...), username: str =
     detected_mime = magic.from_buffer(header, mime=True).split(";")[0].strip()
     if detected_mime not in ALLOWED_MIME_TYPES.get(ext, set()):
         raise HTTPException(
-            status_code=400,
-            detail=f"Contenu incompatible avec l'extension {ext} (détecté : {detected_mime})."
+            status_code=400, detail=f"Contenu incompatible avec l'extension {ext} (détecté : {detected_mime})."
         )
 
     # 3. Sanitisation du nom de fichier (protection path traversal)
-    safe_name = Path(file.filename).name
+    safe_name = Path(file.filename or "").name
     if not safe_name:
         raise HTTPException(status_code=400, detail="Nom de fichier invalide.")
     dest = Path("data/raw") / safe_name

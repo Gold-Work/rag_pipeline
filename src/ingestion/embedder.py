@@ -1,4 +1,3 @@
-import hashlib
 import os
 import time
 import uuid
@@ -32,9 +31,7 @@ def _ensure_chunk_id(chunk: Document) -> None:
         return
     content_sig = f"{chunk.metadata.get('source_file', '')}|{chunk.page_content}"
     chunk.metadata["chunk_id"] = str(uuid.uuid5(uuid.NAMESPACE_DNS, content_sig))
-    logger.warning(
-        f"⚠️ chunk_id manquant — UUID généré pour : {chunk.metadata.get('source_file', '?')}"
-    )
+    logger.warning(f"⚠️ chunk_id manquant — UUID généré pour : {chunk.metadata.get('source_file', '?')}")
 
 
 def get_embeddings():
@@ -59,7 +56,7 @@ def embed_with_retry(vector_store, batch, ids, max_retries=3):
             vector_store.add_documents(documents=batch, ids=ids)
             return True
         except openai.OpenAIError as e:
-            wait = 2 ** attempt  # 2s, 4s, 8s
+            wait = 2**attempt  # 2s, 4s, 8s
             if attempt < max_retries:
                 logger.warning(f"⚠️  Tentative {attempt}/{max_retries} échouée : {e} — retry dans {wait}s")
                 time.sleep(wait)
@@ -97,7 +94,7 @@ def embed_documents(chunks: List[Document]) -> int:
     total_success = 0
 
     for i in range(0, len(new_chunks), batch_size):
-        batch = new_chunks[i:i + batch_size]
+        batch = new_chunks[i : i + batch_size]
         ids = [chunk.metadata["chunk_id"] for chunk in batch]
         batch_num = (i // batch_size) + 1
 

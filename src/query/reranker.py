@@ -11,6 +11,7 @@ config = get_config()
 _cross_encoder = None
 _cross_encoder_lock = threading.Lock()
 
+
 def get_cross_encoder() -> CrossEncoder:
     global _cross_encoder
     with _cross_encoder_lock:
@@ -20,6 +21,7 @@ def get_cross_encoder() -> CrossEncoder:
             _cross_encoder = CrossEncoder(model_name)
             logger.info("✅ Cross-Encoder chargé (lazy singleton)")
     return _cross_encoder
+
 
 def rerank(query: str, documents: list[Document], top_k: int = 5) -> list[Document]:
     if not documents:

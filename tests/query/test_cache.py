@@ -1,10 +1,10 @@
 from unittest.mock import patch
-from src.query.cache import get_cached, get_index_version, invalidate_cache, make_key, set_cached
-
+from src.query.cache import get_cached, invalidate_cache, make_key, set_cached
 
 # ---------------------------------------------------------------------------
 # make_key — normalisation et versioning
 # ---------------------------------------------------------------------------
+
 
 def test_make_key_normalizes_case_and_whitespace():
     with patch("src.query.cache.get_index_version", return_value="abc123"):
@@ -46,6 +46,7 @@ def test_make_key_chunk_ids_order_insensitive():
 # get_cached / set_cached — hit et miss
 # ---------------------------------------------------------------------------
 
+
 def test_cache_miss_returns_none():
     with patch("src.query.cache.get_index_version", return_value="abc123"):
         key = make_key("question inconnue xyz 999", 5, [])
@@ -62,6 +63,7 @@ def test_cache_stores_and_retrieves():
 # ---------------------------------------------------------------------------
 # get_index_version — lazy compute
 # ---------------------------------------------------------------------------
+
 
 def test_index_version_computed_lazily():
     import src.query.cache as cache_mod
@@ -88,6 +90,7 @@ def test_index_version_not_recomputed_when_cached():
 # invalidate_cache — remet la version à None et vide le cache
 # ---------------------------------------------------------------------------
 
+
 def test_invalidate_cache_resets_version():
     import src.query.cache as cache_mod
 
@@ -97,8 +100,6 @@ def test_invalidate_cache_resets_version():
 
 
 def test_invalidate_cache_clears_entries():
-    import src.query.cache as cache_mod
-
     with patch("src.query.cache.get_index_version", return_value="abc123"):
         key = make_key("cached question", 5, ["chunk_x"])
     set_cached(key, "stored value")
