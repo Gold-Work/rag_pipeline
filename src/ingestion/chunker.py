@@ -36,9 +36,13 @@ def chunk_documents(documents: List[Document]) -> List[Document]:
     chunks = splitter.split_documents(documents)
 
     # Enrichir les métadonnées avec un ID unique
-    for i, chunk in enumerate(chunks):
+    # L'index i est local au fichier source pour rester stable entre sessions
+    local_index: dict[str, int] = {}
+    for chunk in chunks:
         source = chunk.metadata.get("source_file", "unknown")
-        content_sig = f"{source}|{chunk.page_content}"
+        i = local_index.get(source, 0)
+        local_index[source] = i + 1
+        content_sig = f"{source}|{i}|{chunk.page_content}"
         content_hash = hashlib.md5(content_sig.encode(), usedforsecurity=False).hexdigest()[:16]
         chunk.metadata["chunk_id"] = f"{source}_{content_hash}"
         chunk.metadata["chunk_size"] = len(chunk.page_content)
