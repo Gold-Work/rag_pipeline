@@ -1,6 +1,20 @@
+# Environnement
 .venv/
-.env
 __pycache__/
 *.pyc
+*.pyo
+.env
+
+# Data
 data/chroma_db/
-.DS_Store
+data/ingested_files.json
+data/raw/
+
+# Logs
+logs/
+
+# Tests
+.pytest_cache/
+
+# Docker
+*.tar

@@ -1,5 +1,0 @@
-2026-03-17 19:57:45,151 | DEBUG | langfuse | Thread: Media upload consumer thread #0 started and actively processing queue items
-2026-03-17 19:57:45,152 | DEBUG | langfuse | Prompt cache initialized.
-2026-03-17 19:57:45,152 | DEBUG | langfuse | Startup: Score ingestion consumer thread #0 started with batch size 15 and interval 1s
-2026-03-17 19:57:45,152 | INFO | langfuse | Startup: Langfuse tracer successfully initialized | public_key=pk-lf-5fc20382-04d8-4fce-810e-1bbed8bfff69 | base_url=https://cloud.langfuse.com | environment=default | sample_rate=1.0 | media_threads=1
-2026-03-17 19:57:45,603 | DEBUG | langfuse | Auth check successful, found 1 projects

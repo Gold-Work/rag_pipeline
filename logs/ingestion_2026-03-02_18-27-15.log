@@ -1,6 +1,0 @@
-2026-03-02 18:27:15,682 | INFO | loader | 📂 Dossier scanné : data
-2026-03-02 18:27:15,682 | INFO | loader | 📄 3 fichiers trouvés
-2026-03-02 18:27:15,682 | WARNING | loader | ⚠️  Format non supporté, ignoré : .DS_Store
-2026-03-02 18:27:15,682 | WARNING | loader | ⚠️  Format non supporté, ignoré : processed
-2026-03-02 18:27:15,682 | WARNING | loader | ⚠️  Format non supporté, ignoré : raw
-2026-03-02 18:27:15,682 | INFO | loader | 📊 Total documents chargés : 0
