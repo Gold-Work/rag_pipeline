@@ -24,8 +24,12 @@ _invalidation_hooks: list = []
 
 
 def register_invalidation_hook(fn) -> None:
-    """Enregistre un callback appelé lors de chaque invalidate_cache()."""
-    _invalidation_hooks.append(fn)
+    """Enregistre un callback appelé lors de chaque invalidate_cache().
+
+    Idempotent : si fn est déjà enregistré, l'appel est ignoré.
+    """
+    if fn not in _invalidation_hooks:
+        _invalidation_hooks.append(fn)
 
 
 def _compute_version() -> str:

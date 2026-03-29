@@ -1,3 +1,4 @@
+import hashlib
 import os
 import re
 import threading
@@ -92,15 +93,22 @@ def bm25_search(query: str, k: int) -> list[tuple[Document, float]]:
     return [(docs[i], scores[i]) for i in top_idx if scores[i] > 0]
 
 
+def _chunk_key(doc: Document) -> str:
+    """Clé déterministe pour un chunk — chunk_id si présent, sinon MD5 du contenu."""
+    return (
+        doc.metadata.get("chunk_id") or hashlib.md5(doc.page_content.encode(), usedforsecurity=False).hexdigest()[:16]
+    )
+
+
 def reciprocal_rank_fusion(vector_results, bm25_results, k=60) -> list[tuple[Document, float]]:
-    scores: dict[str | int, float] = {}
-    doc_map = {}
+    scores: dict[str, float] = {}
+    doc_map: dict[str, Document] = {}
     for rank, (doc, _) in enumerate(vector_results):
-        key = doc.metadata.get("chunk_id", hash(doc.page_content))
+        key = _chunk_key(doc)
         scores[key] = scores.get(key, 0) + 1 / (k + rank + 1)
         doc_map[key] = doc
     for rank, (doc, _) in enumerate(bm25_results):
-        key = doc.metadata.get("chunk_id", hash(doc.page_content))
+        key = _chunk_key(doc)
         scores[key] = scores.get(key, 0) + 1 / (k + rank + 1)
         doc_map[key] = doc
     return [(doc_map[key], score) for key, score in sorted(scores.items(), key=lambda x: x[1], reverse=True)]
@@ -153,18 +161,25 @@ def retrieve(query: str, k: int = 5) -> tuple[list[Document], list[str]]:
     if not all_vector_results and not all_bm25_results:
         logger.warning("⚠️ Aucun résultat trouvé")
         return [], []
+    elif not all_vector_results:
+        logger.info("ℹ️ Mode retrieval : BM25 seul (vector search indisponible)")
+        fused = all_bm25_results  # déjà trié score décroissant
+    elif not all_bm25_results:
+        logger.info("ℹ️ Mode retrieval : vector seul (BM25 indisponible)")
+        fused = all_vector_results  # déjà trié par pertinence décroissante
+    else:
+        logger.info("ℹ️ Mode retrieval : hybrid RRF")
+        fused = reciprocal_rank_fusion(all_vector_results, all_bm25_results)
 
-    fused = reciprocal_rank_fusion(all_vector_results, all_bm25_results)
-
-    min_rrf_score = float(config["retrieval"].get("min_rrf_score", 0.0))
-    if min_rrf_score > 0.0:
+    min_score = float(config["retrieval"].get("min_retrieval_score", 0.0))
+    if min_score > 0.0:
         before = len(fused)
-        fused = [(doc, s) for doc, s in fused if s >= min_rrf_score]
+        fused = [(doc, s) for doc, s in fused if s >= min_score]
         if len(fused) < before:
-            logger.info(f"🔎 Score threshold {min_rrf_score} : {before - len(fused)} chunks filtrés")
+            logger.info(f"🔎 Score threshold {min_score} : {before - len(fused)} chunks filtrés")
 
     final = [doc for doc, _ in fused[:k]]
     chunk_ids = [doc.metadata.get("chunk_id", "") for doc in final]
 
-    logger.info(f"📊 {len(final)} chunks retenus après fusion RRF")
+    logger.info(f"📊 {len(final)} chunks retenus")
     return final, chunk_ids
