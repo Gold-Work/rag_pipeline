@@ -8,6 +8,7 @@ from src.utils.logger import get_logger
 from src.utils.config import get_config
 from src.utils.observability import langfuse_span
 from src.query.rewriter import rewrite_query
+from src.query.cache import register_invalidation_hook
 from rank_bm25 import BM25Okapi
 import chromadb
 
@@ -25,6 +26,18 @@ _vector_store_lock = threading.Lock()
 _bm25 = None
 _bm25_docs = None
 _bm25_lock = threading.Lock()
+
+
+def _reset_bm25() -> None:
+    """Invalide le singleton BM25 — appelé automatiquement via cache hook."""
+    global _bm25, _bm25_docs
+    with _bm25_lock:
+        _bm25 = None
+        _bm25_docs = None
+    logger.info("🔄 BM25 invalidé — sera reconstruit à la prochaine requête")
+
+
+register_invalidation_hook(_reset_bm25)
 
 
 def tokenize(text: str) -> list[str]:
@@ -79,7 +92,7 @@ def bm25_search(query: str, k: int) -> list[tuple[Document, float]]:
     return [(docs[i], scores[i]) for i in top_idx if scores[i] > 0]
 
 
-def reciprocal_rank_fusion(vector_results, bm25_results, k=60) -> list[Document]:
+def reciprocal_rank_fusion(vector_results, bm25_results, k=60) -> list[tuple[Document, float]]:
     scores: dict[str | int, float] = {}
     doc_map = {}
     for rank, (doc, _) in enumerate(vector_results):
@@ -90,7 +103,7 @@ def reciprocal_rank_fusion(vector_results, bm25_results, k=60) -> list[Document]
         key = doc.metadata.get("chunk_id", hash(doc.page_content))
         scores[key] = scores.get(key, 0) + 1 / (k + rank + 1)
         doc_map[key] = doc
-    return [doc_map[key] for key, _ in sorted(scores.items(), key=lambda x: x[1], reverse=True)]
+    return [(doc_map[key], score) for key, score in sorted(scores.items(), key=lambda x: x[1], reverse=True)]
 
 
 def retrieve(query: str, k: int = 5) -> tuple[list[Document], list[str]]:
@@ -104,15 +117,21 @@ def retrieve(query: str, k: int = 5) -> tuple[list[Document], list[str]]:
     all_vector_results: list = []
     all_bm25_results: list = []
 
-    with langfuse_span("vector-search", {"queries": queries, "k": top_k_retrieval}) as out:
-        for q in queries:
-            all_vector_results.extend(vector_search(q, k=top_k_retrieval))
-        out["results_count"] = len(all_vector_results)
+    try:
+        with langfuse_span("vector-search", {"queries": queries, "k": top_k_retrieval}) as out:
+            for q in queries:
+                all_vector_results.extend(vector_search(q, k=top_k_retrieval))
+            out["results_count"] = len(all_vector_results)
+    except Exception as e:
+        logger.warning(f"⚠️ Vector search échoué, fallback BM25 seul : {e}")
 
-    with langfuse_span("bm25-search", {"queries": queries, "k": top_k_retrieval}) as out:
-        for q in queries:
-            all_bm25_results.extend(bm25_search(q, k=top_k_retrieval))
-        out["results_count"] = len(all_bm25_results)
+    try:
+        with langfuse_span("bm25-search", {"queries": queries, "k": top_k_retrieval}) as out:
+            for q in queries:
+                all_bm25_results.extend(bm25_search(q, k=top_k_retrieval))
+            out["results_count"] = len(all_bm25_results)
+    except Exception as e:
+        logger.warning(f"⚠️ BM25 search échoué, fallback vector seul : {e}")
 
     # Déduplication
     seen: set[str] = set()
@@ -136,7 +155,15 @@ def retrieve(query: str, k: int = 5) -> tuple[list[Document], list[str]]:
         return [], []
 
     fused = reciprocal_rank_fusion(all_vector_results, all_bm25_results)
-    final = fused[:k]
+
+    min_rrf_score = float(config["retrieval"].get("min_rrf_score", 0.0))
+    if min_rrf_score > 0.0:
+        before = len(fused)
+        fused = [(doc, s) for doc, s in fused if s >= min_rrf_score]
+        if len(fused) < before:
+            logger.info(f"🔎 Score threshold {min_rrf_score} : {before - len(fused)} chunks filtrés")
+
+    final = [doc for doc, _ in fused[:k]]
     chunk_ids = [doc.metadata.get("chunk_id", "") for doc in final]
 
     logger.info(f"📊 {len(final)} chunks retenus après fusion RRF")

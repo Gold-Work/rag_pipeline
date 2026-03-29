@@ -3,10 +3,7 @@ from src.utils.logger import get_logger
 
 logger = get_logger("augmenter")
 
-PROMPT_TEMPLATE = """Tu es un assistant expert. Réponds à la question en te basant UNIQUEMENT sur le contexte fourni.
-Si la réponse n'est pas dans le contexte, dis-le clairement.
-
-CONTEXTE :
+PROMPT_TEMPLATE = """CONTEXTE :
 {context}
 
 QUESTION :

@@ -19,6 +19,14 @@ _version_lock = threading.Lock()
 # None means "not yet computed"; reset to None on explicit invalidation.
 _index_version: str | None = None
 
+# Callbacks appelés à chaque invalidation (ex: reset BM25 dans retriever).
+_invalidation_hooks: list = []
+
+
+def register_invalidation_hook(fn) -> None:
+    """Enregistre un callback appelé lors de chaque invalidate_cache()."""
+    _invalidation_hooks.append(fn)
+
 
 def _compute_version() -> str:
     """Hash the sorted list of chunk IDs in ChromaDB.
@@ -49,8 +57,12 @@ def get_index_version() -> str:
     if _index_version is None:
         with _version_lock:
             if _index_version is None:  # double-checked locking
-                _index_version = _compute_version()
-    return _index_version
+                computed = _compute_version()
+                if computed != "unavailable":
+                    _index_version = computed  # mise en cache uniquement si ChromaDB répond
+                else:
+                    return computed  # erreur transitoire — pas de mise en cache, retry au prochain appel
+    return _index_version  # type: ignore[return-value]
 
 
 def invalidate_cache() -> None:
@@ -64,6 +76,11 @@ def invalidate_cache() -> None:
         _index_version = None
     with _cache_lock:
         _cache.clear()
+    for hook in _invalidation_hooks:
+        try:
+            hook()
+        except Exception as e:
+            logger.warning(f"⚠️ Hook d'invalidation échoué : {e}")
     logger.info("🔄 Cache invalidé — index modifié")
 
 
