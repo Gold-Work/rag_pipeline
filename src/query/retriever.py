@@ -141,20 +141,22 @@ def retrieve(query: str, k: int = 5) -> tuple[list[Document], list[str]]:
     except Exception as e:
         logger.warning(f"⚠️ BM25 search échoué, fallback vector seul : {e}")
 
-    # Déduplication
+    # Déduplication par chunk_id (O(1) par lookup vs O(n) sur page_content)
     seen: set[str] = set()
     deduped_vector: list = []
     for r in all_vector_results:
-        if r[0].page_content not in seen:
-            seen.add(r[0].page_content)
+        cid = _chunk_key(r[0])
+        if cid not in seen:
+            seen.add(cid)
             deduped_vector.append(r)
     all_vector_results = deduped_vector
 
     seen = set()
     deduped_bm25: list = []
     for r in all_bm25_results:
-        if r[0].page_content not in seen:
-            seen.add(r[0].page_content)
+        cid = _chunk_key(r[0])
+        if cid not in seen:
+            seen.add(cid)
             deduped_bm25.append(r)
     all_bm25_results = deduped_bm25
 
@@ -164,14 +166,16 @@ def retrieve(query: str, k: int = 5) -> tuple[list[Document], list[str]]:
     elif not all_vector_results:
         logger.info("ℹ️ Mode retrieval : BM25 seul (vector search indisponible)")
         fused = all_bm25_results  # déjà trié score décroissant
+        min_score = float(config["retrieval"].get("bm25_min_score", 0.0))
     elif not all_bm25_results:
         logger.info("ℹ️ Mode retrieval : vector seul (BM25 indisponible)")
         fused = all_vector_results  # déjà trié par pertinence décroissante
+        min_score = float(config["retrieval"].get("vector_min_score", 0.0))
     else:
         logger.info("ℹ️ Mode retrieval : hybrid RRF")
         fused = reciprocal_rank_fusion(all_vector_results, all_bm25_results)
+        min_score = float(config["retrieval"].get("rrf_min_score", 0.0))
 
-    min_score = float(config["retrieval"].get("min_retrieval_score", 0.0))
     if min_score > 0.0:
         before = len(fused)
         fused = [(doc, s) for doc, s in fused if s >= min_score]

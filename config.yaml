@@ -7,8 +7,9 @@ retrieval:
   chunk_overlap: 200
   top_k_retrieval: 20
   top_k_rerank: 5
-  min_retrieval_score: 0.0  # seuil minimum sur le score du mode actif (0 = pas de filtre)
-                            # l'échelle varie par mode : RRF ~0.01-0.03, vector 0-1, BM25 0-N
+  rrf_min_score: 0.0     # score RRF : ~0.003 (rang 20, une source) à ~0.033 (rang 0, deux sources)
+  vector_min_score: 0.0  # cosine similarity normalisée par LangChain : 0 = orthogonal, 1 = identique
+  bm25_min_score: 0.0    # score BM25/Okapi TF-IDF : 0 = aucun terme commun, N = très pertinent
 
 embedding:
   model: text-embedding-3-small
@@ -19,9 +20,23 @@ rewriter:
   enabled: true       # activer/désactiver la réécriture
   n_variants: 3
   temperature: 0.3
+  system_prompt: |
+    Tu es un expert en recherche documentaire dans des documents administratifs et juridiques français.
+    Génère {n} reformulations différentes de la question suivante pour maximiser les chances de trouver la réponse.
+
+    Règles :
+    - Utilise les équivalents français : SIRET = SIREN = RCS = numéro d'immatriculation = numéro d'identification
+    - Utilise les équivalents : siège social = adresse = domiciliation = établissement principal
+    - Varie entre forme question et forme mot-clé court
+    - Inclus des reformulations courtes type "mot-clé valeur"
+    - Retourne UNIQUEMENT les reformulations, une par ligne, sans numérotation ni explication
+
+    Question originale : {question}
+
+    Reformulations :
 
 reranker:
-  model: cross-encoder/ms-marco-MiniLM-L-6-v2
+  model: cross-encoder/mmarco-mMiniLMv2-L12-H384-v1  # multilingue (30+ langues dont français)
 
 llm:
   model: gpt-4o-mini
@@ -33,4 +48,3 @@ paths:
   chroma_db: ./data/chroma_db
   ingested_files: ./data/ingested_files.json
   logs: ./logs
-  

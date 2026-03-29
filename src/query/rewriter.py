@@ -13,19 +13,7 @@ model = config["llm"]["model"]
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-REWRITE_PROMPT = """Tu es un expert en recherche documentaire dans des documents administratifs et juridiques français.
-Génère {n} reformulations différentes de la question suivante pour maximiser les chances de trouver la réponse.
-
-Règles :
-- Utilise les équivalents français : SIRET = SIREN = RCS = numéro d'immatriculation = numéro d'identification
-- Utilise les équivalents : siège social = adresse = domiciliation = établissement principal
-- Varie entre forme question et forme mot-clé court
-- Inclus des reformulations courtes type "mot-clé valeur"
-- Retourne UNIQUEMENT les reformulations, une par ligne, sans numérotation ni explication
-
-Question originale : {question}
-
-Reformulations :"""
+REWRITE_PROMPT = config["rewriter"]["system_prompt"]
 
 
 def rewrite_query(question: str) -> list[str]:
