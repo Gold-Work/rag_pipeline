@@ -133,7 +133,7 @@ def main() -> None:
 
     print("\n=== Résultats ===")
     failed = False
-    for metric_name, score in result.items():
+    for metric_name, score in result._repr_dict.items():
         status = "✓" if score >= THRESHOLD else "✗"
         print(f"  {metric_name:<25}: {score:.3f}  {status}  (seuil {THRESHOLD})")
         if score < THRESHOLD:
