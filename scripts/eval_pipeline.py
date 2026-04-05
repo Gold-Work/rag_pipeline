@@ -20,11 +20,11 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import chromadb
-from openai import AsyncOpenAI, OpenAI
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from ragas import EvaluationDataset, SingleTurnSample, evaluate
-from ragas.embeddings import OpenAIEmbeddings as RagasOpenAIEmbeddings
-from ragas.llms import llm_factory
-from ragas.metrics.collections import AnswerRelevancy, ContextPrecision, Faithfulness
+from ragas.embeddings import LangchainEmbeddingsWrapper
+from ragas.llms import LangchainLLMWrapper
+from ragas.metrics import answer_relevancy, context_precision, faithfulness
 
 from src.query.augmenter import build_prompt
 from src.query.generator import generate
@@ -100,15 +100,15 @@ def main() -> None:
 
     print(f"=== RAGAS Evaluation — {len(GOLDEN_DATASET)} questions ===\n")
 
-    # ragas 0.4.x: factories require explicit client instances
-    api_key = os.getenv("OPENAI_API_KEY")
-    llm = llm_factory(model=config["llm"]["model"], client=AsyncOpenAI(api_key=api_key))
-    emb = RagasOpenAIEmbeddings(client=OpenAI(api_key=api_key), model=config["embedding"]["model"])
-    metrics = [
-        Faithfulness(llm=llm),
-        AnswerRelevancy(llm=llm, embeddings=emb),
-        ContextPrecision(llm=llm),
-    ]
+    # Wire LLM and embeddings onto the pre-created metric singletons
+    llm = LangchainLLMWrapper(ChatOpenAI(model=config["llm"]["model"], temperature=0))
+    emb = LangchainEmbeddingsWrapper(OpenAIEmbeddings(model=config["embedding"]["model"]))
+    faithfulness.llm = llm
+    answer_relevancy.llm = llm
+    answer_relevancy.embeddings = emb
+    context_precision.llm = llm
+
+    metrics = [faithfulness, answer_relevancy, context_precision]
 
     samples = []
     top_k_rerank = config["retrieval"]["top_k_rerank"]
