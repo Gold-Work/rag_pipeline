@@ -20,10 +20,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import chromadb
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from ragas import EvaluationDataset, SingleTurnSample, evaluate
-from ragas.embeddings import LangchainEmbeddingsWrapper
-from ragas.llms import LangchainLLMWrapper
+from ragas import llm_factory, embedding_factory
 from ragas.metrics.collections import AnswerRelevancy, ContextPrecision, Faithfulness
 
 from src.query.augmenter import build_prompt
@@ -100,9 +98,9 @@ def main() -> None:
 
     print(f"=== RAGAS Evaluation — {len(GOLDEN_DATASET)} questions ===\n")
 
-    # RAGAS wrappers
-    llm = LangchainLLMWrapper(ChatOpenAI(model=config["llm"]["model"], temperature=0))
-    emb = LangchainEmbeddingsWrapper(OpenAIEmbeddings(model=config["embedding"]["model"]))
+    # RAGAS factories (picks up OPENAI_API_KEY from environment automatically)
+    llm = llm_factory(model=config["llm"]["model"])
+    emb = embedding_factory(model=config["embedding"]["model"])
     metrics = [
         Faithfulness(llm=llm),
         AnswerRelevancy(llm=llm, embeddings=emb),
