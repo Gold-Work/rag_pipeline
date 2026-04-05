@@ -20,8 +20,10 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import chromadb
+from openai import AsyncOpenAI, OpenAI
 from ragas import EvaluationDataset, SingleTurnSample, evaluate
-from ragas import llm_factory, embedding_factory
+from ragas.embeddings import OpenAIEmbeddings as RagasOpenAIEmbeddings
+from ragas.llms import llm_factory
 from ragas.metrics.collections import AnswerRelevancy, ContextPrecision, Faithfulness
 
 from src.query.augmenter import build_prompt
@@ -98,9 +100,10 @@ def main() -> None:
 
     print(f"=== RAGAS Evaluation — {len(GOLDEN_DATASET)} questions ===\n")
 
-    # RAGAS factories (picks up OPENAI_API_KEY from environment automatically)
-    llm = llm_factory(model=config["llm"]["model"])
-    emb = embedding_factory(model=config["embedding"]["model"])
+    # RAGAS 0.4.x: factories require explicit client instances
+    api_key = os.getenv("OPENAI_API_KEY")
+    llm = llm_factory(model=config["llm"]["model"], client=AsyncOpenAI(api_key=api_key))
+    emb = RagasOpenAIEmbeddings(model=config["embedding"]["model"], client=OpenAI(api_key=api_key))
     metrics = [
         Faithfulness(llm=llm),
         AnswerRelevancy(llm=llm, embeddings=emb),
