@@ -14,14 +14,17 @@ Exits 0 if all metrics pass or if ChromaDB is empty (no data to evaluate).
 Exits 1 if any metric is below the threshold.
 """
 
+import os
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import chromadb
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from ragas import EvaluationDataset, SingleTurnSample, evaluate
 from ragas.embeddings import LangchainEmbeddingsWrapper
 from ragas.llms import LangchainLLMWrapper
-from ragas.metrics import AnswerRelevancy, ContextPrecision, Faithfulness
+from ragas.metrics.collections import AnswerRelevancy, ContextPrecision, Faithfulness
 
 from src.query.augmenter import build_prompt
 from src.query.generator import generate
