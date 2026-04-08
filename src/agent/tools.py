@@ -5,6 +5,8 @@ Each tool returns a dict with two mandatory keys:
   - data   : result payload (varies per tool)
 """
 
+import re
+
 from src.utils.config import get_config
 from src.utils.logger import get_logger
 
@@ -68,6 +70,76 @@ _ORDERS: dict[str, dict] = {
 # ---------------------------------------------------------------------------
 
 
+def _levenshtein(a: str, b: str) -> int:
+    """Compute the Levenshtein edit distance between two strings."""
+    if len(a) < len(b):
+        a, b = b, a
+    prev = list(range(len(b) + 1))
+    for i, ca in enumerate(a, 1):
+        curr = [i]
+        for j, cb in enumerate(b, 1):
+            curr.append(min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + (ca != cb)))
+        prev = curr
+    return prev[-1]
+
+
+def normalize_order_id(raw: str) -> str | None:
+    """Resolve a raw user-provided string to a known order ID.
+
+    Three lookup steps, in order:
+
+    1. Exact match (case-insensitive, stripped).
+    2. Suffix match: extract all digit sequences from *raw*, build candidate
+       suffixes, and return the unique order ID whose numeric suffix matches.
+       Returns ``None`` if zero or more than one order matches.
+    3. Fuzzy match: compute Levenshtein distance against every known ID and
+       return the closest one only if it is unique below the strict threshold
+       ``max(2, len(raw) // 6)``.  Returns ``None`` if ambiguous or all
+       distances exceed the threshold.
+
+    Parameters
+    ----------
+    raw : str
+        The user-provided order reference (may be partial, malformed, etc.)
+
+    Returns
+    -------
+    str | None
+        The canonical order ID key from ``_ORDERS``, or ``None`` if not found.
+    """
+    candidate = raw.strip().upper()
+
+    # Step 1 — exact match
+    if candidate in _ORDERS:
+        logger.info(f"[normalize_order_id] exact match: {candidate!r}")
+        return candidate
+
+    # Step 2 — suffix match on the digit run extracted from raw
+    digits = re.sub(r"\D", "", candidate)
+    if digits:
+        suffix_matches = [oid for oid in _ORDERS if oid.endswith(digits)]
+        if len(suffix_matches) == 1:
+            logger.info(f"[normalize_order_id] suffix match: {candidate!r} → {suffix_matches[0]!r}")
+            return suffix_matches[0]
+        if len(suffix_matches) > 1:
+            logger.warning(f"[normalize_order_id] suffix ambiguous for {candidate!r}: {suffix_matches}")
+
+    # Step 3 — fuzzy Levenshtein match
+    threshold = max(2, len(candidate) // 6)
+    scored = [(oid, _levenshtein(candidate, oid)) for oid in _ORDERS]
+    scored.sort(key=lambda x: x[1])
+    best_id, best_dist = scored[0]
+    if best_dist <= threshold:
+        # Accept only if uniquely closest (no tie at same distance)
+        if len(scored) == 1 or scored[1][1] > best_dist:
+            logger.info(f"[normalize_order_id] fuzzy match (dist={best_dist}): {candidate!r} → {best_id!r}")
+            return best_id
+        logger.warning(f"[normalize_order_id] fuzzy ambiguous for {candidate!r}: dist={best_dist}")
+
+    logger.warning(f"[normalize_order_id] no match for {candidate!r}")
+    return None
+
+
 def query_rag(question: str) -> dict:
     """Query the RAG knowledge base and return the top reranked chunks.
 
@@ -119,14 +191,15 @@ def check_order(order_id: str) -> dict:
         data   : order dict if found, {"message": str} otherwise
     """
     logger.info(f"[tool:check_order] order_id='{order_id}'")
-    order = _ORDERS.get(order_id.strip().upper())
-    if order is None:
+    resolved = normalize_order_id(order_id)
+    if resolved is None:
         logger.warning(f"[tool:check_order] commande introuvable : {order_id}")
         return {
             "status": "not_found",
             "data": {"message": f"Aucune commande trouvee pour la reference {order_id!r}."},
         }
-    logger.info(f"[tool:check_order] commande trouvee : statut={order['status']}")
+    order = _ORDERS[resolved]
+    logger.info(f"[tool:check_order] commande trouvee : {resolved} statut={order['status']}")
     return {"status": "ok", "data": order}
 
 

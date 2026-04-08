@@ -20,7 +20,7 @@ from typing import Any, Literal
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, ToolMessage
 from langchain_openai import ChatOpenAI
 from langgraph.graph import END, START, StateGraph
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 from src.agent.state import AgentState
 from src.agent.tools import check_order, create_ticket, query_rag, send_email
@@ -51,6 +51,8 @@ class ToolChoice(BaseModel):
         - create_ticket  → JSON {"issue": ..., "customer_email": ...}
         - none           → empty string
     """
+
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
     tool: Literal["query_rag", "check_order", "send_email", "create_ticket", "none"]
     argument: str
