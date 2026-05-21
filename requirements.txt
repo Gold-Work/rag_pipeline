@@ -181,3 +181,4 @@ zipp==3.23.0
 zstandard==0.25.0
 ragas>=0.2.0
 datasets>=2.0.0
+python-jose[cryptography]>=3.3.0

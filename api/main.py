@@ -2,6 +2,7 @@ import os
 import sys
 import time
 import shutil
+from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -13,32 +14,31 @@ load_dotenv()
 import chromadb
 from fastapi import FastAPI, UploadFile, File, HTTPException, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security import OAuth2PasswordRequestForm
 import magic
 from openai import OpenAI
 from pydantic import BaseModel, Field
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
+from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
 from src.utils.config import get_config
 from src.utils.logger import get_logger
-from src.utils.auth import create_access_token, verify_token
+from src.utils.rate_limiter import limiter
+from src.auth.dependencies import require_authenticated_user, require_admin
+from src.auth.models import TokenData
+from src.auth.routes import router as auth_router
 from src.utils.observability import get_langfuse, trace_context
 from src.query.cache import get_cached, make_key, set_cached
 from src.query.retriever import retrieve
 from src.query.reranker import rerank
 from src.query.augmenter import build_prompt
 from src.query.generator import generate
-from src.ingestion.loader import load_documents, save_ingested_hashes
+from src.ingestion.loader import load_documents, save_ingested_hashes, HASH_STORE
 from src.ingestion.parser import parse_documents
 from src.ingestion.chunker import chunk_documents
 from src.ingestion.embedder import embed_documents
 
 logger = get_logger("api")
 config = get_config()
-
-limiter = Limiter(key_func=get_remote_address)
 
 app = FastAPI(title="RAG API", description="Production-ready RAG service", version="1.0.0")
 app.state.limiter = limiter
@@ -54,9 +54,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(auth_router)
+
 
 @app.on_event("shutdown")
-def shutdown():
+def shutdown() -> None:
     get_langfuse().flush()
 
 
@@ -84,28 +86,10 @@ class HealthResponse(BaseModel):
     checks: dict
 
 
-class TokenResponse(BaseModel):
-    access_token: str
-    token_type: str
-
-
-# ---------------------------------------------------------------------------
-# Auth
-# ---------------------------------------------------------------------------
-
-
-@app.post("/api/auth/token", response_model=TokenResponse)
-@limiter.limit("10/minute")
-def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
-    username = os.getenv("API_USERNAME", "admin")
-    password = os.getenv("API_PASSWORD", "changeme123")
-
-    if form_data.username != username or form_data.password != password:
-        raise HTTPException(status_code=401, detail="Identifiants invalides")
-
-    token = create_access_token(data={"sub": form_data.username})
-    logger.info(f"✅ Login réussi : {form_data.username}")
-    return TokenResponse(access_token=token, token_type="bearer")
+class StatsResponse(BaseModel):
+    document_count: int
+    chunk_count: int
+    last_ingestion: str | None
 
 
 # ---------------------------------------------------------------------------
@@ -114,12 +98,11 @@ def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
 
 
 @app.get("/api/health", response_model=HealthResponse)
-def health():
-    """Deep health check: verifies ChromaDB connectivity and OpenAI API access."""
+def health() -> HealthResponse:
+    """Deep health check : vérifie ChromaDB et l'accès OpenAI."""
     checks: dict = {}
     overall = "ok"
 
-    # ChromaDB — connect and count indexed chunks
     try:
         client = chromadb.PersistentClient(path=config["paths"]["chroma_db"])
         collection = client.get_or_create_collection(config["embedding"]["collection_name"])
@@ -129,7 +112,6 @@ def health():
         overall = "degraded"
         logger.error(f"❌ Health ChromaDB : {e}")
 
-    # OpenAI — lightweight models.list() call (no token cost)
     try:
         openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         openai_client.models.list()
@@ -144,14 +126,59 @@ def health():
 
 
 # ---------------------------------------------------------------------------
-# Query
+# Stats (tout utilisateur authentifié)
+# ---------------------------------------------------------------------------
+
+SUPPORTED_EXTENSIONS = {".pdf", ".html", ".txt"}
+
+
+@app.get("/api/stats", response_model=StatsResponse)
+def stats(token_data: TokenData = Depends(require_authenticated_user)) -> StatsResponse:
+    """Statistiques de l'index documentaire."""
+    logger.info(f"📊 /api/stats — user: {token_data.username}")
+
+    # Chunk count via ChromaDB
+    try:
+        chroma_client = chromadb.PersistentClient(path=config["paths"]["chroma_db"])
+        collection = chroma_client.get_or_create_collection(config["embedding"]["collection_name"])
+        chunk_count = collection.count()
+    except Exception as e:
+        logger.error(f"❌ Stats ChromaDB : {e}")
+        chunk_count = -1
+
+    # Document count via data/raw/
+    raw_dir = Path(config["paths"]["raw_data"])
+    document_count = sum(
+        1 for f in raw_dir.rglob("*")
+        if f.is_file() and f.suffix.lower() in SUPPORTED_EXTENSIONS
+    ) if raw_dir.exists() else 0
+
+    # Last ingestion via mtime de ingested_files.json
+    last_ingestion: str | None = None
+    if HASH_STORE.exists():
+        mtime = HASH_STORE.stat().st_mtime
+        last_ingestion = datetime.fromtimestamp(mtime, tz=timezone.utc).isoformat()
+
+    return StatsResponse(
+        document_count=document_count,
+        chunk_count=chunk_count,
+        last_ingestion=last_ingestion,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Query (admin + user)
 # ---------------------------------------------------------------------------
 
 
 @app.post("/api/query", response_model=QueryResponse)
 @limiter.limit("30/minute")
-def query(request: Request, body: QueryRequest, username: str = Depends(verify_token)):
-    logger.info(f"❓ /api/query — '{body.question}' — user: {username}")
+def query(
+    request: Request,
+    body: QueryRequest,
+    token_data: TokenData = Depends(require_authenticated_user),
+) -> QueryResponse:
+    logger.info(f"❓ /api/query — '{body.question}' — user: {token_data.username} (role={token_data.role})")
 
     latencies: dict = {}
 
@@ -159,9 +186,8 @@ def query(request: Request, body: QueryRequest, username: str = Depends(verify_t
         with trace_context(
             "rag-query",
             input={"question": body.question, "top_k": body.top_k},
-            user_id=username,
+            user_id=token_data.username,
         ) as trace:
-            # Retrieval always runs: chunk_ids are needed to build the cache key.
             t0 = time.time()
             documents, chunk_ids = retrieve(body.question, k=20)
             latencies["retrieval"] = round(time.time() - t0, 3)
@@ -169,20 +195,17 @@ def query(request: Request, body: QueryRequest, username: str = Depends(verify_t
             if not documents:
                 raise HTTPException(status_code=404, detail="Aucun document pertinent trouvé.")
 
-            # Cache check after retrieval — key is content-addressed on chunk_ids.
             cache_key = make_key(body.question, body.top_k, chunk_ids)
             cached_response = get_cached(cache_key)
             if cached_response is not None:
                 return cached_response.model_copy(update={"cached": True})
 
-            # --- Reranking (sub-span: cross-encoder) ---
             t0 = time.time()
             documents = rerank(body.question, documents, top_k=body.top_k)
             latencies["rerank"] = round(time.time() - t0, 3)
 
             sources = list(dict.fromkeys(doc.metadata.get("source_file", "?") for doc in documents))
 
-            # --- Generation (generation node: llm-generation) ---
             t0 = time.time()
             prompt = build_prompt(body.question, documents)
             answer = generate(prompt)
@@ -210,10 +233,9 @@ def query(request: Request, body: QueryRequest, username: str = Depends(verify_t
 
 
 # ---------------------------------------------------------------------------
-# Upload
+# Upload (admin uniquement)
 # ---------------------------------------------------------------------------
 
-ALLOWED_EXTENSIONS = {".pdf", ".html", ".txt"}
 ALLOWED_MIME_TYPES = {
     ".pdf": {"application/pdf"},
     ".html": {"text/html"},
@@ -223,24 +245,26 @@ ALLOWED_MIME_TYPES = {
 
 @app.post("/api/upload")
 @limiter.limit("5/minute")
-async def upload(request: Request, file: UploadFile = File(...), username: str = Depends(verify_token)):
-    logger.info(f"📤 /api/upload — '{file.filename}' — user: {username}")
+async def upload(
+    request: Request,
+    file: UploadFile = File(...),
+    token_data: TokenData = Depends(require_admin),
+) -> dict:
+    logger.info(f"📤 /api/upload — '{file.filename}' — user: {token_data.username}")
 
-    # 1. Vérification de l'extension
     ext = Path(file.filename or "").suffix.lower()
-    if ext not in ALLOWED_EXTENSIONS:
+    if ext not in SUPPORTED_EXTENSIONS:
         raise HTTPException(status_code=400, detail=f"Format non supporté : {ext}")
 
-    # 2. Vérification du type MIME réel
     header = await file.read(4096)
     await file.seek(0)
     detected_mime = magic.from_buffer(header, mime=True).split(";")[0].strip()
     if detected_mime not in ALLOWED_MIME_TYPES.get(ext, set()):
         raise HTTPException(
-            status_code=400, detail=f"Contenu incompatible avec l'extension {ext} (détecté : {detected_mime})."
+            status_code=400,
+            detail=f"Contenu incompatible avec l'extension {ext} (détecté : {detected_mime}).",
         )
 
-    # 3. Sanitisation du nom de fichier (protection path traversal)
     safe_name = Path(file.filename or "").name
     if not safe_name:
         raise HTTPException(status_code=400, detail="Nom de fichier invalide.")

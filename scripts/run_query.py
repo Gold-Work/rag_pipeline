@@ -23,7 +23,7 @@ def run_query(question: str, k: int = 5) -> str:
 
     # ÉTAPE 1 — Retrieve (top 20 pour le reranker)
     logger.info("🔍 ÉTAPE 1 : Recherche des chunks pertinents...")
-    documents = retrieve(question, k=20)
+    documents, _ = retrieve(question, k=20)
 
     if not documents:
         logger.warning("⚠️  Aucun document pertinent trouvé")

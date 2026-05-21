@@ -5,7 +5,7 @@ cache:
 retrieval:
   chunk_size: 1200
   chunk_overlap: 200
-  top_k_retrieval: 20
+  top_k_retrieval: 10
   top_k_rerank: 5
   rrf_min_score: 0.0     # score RRF : ~0.003 (rang 20, une source) à ~0.033 (rang 0, deux sources)
   vector_min_score: 0.0  # cosine similarity normalisée par LangChain : 0 = orthogonal, 1 = identique
@@ -18,7 +18,7 @@ embedding:
 
 rewriter:
   enabled: true       # activer/désactiver la réécriture
-  n_variants: 3
+  n_variants: 1
   temperature: 0.3
   system_prompt: |
     Tu es un expert en recherche documentaire dans des documents administratifs et juridiques français.
