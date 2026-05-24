@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import chromadb
-from fastapi import FastAPI, UploadFile, File, HTTPException, Depends, Request
+from fastapi import BackgroundTasks, FastAPI, UploadFile, File, HTTPException, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
 import magic
 from openai import OpenAI
@@ -32,10 +32,8 @@ from src.query.retriever import retrieve
 from src.query.reranker import rerank
 from src.query.augmenter import build_prompt
 from src.query.generator import generate
-from src.ingestion.loader import load_documents, save_ingested_hashes, HASH_STORE
-from src.ingestion.parser import parse_documents
-from src.ingestion.chunker import chunk_documents
-from src.ingestion.embedder import embed_documents
+from src.ingestion.loader import HASH_STORE
+from src.ingestion.pipeline import ingest_file
 
 logger = get_logger("api")
 config = get_config()
@@ -243,10 +241,21 @@ ALLOWED_MIME_TYPES = {
 }
 
 
-@app.post("/api/upload")
+def _run_ingest_file(dest: Path, filename: str) -> None:
+    """Tâche d'ingestion exécutée en arrière-plan par FastAPI BackgroundTasks."""
+    logger.info(f"🔄 Début ingestion arrière-plan : {filename}")
+    try:
+        added = ingest_file(dest)
+        logger.info(f"✅ Ingestion arrière-plan terminée : {filename} — {added} chunks indexés")
+    except Exception as e:
+        logger.error(f"❌ Ingestion arrière-plan échouée : {filename} — {e}", exc_info=True)
+
+
+@app.post("/api/upload", status_code=202)
 @limiter.limit("5/minute")
 async def upload(
     request: Request,
+    background_tasks: BackgroundTasks,
     file: UploadFile = File(...),
     token_data: TokenData = Depends(require_admin),
 ) -> dict:
@@ -275,16 +284,15 @@ async def upload(
     try:
         with dest.open("wb") as f:
             shutil.copyfileobj(file.file, f)
-
-        docs, ingested_hashes = load_documents("data/raw")
-        docs = [d for d in docs if d.metadata.get("source_file") == safe_name]
-        docs = parse_documents(docs)
-        chunks = chunk_documents(docs)
-        added = embed_documents(chunks)
-        save_ingested_hashes(ingested_hashes)
-
-        return {"filename": safe_name, "chunks_indexed": added, "status": "success"}
-
     except Exception as e:
-        logger.error(f"❌ Erreur /api/upload : {e}")
+        logger.error(f"❌ Erreur sauvegarde fichier : {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+    background_tasks.add_task(_run_ingest_file, dest, safe_name)
+
+    logger.info(f"✅ Fichier sauvegardé, ingestion planifiée en arrière-plan : {safe_name}")
+    return {
+        "filename": safe_name,
+        "status": "accepted",
+        "message": "Fichier reçu. L'ingestion démarre en arrière-plan.",
+    }
